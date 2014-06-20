@@ -1,1 +1,1 @@
-Lot's a dot files!
+Lotsa dot files!
