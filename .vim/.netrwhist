@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/data/var/log/fsck'
+let g:netrw_dirhist_2='/data/home/wolfgang/jekyll/_posts'
+let g:netrw_dirhist_3='/data/home/wolfgang/katas/rlu_elixir/config'
+let g:netrw_dirhist_4='/data/home/wolfgang/sandbox/elixir/wc/features/step_definitions'
+let g:netrw_dirhist_5='/data/home/wolfgang/github/toys/elixir/wc/features'
+let g:netrw_dirhist_6='/data/home/wolfgang/github/toys/elixir/ttt'
+let g:netrw_dirhist_7='/data/home/wolfgang/github/toys/elixir/wc'
+let g:netrw_dirhist_8='/data/home/wolfgang/github/toys/elixir/wc/lib'
+let g:netrw_dirhist_9='/data/home/wolfgang/github/toys/elixir/wc/features/step_definitions'
