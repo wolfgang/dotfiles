@@ -10,4 +10,4 @@
 
 (setq ring-bell-function 'ignore)
 
-(load-file "~/.emacs.d/org-config/config.el")
+(load-file "~/.emacs.d/elisp/org-config/config.el")
