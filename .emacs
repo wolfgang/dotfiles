@@ -1,4 +1,4 @@
-(setq make-backup-files)
+(setq make-backup-files nil)
 (setq inhibit-splash-screen t)
 (global-font-lock-mode 1)
 (transient-mark-mode 1)
