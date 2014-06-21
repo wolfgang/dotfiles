@@ -1,6 +1,6 @@
 (load "util")
 
-(if (not (eq system-type 'darwin))
+(if (eq system-type 'windows-nt)
   (progn
     (setq org-directory "e:/Library/Dropbox/org")
     (setq org-mobile-directory "e:/Library/Dropbox/OrgMobile")
