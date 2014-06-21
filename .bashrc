@@ -105,3 +105,4 @@ alias gs="git status"
 alias gc="git commit -am"
 alias gp="git push origin master"
 stty -ixon
+export EDITOR=vim
