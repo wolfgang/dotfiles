@@ -20,3 +20,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/elisp/rspec-mode")
 (require 'rspec-mode)
+
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(setq auto-indent-on-visit-file t) ;; If you want auto-indent on for files
+(require 'auto-indent-mode)
+(auto-indent-global-mode)
