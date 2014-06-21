@@ -16,3 +16,7 @@
 
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+
+
+(add-to-list 'load-path "~/.emacs.d/elisp/rspec-mode")
+(require 'rspec-mode)
