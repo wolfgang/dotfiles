@@ -1,0 +1,12 @@
+(load "util")
+
+(setq org-capture-templates '(("t" "Todo" entry (file+headline (org-file "inbox.org") "Inbox") "* TODO %?\n")
+     			      ("n" "Notebook" entry (file+datetree (org-file  "notebook.org"))
+			       "* [%<%H:%M:%S>] %? %i\n")
+			      ("k" "Notebook (KB)" entry (file+datetree (org-file  "notebook.org"))
+			       "* [%<%H:%M:%S>] %? :KB:%i\n")
+			      ("c" "[ ] under clocked" checkitem (clock) "[ ] %?\n")
+			      ("o" "TODO under Clocked" entry (clock) "* TODO  %?\n")
+			      ("i" "Interruption" entry (file (org-file "interruptions.org"))
+			       "* %? %i\n" :clock-in :clock-resume)
+			      ))
