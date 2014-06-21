@@ -24,3 +24,6 @@
 (setq auto-indent-on-visit-file t) ;; If you want auto-indent on for files
 (require 'auto-indent-mode)
 (auto-indent-global-mode)
+
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-elixir")
+(require 'elixir-mode)
