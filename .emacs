@@ -12,6 +12,7 @@
 
 (load-file "~/.emacs.d/elisp/org-config/config.el")
 
+(add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/elisp/cucumber.el")
 
 (require 'feature-mode)
@@ -20,10 +21,15 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/rspec-mode")
 (require 'rspec-mode)
 
-(add-to-list 'load-path "~/.emacs.d/elisp")
+
 (setq auto-indent-on-visit-file t) ;; If you want auto-indent on for files
 (require 'auto-indent-mode)
 (auto-indent-global-mode)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-elixir")
 (require 'elixir-mode)
+
+(require 'linum-off)
+
+(global-linum-mode)
+(column-number-mode)
