@@ -33,3 +33,4 @@
 
 (global-linum-mode)
 (column-number-mode)
+(delete-selection-mode 1)
