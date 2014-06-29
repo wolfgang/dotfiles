@@ -1,6 +1,11 @@
 
-(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "|" "DONE(d)" "MAYBE(m)") 
-			  (sequence "SCHD" "|")))
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "|" "DONE(d)" "MAYBE(m)")
+        (sequence "SCHD" "|")
+        (sequence "PLAN" "WAIT" "|")
+        )
+      )
+
 
 (setq org-todo-keyword-faces '(("TODO" :foreground "red" 
 				:weight bold) 
@@ -15,8 +20,10 @@
 			       ("MAYBE" :foreground "orange" 
 				:weight bold) 
 			       ("SCHD" :foreground "navy blue" 
-				:weight bold) 
-			       ("PROJ" :background "blue" 
+				:weight bold)
+                               ("PLAN" :foreground "red")
+                               ("WAIT" :foreground "blue") 
+                               ("PROJ" :background "blue" 
 				:foreground "white" 
 				:weight bold)))
 

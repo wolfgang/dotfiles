@@ -40,7 +40,7 @@
 		  ))))
 
 (setq available-tasks
-      `(tags-todo "-INBOX/!-NEXT-FREE-USED"
+      `(tags-todo "-INBOX/!+TODO"
                      ((org-agenda-overriding-header "Available Tasks")
                       (org-agenda-skip-function
                        '(oh/agenda-skip :headline-if '(project)
