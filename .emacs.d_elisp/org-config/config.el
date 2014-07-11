@@ -77,7 +77,7 @@
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "american")
 
-(setq org-sort-agenda-notime-is-late nil)
+(setq org-sort-agenda-notime-is-late t)
 
 (defun custom-org-agenda-mode-defaults ()
   (org-defkey org-agenda-mode-map "W" 'oh/agenda-remove-restriction)
