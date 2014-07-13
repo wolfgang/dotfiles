@@ -49,7 +49,7 @@
 
 (setq active-projects
   `(tags-todo "/!"
-      ((org-agenda-overriding-header  "Projects")
+      ((org-agenda-overriding-header  "Active Projects")
        (org-agenda-skip-function
 	'(oh/agenda-skip :subtree-if '(non-project inactive habit)
 	  :headline-if-unrestricted-and '(subproject)))
@@ -70,8 +70,7 @@
                                                  ,available-tasks))
                                    ("d" "Today" ((agenda "" (,agenda-day-sort (org-agenda-span 'day) ,skip-used-timeslots))))
 
-                                   ("p" "Active Projects" (,active-projects))
-  				   ("#" "Stuck Projects"  (,stuck-projects))
+                                   ("p" "Projects" (,active-projects, stuck-projects))
 				   ("i" "Inbox" (,inbox))
                                    ("y" "Someday/Maybe" (,someday))
 
