@@ -26,9 +26,6 @@
 (setq scratch `(tags "+SCRATCH+LEVEL=1" ,(append '((org-agenda-overriding-header "Scratch")) (with-org-file "scratchpad.org"))))
 
 (setq inbox-match  "+TODO=\"TODO\"-HABIT+INBOX")
-(setq active-project-match "TODO=\"PROJ\"-INACTIVE")
-(setq inactive-project-match "TODO=\"PROJ\"+INACTIVE")
-(setq inbox-files `(org-agenda-files '(,(org-file "inbox.org") ,(org-file "inbox_r.org"))))
 
 (setq inbox
       `(tags-todo ,inbox-match
@@ -37,7 +34,9 @@
 		   (org-agenda-skip-function
 		    '(oh/agenda-skip :headline-if '(subtask)
 		   )
-		  ))))
+                    ))))
+
+(setq someday `(tags "+TODO=\"MAYBE\"" ((org-agenda-overriding-header "Someday/Maybe"))))
 
 (setq available-tasks
       `(tags-todo "-INBOX/!+TODO"
@@ -50,7 +49,7 @@
 
 (setq active-projects
   `(tags-todo "/!"
-      ((org-agenda-overriding-header  "------------------------------------------------\nProjects")
+      ((org-agenda-overriding-header  "Projects")
        (org-agenda-skip-function
 	'(oh/agenda-skip :subtree-if '(non-project inactive habit)
 	  :headline-if-unrestricted-and '(subproject)))
@@ -73,21 +72,21 @@
                                    ("p" "Active Projects" (,active-projects))
   				   ("#" "Stuck Projects"  (,stuck-projects))
 				   ("i" "Inbox" (,inbox))
-                                   ("y" "Someday/Maybe" tags "TODO=\"MAYBE\"")
+                                   ("y" "Someday/Maybe" (,someday))
 
                                    ("o" "Overview" ((agenda "" (,agenda-day-sort (org-agenda-span 'week) ,skip-used-timeslots))
-						    ,active-projects
-						    ,next-actions
-						    ,stuck-projects
-						    ,available-tasks
+                                                    ,next-actions
+                                                    ,available-tasks
+                                                    ,active-projects
+						    ,stuck-projects                          
 						    ,inbox
-						    ,(recently-completed 2 "Recently Completed")
-						    ,scratch))
+                                                    ,(recently-completed 2 "Recently Completed")
+                                                    ,scratch
+                                                    ,someday))
                                    
                                    ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
                                    ("k" "Knowledge Base" tags  "KB" ,(with-org-file "notebook.org"))
                                    ("b" "Notebook" tags  "NOTEBOOK&LEVEL>=2&LEVEL<=4" ,(with-org-file "notebook.org"))
-
                                    ))
 
 
