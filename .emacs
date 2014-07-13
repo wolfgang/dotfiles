@@ -43,8 +43,7 @@
 
 (setq ido-everywhere t)
 (setq ido-max-directory-size 100000)
-;(ido-mode (quote both))
-(ido-mode 'buffer)
+(ido-mode 'both)
 (setq ido-default-file-method 'selected-window)
 (setq ido-default-buffer-method 'selected-window)
 
@@ -54,3 +53,5 @@
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "C-x x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+(setq tramp-mode nil)
