@@ -43,7 +43,8 @@
 
 (setq ido-everywhere t)
 (setq ido-max-directory-size 100000)
-(ido-mode (quote both))
+;(ido-mode (quote both))
+(ido-mode 'buffer)
 (setq ido-default-file-method 'selected-window)
 (setq ido-default-buffer-method 'selected-window)
 
