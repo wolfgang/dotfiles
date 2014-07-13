@@ -93,3 +93,10 @@
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 (setq org-completion-use-ido t)
 (setq org-indirect-buffer-display 'current-window)
+
+(setq org-agenda-prefix-format
+      '((agenda . " %i %-16:c%?-16t% s")
+       (timeline . "  % s")
+       (todo . " %i %-16:c")
+       (tags . " %i %-16:c")
+       (search . " %i %-16:c")))
