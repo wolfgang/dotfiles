@@ -58,12 +58,27 @@
 ;	  :headline-if-restricted-and '(top-project)))
 	(org-agenda-sorting-strategy '(category-keep)))))
 
+(setq active-projects-today
+      `(tags-todo "/!"
+                  ((org-agenda-overriding-header  "------------------------------------------------\nProjects")
+                   (org-agenda-skip-function
+                    '(oh/agenda-skip :subtree-if '(non-project inactive habit)
+                                     :headline-if-unrestricted-and '(subproject)))
+                                        ;	  :headline-if-restricted-and '(top-project)))
+                   (org-agenda-sorting-strategy '(category-keep)))))
 
 (setq stuck-projects
       '(tags-todo "-CANCELLED/!-HOLD-WAITING"
                      ((org-agenda-overriding-header "Stuck Projects")
                       (org-agenda-skip-function
                        '(oh/agenda-skip :subtree-if '(inactive non-project non-stuck-project habit scheduled deadline))))))
+(setq tasks-with-deadline
+      `(tags-todo "-INBOX/!-MAYBE-DONE"
+                  ((org-agenda-overriding-header "Deadlines")
+                   (org-agenda-skip-function
+                    '(oh/agenda-skip :headline-if '(not-deadline)))
+                   (org-agenda-sorting-strategy '(deadline-up)))))
+                                     
 
 (setq skip-used-timeslots
      '(org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("USED"))))
@@ -87,8 +102,14 @@
 						    ,scratch
 				    ))
 				   ("d" "Today" ((agenda "" (,agenda-day-sort (org-agenda-span 'day) ,skip-used-timeslots))
-						 ,active-projects
-						 ,next-actions
-						 ,available-tasks
-						 ;,(recently-completed 0 "Completed Today")
-				 ))))
+                                                 ))
+
+                                   ("t" "Tasks" (
+                                                 ,next-actions
+                                                 ,available-tasks
+                                                 ))
+                                   ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
+                                   ))
+
+
+      

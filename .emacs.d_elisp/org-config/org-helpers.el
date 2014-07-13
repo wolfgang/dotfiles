@@ -199,6 +199,9 @@ given todo states."
   (let ((end (save-excursion (outline-next-heading) (1- (point)))))
     (re-search-forward org-scheduled-time-regexp end t)))
 
+(defun oh/is-not-deadline-p ()
+  (not (oh/is-deadline-p)))
+
 (defun oh/is-deadline-p ()
   "Returns t for any heading with a deadline."
   (org-back-to-heading t)

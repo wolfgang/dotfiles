@@ -38,7 +38,7 @@
 
 (setq org-global-properties '(("Effort_ALL" . "0:05 0:15 0:30 0:45 1:00 1:30 2:00 2:30 3:00 3:30 0:00")))
 
-(setq org-columns-default-format "%70ITEM(Task) %22CREATED %8Effort(Effort){:} %8CLOCKSUM(Clock)")
+(setq org-columns-default-format "%70ITEM(Task) %8Effort(Effort){:} %8CLOCKSUM(Clock) %22CLOSED")
 (setq org-agenda-overriding-columns-format org-columns-default-format)
 (setq org-tags-exclude-from-inheritance '("PROJECT"))
 (setq org-tag-alist '(("PROJECT") 
@@ -86,3 +86,10 @@
   (org-defkey org-agenda-mode-map "q" 'bury-buffer))
 
 (add-hook 'org-agenda-mode-hook 'custom-org-agenda-mode-defaults 'append)
+
+
+(setq org-refile-use-outline-path t)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes (quote confirm))
+(setq org-completion-use-ido t)
+(setq org-indirect-buffer-display 'current-window)

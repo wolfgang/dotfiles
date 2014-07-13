@@ -46,3 +46,10 @@
 (ido-mode (quote both))
 (setq ido-default-file-method 'selected-window)
 (setq ido-default-buffer-method 'selected-window)
+
+(require 'smex)
+(smex-initialize)
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "C-x x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
