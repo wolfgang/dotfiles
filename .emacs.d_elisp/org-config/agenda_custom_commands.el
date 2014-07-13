@@ -66,7 +66,8 @@
 
 (setq org-agenda-custom-commands `(
                                    ("t" "Tasks" (,next-actions
-                                                 ,available-tasks, (scheduled-today)))
+                                                 ,(scheduled-today)
+                                                 ,available-tasks))
                                    ("d" "Today" ((agenda "" (,agenda-day-sort (org-agenda-span 'day) ,skip-used-timeslots))))
 
                                    ("p" "Active Projects" (,active-projects))
