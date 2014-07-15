@@ -36,10 +36,12 @@
 		   )
                     ))))
 
+(setq groceries `(tags-todo "+GROCERIES/+TODO" ((org-agenda-overriding-header "Groceries"))))
+
 (setq someday `(tags "+TODO=\"MAYBE\"" ((org-agenda-overriding-header "Someday/Maybe"))))
 
 (setq available-tasks
-      `(tags-todo "-INBOX/!+TODO"
+      `(tags-todo "-INBOX-GROCERIES/!+TODO"
                      ((org-agenda-overriding-header "Available Tasks")
                       (org-agenda-skip-function
                        '(oh/agenda-skip :headline-if '(project)
@@ -73,6 +75,7 @@
                                    ("p" "Projects" (,active-projects, stuck-projects))
 				   ("i" "Inbox" (,inbox))
                                    ("y" "Someday/Maybe" (,someday))
+                                   ("g" "Groceries" (,groceries))
 
                                    ("o" "Overview" ((agenda "" (,agenda-day-sort (org-agenda-span 'week) ,skip-used-timeslots))
                                                     ,next-actions

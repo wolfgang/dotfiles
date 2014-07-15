@@ -1,8 +1,10 @@
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "|" "DONE(d)" "MAYBE(m)")
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (sequence "PROJ(p)" "|")
+        (sequence "MAYBE(p)" "|")
         (sequence "SCHD" "|")
-        (sequence "PLAN" "WAIT" "|")
+        (sequence "WAIT" "|")
         )
       )
 
@@ -21,7 +23,6 @@
 				:weight bold) 
 			       ("SCHD" :foreground "navy blue" 
 				:weight bold)
-                               ("PLAN" :foreground "red")
                                ("WAIT" :foreground "blue") 
                                ("PROJ" :background "blue" 
 				:foreground "white" 

@@ -3,6 +3,7 @@
 (setq org-capture-templates '(
                               ("t" "Todo" entry (file+headline (org-file "inbox.org") "Inbox") "* TODO %?\n")
                               ("s" "Todo (Shared)" entry (file+headline (org-shared-file "inbox_shared.org") "Inbox") "* TODO %?\n")
+                              ("g" "Groceries" entry (file+headline (org-shared-file "groceries.org") "Groceries") "* TODO %?\n")
      			      ("n" "Notebook" entry (file+datetree (org-file  "notebook.org"))
 			       "* [%<%H:%M:%S>] %? %i\n")
 			      ("k" "Notebook (KB)" entry (file+datetree (org-file  "notebook.org"))
