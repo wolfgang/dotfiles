@@ -10,7 +10,7 @@
 	  '(lambda () 
 	     (local-set-key (kbd "RET") 'newline-and-indent)))
 
-;(load-file "~/.emacs.d/elisp/org-config/config.el")
+(load-file "~/.emacs.d/elisp/org-config/config.el")
 
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/elisp/cucumber.el")
