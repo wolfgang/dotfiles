@@ -10,7 +10,7 @@
 	  '(lambda () 
 	     (local-set-key (kbd "RET") 'newline-and-indent)))
 
-(load-file "~/.emacs.d/elisp/org-config/config.el")
+;(load-file "~/.emacs.d/elisp/org-config/config.el")
 
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/elisp/cucumber.el")
@@ -55,3 +55,8 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 (setq tramp-mode nil)
+
+(add-to-list 'load-path "~/.emacs.d/elisp/rust-mode")
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
