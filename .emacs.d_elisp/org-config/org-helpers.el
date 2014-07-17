@@ -50,7 +50,7 @@
 
 (defun* oh/agenda-skip (&rest types
                         &key ((:headline-if headline) nil)
-                             ((:headline-if-restricted-and headline-restricted) nil)
+                        ((:headline-if-restricted-and headline-restricted) nil)
                              ((:headline-if-unrestricted-and headline-unrestricted) nil)
                              ((:subtree-if subtree) nil)
                              ((:subtree-if-restricted-and subtree-restricted) nil)
@@ -126,8 +126,8 @@
     (let ((end (save-excursion (org-end-of-subtree t))))
       (outline-end-of-heading)
       (and (oh/is-project-p)
-           (not (save-excursion (re-search-forward "^\\*+ \\(SCHD\\|NEXT\\|STARTED\\) " end t)))
-           (re-search-forward "^\\*+ TODO " end t)))))
+           (not (save-excursion (re-search-forward "^\\*+ \\(SCHD\\|NEXT\\|STARTED\\) " end t)))))))
+;           (re-search-forward "^\\*+ TODO " end t)))))
 
 (defun oh/is-non-stuck-project-p ()
   "Returns t for any heading that is a project and has a `NEXT` subtask."
@@ -136,7 +136,8 @@
       (outline-end-of-heading)
       (and (oh/is-project-p)
            (or (save-excursion (re-search-forward "^\\*+ \\(SCHD\\|NEXT\\|STARTED\\) " end t))
-               (not (re-search-forward "^\\*+ TODO " end t)))))))
+               nil)))))
+;               (not (re-search-forward "^\\*+ TODO " end t)))))))
 
 (defun oh/is-subproject-p ()
   "Returns t for any heading that is a project and has a parent project."

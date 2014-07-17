@@ -53,13 +53,14 @@
   `(tags-todo "/!"
       ((org-agenda-overriding-header  "Active Projects")
        (org-agenda-skip-function
-	'(oh/agenda-skip :subtree-if '(non-project inactive habit)
+	'(oh/agenda-skip
+          :subtree-if '(non-project inactive stuck-project habit)
 	  :headline-if-unrestricted-and '(subproject)))
        (org-agenda-sorting-strategy '(category-keep)))))
 
-(setq stuck-projects
+(setq inactive-projects
       '(tags-todo "-CANCELLED/!-HOLD-WAITING"
-                     ((org-agenda-overriding-header "Stuck Projects")
+                     ((org-agenda-overriding-header "Inactive Projects")
                       (org-agenda-skip-function
                        '(oh/agenda-skip :subtree-if '(inactive non-project non-stuck-project habit scheduled deadline))))))
 
@@ -72,7 +73,7 @@
                                                  ,available-tasks))
                                    ("d" "Today" ((agenda "" (,agenda-day-sort (org-agenda-span 'day) ,skip-used-timeslots))))
 
-                                   ("p" "Projects" (,active-projects, stuck-projects))
+                                   ("p" "Projects" (,active-projects, inactive-projects))
 				   ("i" "Inbox" (,inbox))
                                    ("y" "Someday/Maybe" (,someday))
                                    ("g" "Groceries" (,groceries))
@@ -81,7 +82,7 @@
                                                     ,next-actions
                                                     ,available-tasks
                                                     ,active-projects
-						    ,stuck-projects                          
+						    ,inactive-projects                          
 						    ,inbox
                                                     ,(recently-completed 2 "Recently Completed")
                                                     ,scratch
