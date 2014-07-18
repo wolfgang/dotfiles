@@ -100,3 +100,5 @@
        (todo . " %i %-16:c")
        (tags . " %i %-16:c")
        (search . " %i %-16:c")))
+
+(setq org-deadline-warning-days 7)
