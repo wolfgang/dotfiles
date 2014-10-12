@@ -20,3 +20,4 @@
 
 (setq org-link-search-must-match-exact-headline nil)
 
+(setq bookmark-sort-flag nil)
