@@ -49,20 +49,9 @@
                                         :subtree-if-restricted-and '(single-task)))
                       (org-agenda-sorting-strategy '(category-keep)))))
 
-(setq active-projects
-  `(tags-todo "/!"
-      ((org-agenda-overriding-header  "Active Projects")
-       (org-agenda-skip-function
-	'(oh/agenda-skip
-          :subtree-if '(non-project inactive stuck-project habit)
-	  :headline-if-unrestricted-and '(subproject)))
-       (org-agenda-sorting-strategy '(category-keep)))))
-
-(setq inactive-projects
-      '(tags-todo "-CANCELLED/!-HOLD-WAITING"
-                     ((org-agenda-overriding-header "Inactive Projects")
-                      (org-agenda-skip-function
-                       '(oh/agenda-skip :subtree-if '(inactive non-project non-stuck-project habit scheduled deadline))))))
+(setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE" ((org-agenda-overriding-header  "Active Projects"))))
+(setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE" ((org-agenda-overriding-header  "Inactive Projects"))))
+                       
 
 (setq skip-used-timeslots
      '(org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("USED"))))
