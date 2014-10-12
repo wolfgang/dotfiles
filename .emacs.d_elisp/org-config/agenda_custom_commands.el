@@ -79,7 +79,7 @@
                                    
                                    ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
                                    ("k" "Knowledge Base" tags  "KB" ,(with-org-file "notebook.org"))
-                                   ("b" "Notebook" tags  "NOTEBOOK&LEVEL>=2&LEVEL<=4" ,(with-org-file "notebook.org"))
+                                   ("b" "Notebook" tags  "NOTEBOOK" ,(with-org-file "notebook.org"))
                                    ))
 
 
