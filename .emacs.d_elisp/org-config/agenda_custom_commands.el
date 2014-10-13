@@ -17,7 +17,7 @@
 	`(tags ,match ,(age-sorted header "CLOSED" 'user-defined-down))))
 
 (defun scheduled-today ()
-	`(tags "TODO=\"SCHD\"&SCHEDULED=\"<-0d>\""
+  `(tags "TODO=\"SCHD\"&SCHEDULED>=\"<+0d>\"&SCHEDULED<\"<+1d>\""
 	       ((org-agenda-overriding-header "Scheduled Today"))))
 
 (setq agenda-day-sort '(org-agenda-sorting-strategy '(habit-down time-up priority-down todo-state-down)))
