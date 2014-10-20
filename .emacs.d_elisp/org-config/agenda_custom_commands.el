@@ -36,7 +36,9 @@
 
 (setq inbox
       `(tags-todo ,inbox-match
-		  ((org-agenda-overriding-header "Inbox"))))
+		  (
+                   (org-agenda-skip-function '(oh/agenda-skip :headline-if '(subtask)))
+                   (org-agenda-overriding-header "Inbox"))))
 
 (setq week-agenda `(agenda "" (,agenda-day-sort
                                (org-agenda-span 'week)
