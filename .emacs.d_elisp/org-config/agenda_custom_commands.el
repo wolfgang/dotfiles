@@ -17,24 +17,33 @@
 	`(tags ,match ,(age-sorted header "CLOSED" 'user-defined-down))))
 
 (defun scheduled-today ()
-	`(tags "TODO=\"SCHD\"&SCHEDULED=\"<-0d>\""
+  `(tags "TODO=\"SCHD\"&SCHEDULED>=\"<+0d>\"&SCHEDULED<\"<+1d>\""
 	       ((org-agenda-overriding-header "Scheduled Today"))))
 
-(setq agenda-day-sort '(org-agenda-sorting-strategy '(habit-down time-up priority-down todo-state-down)))
+(setq skip-used-timeslots
+     '(org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("USED"))))
 
-(setq next-actions `(tags-todo "TODO=\"NEXT\"" ((org-agenda-overriding-header "Next Actions" ))))
-(setq scratch `(tags "+SCRATCH+LEVEL=1" ,(append '((org-agenda-overriding-header "Scratch")) (with-org-file "scratchpad.org"))))
+(setq agenda-day-sort '(org-agenda-sorting-strategy
+                        '(habit-down time-up priority-down todo-state-down)))
 
-(setq inbox-match  "+TODO=\"TODO\"-HABIT+INBOX")
+(setq next-actions `(tags-todo "TODO=\"NEXT\""
+                               ((org-agenda-overriding-header "Next Actions" ))))
+(setq scratch `(tags "+SCRATCH+LEVEL=1" ,(append
+                                          '((org-agenda-overriding-header "Scratch"))
+                                          (with-org-file "scratchpad.org"))))
+
+(setq inbox-match  "+TODO=\"TODO\"")
 
 (setq inbox
       `(tags-todo ,inbox-match
 		  (
-		   (org-agenda-overriding-header "Inbox")
-		   (org-agenda-skip-function
-		    '(oh/agenda-skip :headline-if '(subtask)
-		   )
-                    ))))
+                   (org-agenda-skip-function '(oh/agenda-skip :headline-if '(subtask)))
+                   (org-agenda-overriding-header "Inbox"))))
+
+(setq week-agenda `(agenda "" (,agenda-day-sort
+                               (org-agenda-span 'week)
+                               ,skip-used-timeslots)))
+
 
 (setq groceries `(tags-todo "+GROCERIES/+TODO" ((org-agenda-overriding-header "Groceries"))))
 
@@ -49,37 +58,49 @@
                                         :subtree-if-restricted-and '(single-task)))
                       (org-agenda-sorting-strategy '(category-keep)))))
 
-(setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE" ((org-agenda-overriding-header  "Active Projects"))))
-(setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE" ((org-agenda-overriding-header  "Inactive Projects"))))
+(setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE"
+                                  ((org-agenda-overriding-header  "Active Projects"))))
+(setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE"
+                                    ((org-agenda-overriding-header  "Inactive Projects"))))
                        
 
-(setq skip-used-timeslots
-     '(org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("USED"))))
 
 (setq org-agenda-custom-commands `(
                                    ("t" "Tasks" (,next-actions
                                                  ,(scheduled-today)
                                                  ,available-tasks))
-                                   ("d" "Today" ((agenda "" (,agenda-day-sort (org-agenda-span 'day) ,skip-used-timeslots))))
+                                   ("d" "Today" ((agenda "" (,agenda-day-sort
+                                                             (org-agenda-span 'day)
+                                                             ,skip-used-timeslots))
+                                                 ,next-actions))
+                                   
+                                   ("w" "Week" (,week-agenda))
 
                                    ("p" "Projects" (,active-projects, inactive-projects))
 				   ("i" "Inbox" (,inbox))
                                    ("y" "Someday/Maybe" (,someday))
                                    ("g" "Groceries" (,groceries))
-
-                                   ("o" "Overview" ((agenda "" (,agenda-day-sort (org-agenda-span 'week) ,skip-used-timeslots))
-                                                    ,next-actions
-                                                    ,available-tasks
-                                                    ,active-projects
-						    ,inactive-projects                          
-						    ,inbox
-                                                    ,(recently-completed 2 "Recently Completed")
-                                                    ,scratch
-                                                    ,someday))
+                                   ("o" "Overview"  (
+                                                     ,week-agenda
+                                                     ,next-actions
+                                                     ,available-tasks
+                                                     ,active-projects
+						     ,inactive-projects  
+						     ,inbox
+                                                     ,(recently-completed
+                                                       2
+                                                       "Recently Completed")
+                                                     ,scratch
+                                                     ,someday))
                                    
-                                   ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
-                                   ("k" "Knowledge Base" tags  "KB" ,(with-org-file "notebook.org"))
-                                   ("b" "Notebook" tags  "NOTEBOOK" ,(with-org-file "notebook.org"))
+                                   ("e" "Completed" (
+                                                     ,(recently-completed
+                                                       365
+                                                       "Completed Tasks")))
+                                   ("k" "Knowledge Base" tags  "KB"
+                                    ,(with-org-file "notebook.org"))
+                                   ("b" "Notebook" tags  "NOTEBOOK"
+                                    ,(with-org-file "notebook.org"))
                                    ))
 
 
