@@ -60,3 +60,5 @@
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
+(if (file-exists-p "~/.emacs.local")
+    (load "~/.emacs.local"))
