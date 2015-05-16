@@ -5,6 +5,7 @@
                               ("s" "Todo (Shared)" entry (file+headline (org-shared-file "inbox_shared.org") "Inbox") "* TODO %?\n")
                               ("n" "Notebook" entry (file+headline (org-file  "notebook.org") "Notebook") "* [%<%Y-%d-%m %H:%M:%S>] %? %i\n")
 			      ("k" "Notebook (KB)" entry (file+headline (org-file  "notebook.org") "Notebook") "* [%<%Y-%d-%m %H:%M:%S>] %? :KB: %i\n")
+                              ("d" "Notebook (10 Ideas)" entry (file+headline (org-file  "notebook.org") "Notebook") "* [%<%Y-%d-%m %H:%M:%S>] %? :10IDEAS: %i\n")
                               ("g" "Groceries" entry (file+headline (org-shared-file "groceries.org") "Groceries") "* TODO %?\n")
                               ("j" "Journal" entry (file+datetree (org-file  "journal.org"))
                                "* [%<%H:%M:%S>] %? %i\n")
