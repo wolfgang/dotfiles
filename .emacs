@@ -10,6 +10,10 @@
 	  '(lambda () 
 	     (local-set-key (kbd "RET") 'newline-and-indent)))
 
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(package-initialize)
+
 (load-file "~/.emacs.d/elisp/org-config/config.el")
 
 (add-to-list 'load-path "~/.emacs.d/elisp")
@@ -66,6 +70,6 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
-
 (if (file-exists-p "~/.emacs.local")
     (load "~/.emacs.local"))
+
