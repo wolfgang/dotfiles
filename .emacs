@@ -26,10 +26,10 @@
 (require 'rspec-mode)
 
 
-(setq auto-indent-on-visit-file t) ;; If you want auto-indent on for files
-(require 'auto-indent-mode)
-(auto-indent-global-mode)
-(setq-default indent-tabs-mode nil)
+;;(setq auto-indent-on-visit-file t) ;; If you want auto-indent on for files
+;;(require 'auto-indent-mode)
+;;(auto-indent-global-mode)
+;;(setq-default indent-tabs-mode nil)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-elixir")
 (require 'elixir-mode)
