@@ -21,7 +21,7 @@
 (org-clock-persistence-insinuate)
 ;(org-expiry-insinuate)
 
-(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
 (setq org-agenda-remove-tags t)
 (setq org-agenda-confirm-kill 10)
 (setq org-startup-indented t)
@@ -102,3 +102,12 @@
        (search . " %i %-16:c")))
 
 (setq org-deadline-warning-days 7)
+
+
+(defun wd/verify-refile-target ()
+  (let ((todo (nth 2 (org-heading-components))))
+    (and
+     (eq nil (string-match-p (regexp-quote "notebook.org") (buffer-file-name)))
+     (or (eq nil todo) (eq "PROJ" todo)))))
+
+(setq org-refile-target-verify-function 'wd/verify-refile-target)
