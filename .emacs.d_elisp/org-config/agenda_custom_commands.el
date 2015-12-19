@@ -32,7 +32,7 @@
                                           '((org-agenda-overriding-header "Scratch"))
                                           (with-org-file "scratchpad.org"))))
 
-(setq inbox-match  "+TODO=\"TODO\"")
+(setq inbox-match  "-HABIT+TODO=\"TODO\"")
 
 (setq inbox
       `(tags-todo ,inbox-match
