@@ -106,4 +106,6 @@ alias gc="git commit -am"
 alias gp="git push origin master"
 alias ga="git add -A"
 stty -ixon
-export EDITOR=vim
+export GO
+GOPATH=~/go
+export PATH=$PATH:$GOPATH/bin
