@@ -76,6 +76,7 @@
                                    ("p" "Projects" (,active-projects, inactive-projects))
 				   ("i" "Inbox" (,inbox))
                                    ("y" "Someday/Maybe" (,someday))
+				   ("j" "Journal" tags-tree "JOURNAL")
                                    ("o" "Overview"  (
                                                      ,week-agenda
                                                      ,next-actions
