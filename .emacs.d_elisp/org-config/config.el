@@ -45,7 +45,7 @@
 		      ("DONE") 
 		      ("INSPIRATION")))
 
-(setq org-habit-graph-column 60)
+(setq org-habit-graph-column 40)
 (setq org-modules (cons 'org-habit org-modules))
 (setq org-habit-show-all-today t)
 (setq org-habit-following-days 7)
