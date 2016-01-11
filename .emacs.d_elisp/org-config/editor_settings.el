@@ -21,3 +21,5 @@
 (setq org-link-search-must-match-exact-headline nil)
 
 (setq bookmark-sort-flag nil)
+
+(setq org-support-shift-select 'always) 
