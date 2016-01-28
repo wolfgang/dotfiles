@@ -98,7 +98,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PS1="\n\[\033[35m\]\[\033[32m\]\w\n[\t] \[\033[1;31m\]\u: \[\033[0m\]"
+PS1="\n\[\033[35m\]\[\033[32m\]\w\n[\t] \[\033[1;31m\]\u@\h: \[\033[0m\]"
 export PATH="$PATH:/sbin"
 
 alias gs="git status"
