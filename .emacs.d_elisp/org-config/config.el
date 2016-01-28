@@ -48,7 +48,7 @@
 (setq org-habit-graph-column 40)
 (setq org-modules (cons 'org-habit org-modules))
 (setq org-habit-show-all-today t)
-(setq org-habit-following-days 7)
+(setq org-habit-following-days 1)
 
 (setf (nth 4 org-emphasis-regexp-components) 100)
 
