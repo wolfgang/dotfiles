@@ -22,4 +22,4 @@
 
 (setq bookmark-sort-flag nil)
 
-(setq org-support-shift-select 'always) 
+(setq org-support-shift-select t) 
