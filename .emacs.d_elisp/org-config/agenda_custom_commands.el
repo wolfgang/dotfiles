@@ -56,7 +56,9 @@
                       (org-agenda-sorting-strategy '(category-keep)))))
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE"
-                                  ((org-agenda-overriding-header  "Active Projects"))))
+                                  (
+				   (org-agenda-overriding-header  "Active Projects")
+				   (org-agenda-prefix-format " %i %-16:c%l"))))
 (setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE"
                                     ((org-agenda-overriding-header  "Inactive Projects"))))
                        
