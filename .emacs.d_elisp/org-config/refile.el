@@ -1,9 +1,11 @@
 (advice-remove 'refile-advice 'org-refile)
 (defadvice org-refile (after refile-advice activate)
     (save-window-excursion
-        (org-refile-goto-last-stored)
-        (when (has-someday-maybe-parent)
-            (org-todo "MAYBE")
+        (save-excursion
+            (org-refile-goto-last-stored)
+            (when (has-someday-maybe-parent)
+                (org-todo "MAYBE")
+            )
         )
     )
 )
