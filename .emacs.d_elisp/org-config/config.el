@@ -15,6 +15,7 @@
 (load "agenda_custom_commands.el")
 ;(load "org-expiry-ext.el")
 (load "alert-config.el")
+(load "refile.el")
 (require 'org-pomodoro)
 (require 'org-helpers)
 
@@ -111,3 +112,4 @@
      (or (eq nil todo) (equal "PROJ" todo)))))
 
 (setq org-refile-target-verify-function 'wd/verify-refile-target)
+
