@@ -34,11 +34,14 @@
 
 (setq inbox-match  "-HABIT+TODO=\"TODO\"")
 
-(setq inbox
-      `(tags-todo ,inbox-match
-		  (
-                   (org-agenda-skip-function '(oh/agenda-skip :headline-if '(subtask)))
-                   (org-agenda-overriding-header "Inbox"))))
+;(setq inbox
+;      `(tags-todo ,inbox-match
+;		  (
+;                   (org-agenda-skip-function '(oh/agenda-skip :headline-if '(subtask)))
+
+;(setq inbox `(tags inbox-match ,(append
+;                                          '((org-agenda-overriding-header "Inbox"))
+;                                          (with-org-file "inbox.org"))))					;
 
 (setq week-agenda `(agenda "" (,agenda-day-sort
                                (org-agenda-span 'week)
@@ -46,9 +49,9 @@
 
 (setq someday `(tags "+TODO=\"MAYBE\"" ((org-agenda-overriding-header "Someday/Maybe"))))
 
-(setq available-tasks
-      `(tags-todo "-INBOX/!+TODO"
-                     ((org-agenda-overriding-header "Available Tasks")
+(setq inbox
+      `(tags-todo inbox-match
+                     ((org-agenda-overriding-header "Inbox")
                       (org-agenda-skip-function
                        '(oh/agenda-skip :headline-if '(project)
                                         :subtree-if '(inactive habit scheduled deadline)
@@ -67,7 +70,7 @@
 (setq org-agenda-custom-commands `(
                                    ("t" "Tasks" (,next-actions
                                                  ,(scheduled-today)
-                                                 ,available-tasks))
+                                                 ,inbox))
                                    ("d" "Today" ((agenda "" (,agenda-day-sort
                                                              (org-agenda-span 'day)
                                                              ,skip-used-timeslots))
@@ -82,10 +85,10 @@
                                    ("o" "Overview"  (
                                                      ,week-agenda
                                                      ,next-actions
-                                                     ,available-tasks
+						     ,inbox
+                                                     ;,available-tasks
                                                      ,active-projects
 						     ,inactive-projects  
-						     ,inbox
                                                      ,(recently-completed
                                                        2
                                                        "Recently Completed")
