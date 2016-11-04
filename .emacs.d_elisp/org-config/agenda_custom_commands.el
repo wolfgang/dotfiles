@@ -87,11 +87,11 @@
                                                      ,next-actions
                                                      ,active-projects
 						     ,inbox
-						     ,inactive-projects  
+						     ;,inactive-projects  
                                                      ,(recently-completed
                                                        2
                                                        "Recently Completed")
-                                                     ,scratch
+                                                     ;,scratch
                                                      ,someday))
                                    
                                    ("e" "Completed" (
