@@ -85,9 +85,8 @@
                                    ("o" "Overview"  (
                                                      ,week-agenda
                                                      ,next-actions
-						     ,inbox
-                                                     ;,available-tasks
                                                      ,active-projects
+						     ,inbox
 						     ,inactive-projects  
                                                      ,(recently-completed
                                                        2
