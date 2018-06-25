@@ -118,3 +118,4 @@ export NVM_DIR="$HOME/.nvm"
 alias msbuild.exe=msbuild 
 
 export PATH=$PATH:$HOME/bin
+export EDITOR=vi
