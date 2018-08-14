@@ -119,3 +119,4 @@ alias msbuild.exe=msbuild
 
 export PATH=$PATH:$HOME/bin
 export EDITOR=vi
+export HISTIGNORE="exit:ls:shutdown:reboot"
