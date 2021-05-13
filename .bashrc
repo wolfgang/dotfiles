@@ -123,3 +123,5 @@ export HISTIGNORE="exit:ls:shutdown:reboot"
 
 [ -f $HOME/.bash_local ] && . $HOME/.bash_local
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
