@@ -64,7 +64,6 @@
 				   (org-agenda-prefix-format " %i %-16:c%l"))))
 (setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE"
                                     ((org-agenda-overriding-header  "Inactive Projects"))))
-                       
 
 
 (setq org-agenda-custom-commands `(
@@ -75,7 +74,6 @@
                                                              (org-agenda-span 'day)
                                                              ,skip-used-timeslots))
                                                  ,next-actions))
-                                   
                                    ("w" "Week" (,week-agenda))
 
                                    ("p" "Projects" (,active-projects, inactive-projects))
