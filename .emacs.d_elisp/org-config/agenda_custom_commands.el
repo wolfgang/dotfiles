@@ -59,44 +59,53 @@
                       (org-agenda-sorting-strategy '(category-keep)))))
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE"
-                                  (
-				   (org-agenda-overriding-header  "Active Projects")
-				   (org-agenda-prefix-format " %i %-16:c%l"))))
+  (
+	    (org-agenda-overriding-header  "Active Projects")
+	    (org-agenda-prefix-format " %i %-16:c%l")))
+  )
+
 (setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE"
                                     ((org-agenda-overriding-header  "Inactive Projects"))))
 
 
 (setq org-agenda-custom-commands `(
-                                   ("t" "Tasks" (,next-actions
-                                                 ,(scheduled-today)
-                                                 ,inbox))
-                                   ("d" "Today" ((agenda "" (,agenda-day-sort
-                                                             (org-agenda-span 'day)
-                                                             ,skip-used-timeslots))
-                                                 ,next-actions))
-                                   ("w" "Week" (,week-agenda))
+           ("t" "Tasks" (,next-actions
+                         ,(scheduled-today)
+                         ,inbox))
 
-                                   ("p" "Projects" (,active-projects, inactive-projects))
+           ("d" "Today" ((agenda "" (,agenda-day-sort
+                                     (org-agenda-span 'day)
+                                     ,skip-used-timeslots))
+                         ,next-actions))
+
+           ("w" "Week" (,week-agenda))
+
+           ("p" "Projects" (
+              ,active-projects 
+              ,inactive-projects 
+              ; (org-agenda-list-stuck-projects)
+            ))
+
 				   ("i" "Inbox" (,inbox))
-                                   ("y" "Someday/Maybe" (,someday))
-				   ("j" "Journal" tags-tree "JOURNAL")
-                                   ("o" "Overview"  (
-                                                     ,week-agenda
-                                                     ,next-actions
-                                                     ,active-projects
-						     ,inbox
-						     ;,inactive-projects  
-                                                     ,(recently-completed
-                                                       2
-                                                       "Recently Completed")
-                                                     ;,scratch
-                                                     ,someday))
-                                   ("e" "Completed" (
-                                                     ,(recently-completed
-                                                       365
-                                                       "Completed Tasks")))
-                                   ("k" "Knowledge Base" tags  "KB"
-                                    ,(with-org-file "notebook.org"))
-                                   ("b" "Notebook" tags  "NOTEBOOK"
-                                    ,(with-org-file "notebook.org"))
-                                   ))
+
+           ("y" "Someday/Maybe" (,someday))
+
+				   ; ("j" "Journal" tags-tree "JOURNAL")
+
+           ("o" "Overview"  (
+                             ,week-agenda
+                             ,next-actions
+                             ,active-projects
+                             ; (org-agenda-list-stuck-projects)
+                             ,inbox
+                             ,(recently-completed
+                               2
+                               "Recently Completed")
+                             ;,scratch
+                             ,someday))
+           ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
+
+           ("k" "Knowledge Base" tags  "KB" ,(with-org-file "notebook.org"))
+
+           ("b" "Notebook" tags  "NOTEBOOK" ,(with-org-file "notebook.org")))
+)
