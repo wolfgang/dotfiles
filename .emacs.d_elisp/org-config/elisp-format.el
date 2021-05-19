@@ -233,7 +233,7 @@
 ;;; Require
 (require 'newcomment)
 (eval-when-compile 
-  (require 'cl)
+  (require 'cl-lib)
   )
 
 ;;; Code:

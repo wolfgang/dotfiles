@@ -170,7 +170,7 @@
 ;;                        ))
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (defgroup alert nil
   "Notification system for Emacs similar to Growl"

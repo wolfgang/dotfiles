@@ -22,6 +22,8 @@
 (org-clock-persistence-insinuate)
 ;(org-expiry-insinuate)
 
+(setq org-pomodoro-short-break-length 0)
+(setq org-pomodoro-long-break-length 0)
 (setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
 (setq org-agenda-remove-tags t)
 (setq org-agenda-confirm-kill 10)
