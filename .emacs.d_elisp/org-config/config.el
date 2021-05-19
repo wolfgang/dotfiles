@@ -88,7 +88,7 @@
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
-(setq org-completion-use-ido t)
+(setq org-completion-use-ido nil)
 (setq org-indirect-buffer-display 'current-window)
 
 (setq org-agenda-prefix-format
