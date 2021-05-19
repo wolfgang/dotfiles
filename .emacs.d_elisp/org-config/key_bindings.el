@@ -17,5 +17,3 @@
 
 (global-set-key (kbd "C->") 'show-children)
 (global-set-key (kbd "C-<") 'hide-subtree)
-
-(global-set-key (kbd "<f6>") 'org-refile)
