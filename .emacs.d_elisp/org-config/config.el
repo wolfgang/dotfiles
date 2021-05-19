@@ -2,10 +2,7 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-to-list 'load-path (file-name-directory load-file-name))
 
-(run-at-time "0:00" 120 'org-save-all-org-buffers)
-
-(if (not (eq 'org-mobile-directory "")) 
-    (run-at-time "0:00" 3600 'org-mobile-pull))
+(run-at-time "0:00" 3600 'org-save-all-org-buffers)
 
 (load "editor_settings.el")
 (load "setup_directories.el")
@@ -13,17 +10,14 @@
 (load "todo_keywords.el")
 (load "capture_templates.el")
 (load "agenda_custom_commands.el")
-;(load "org-expiry-ext.el")
 (load "alert-config.el")
 (load "refile.el")
-(require 'org-pomodoro)
+(load "org-pomodoro-config.el")
+
 (require 'org-helpers)
 
 (org-clock-persistence-insinuate)
-;(org-expiry-insinuate)
 
-(setq org-pomodoro-short-break-length 0)
-(setq org-pomodoro-long-break-length 0)
 (setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
 (setq org-agenda-remove-tags t)
 (setq org-agenda-confirm-kill 10)
