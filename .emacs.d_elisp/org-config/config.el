@@ -29,6 +29,7 @@
 (setq org-log-into-drawer t)
 (setq org-cycle-separator-lines 0)
 (setq org-agenda-compact-blocks t)
+(setq org-duration-format 'h:mm)
 
 (setq org-blank-before-new-entry (quote ((heading) 
 					 (plain-list-item . auto))))
