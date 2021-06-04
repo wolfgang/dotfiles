@@ -22,6 +22,7 @@
 (setq org-agenda-remove-tags t)
 (setq org-agenda-confirm-kill 10)
 (setq org-startup-indented t)
+(setq org-startup-folded 'overview)
 (setq org-use-fast-todo-selection t)
 (setq org-log-done 'time)
 (setq org-clock-persist 'history)
