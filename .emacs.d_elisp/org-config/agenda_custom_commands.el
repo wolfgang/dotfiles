@@ -47,16 +47,23 @@
                                (org-agenda-span 'week)
                                ,skip-used-timeslots)))
 
-(setq someday `(tags "+TODO=\"MAYBE\"" ((org-agenda-overriding-header "Someday/Maybe"))))
+(setq someday `(tags "+TODO=\"MAYBE\"" ,(append '((org-agenda-overriding-header "Someday/Maybe")) (with-org-file "someday.org"))))
 
 (setq inbox
-      `(tags-todo inbox-match
-                     ((org-agenda-overriding-header "Inbox")
-                      (org-agenda-skip-function
-                       '(oh/agenda-skip :headline-if '(project)
-                                        :subtree-if '(inactive habit scheduled deadline)
-                                        :subtree-if-restricted-and '(single-task)))
-                      (org-agenda-sorting-strategy '(category-keep)))))
+      `(tags-todo inbox-match 
+        ,(append
+           '(
+              (org-agenda-overriding-header "Inbox")
+              (org-agenda-skip-function
+              '(oh/agenda-skip :headline-if '(project)
+                              :subtree-if '(inactive habit scheduled deadline)
+                              :subtree-if-restricted-and '(single-task)))
+              (org-agenda-sorting-strategy '(category-keep))
+            )
+            (with-org-file "inbox.org")
+            )
+          )
+      )
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE"
   (
