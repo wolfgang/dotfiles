@@ -69,7 +69,7 @@
 (setq org-agenda-custom-commands `(
   ("t" "Tasks" (,next-actions
                ,(scheduled-today)
-               ,inbox))
+               ,all-todos))
 
   ("d" "Today" ((agenda "" (,agenda-day-sort
                            (org-agenda-span 'day)
