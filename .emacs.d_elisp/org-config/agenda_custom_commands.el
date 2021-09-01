@@ -23,6 +23,10 @@
 (setq skip-used-timeslots
      '(org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("USED"))))
 
+(setq skip-children-of-inactive
+    '(org-agenda-skip-function '(oh/agenda-skip :subtree-if '(child-of-inactive)))
+  )
+
 (setq agenda-day-sort 
   '(org-agenda-sorting-strategy '(habit-down time-up priority-down todo-state-down)))
 
@@ -44,20 +48,15 @@
 
 (setq all-todos `(todo "TODO" (
   (org-agenda-overriding-header "All Todos")
-  (org-agenda-skip-function
-    '(oh/agenda-skip :subtree-if '(child-of-inactive))
-  )
+  ,skip-children-of-inactive
                   
 )))
 
 (setq all-somedays `(todo "MAYBE" (
-  (org-agenda-overriding-header "All Someday/Maybe") 
-  (org-agenda-skip-function
-    '(oh/agenda-skip :subtree-if '(child-of-inactive))
-  )
+  (org-agenda-overriding-header "All Someday/Maybe")
+  ,skip-children-of-inactive
+
 )))
-
-
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE" (
   (org-agenda-overriding-header  "Active Projects")
