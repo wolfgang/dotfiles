@@ -45,13 +45,16 @@
 (setq all-todos `(tags-todo "-HABIT+TODO=\"TODO\"" (
   (org-agenda-overriding-header "All Todos")
   (org-agenda-skip-function
-    '(oh/agenda-skip :subtree-if '(inactive))
+    '(oh/agenda-skip :subtree-if '(child-of-inactive))
   )
                   
 )))
 
 (setq all-somedays `(tags "+TODO=\"MAYBE\"" (
   (org-agenda-overriding-header "All Someday/Maybe") 
+  (org-agenda-skip-function
+    '(oh/agenda-skip :subtree-if '(child-of-inactive))
+  )
 )))
 
 
