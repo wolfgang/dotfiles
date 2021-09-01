@@ -34,15 +34,15 @@
   (org-agenda-span 'week)
   ,skip-used-timeslots)))
 
-(setq someday `(tags "+TODO=\"MAYBE\"" (
+(setq someday `(todo "MAYBE" (
   (org-agenda-overriding-header "Someday/Maybe") 
   (org-agenda-files '(,(org-file "someday.org"))))))
 
-(setq inbox `(tags-todo "-HABIT+TODO=\"TODO\"" (
+(setq inbox `(todo "TODO"  (
   (org-agenda-overriding-header "Inbox")
   (org-agenda-files '(,(org-file "inbox.org"))))))
 
-(setq all-todos `(tags-todo "-HABIT+TODO=\"TODO\"" (
+(setq all-todos `(todo "TODO" (
   (org-agenda-overriding-header "All Todos")
   (org-agenda-skip-function
     '(oh/agenda-skip :subtree-if '(child-of-inactive))
@@ -50,7 +50,7 @@
                   
 )))
 
-(setq all-somedays `(tags "+TODO=\"MAYBE\"" (
+(setq all-somedays `(todo "MAYBE" (
   (org-agenda-overriding-header "All Someday/Maybe") 
   (org-agenda-skip-function
     '(oh/agenda-skip :subtree-if '(child-of-inactive))
