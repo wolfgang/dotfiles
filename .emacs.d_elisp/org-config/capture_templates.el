@@ -3,7 +3,7 @@
 (setq org-capture-templates `(
 	("t" "Todo" entry (file+headline ,(org-file "inbox.org") "Inbox") "* TODO  %?\n")
 	("d" "Todo Today" entry (file+headline ,(org-file  "inbox.org") "Inbox") "* SCHD  %?\nSCHEDULED: %t")
-	("c" "[ ] under clocked" checkitem (clock) "[ ] %?\n")
+	("c" "[ ] under clocked" checkitem (clock) "[ ]  %?\n")
 	("o" "TODO under Clocked" entry (clock) "* TODO  %?\n")
 	("n" "Notebook" entry (file+headline ,(org-file  "notebook.org") "Notebook") "* [%<%Y-%d-%m %H:%M:%S>] %? %i\n")
 	("k" "Notebook (KB)" entry (file+headline ,(org-file  "notebook.org") "Notebook") "* [%<%Y-%d-%m %H:%M:%S>] %? :KB: %i\n")
