@@ -44,6 +44,10 @@
 
 (setq all-todos `(tags-todo "-HABIT+TODO=\"TODO\"" (
   (org-agenda-overriding-header "All Todos")
+  (org-agenda-skip-function
+    '(oh/agenda-skip :subtree-if '(inactive))
+  )
+                  
 )))
 
 (setq all-somedays `(tags "+TODO=\"MAYBE\"" (
