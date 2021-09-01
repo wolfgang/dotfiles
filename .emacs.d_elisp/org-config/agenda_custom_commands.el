@@ -40,12 +40,17 @@
 
 (setq inbox `(tags-todo "-HABIT+TODO=\"TODO\"" (
   (org-agenda-overriding-header "Inbox")
-  (org-agenda-skip-function
-  '(oh/agenda-skip :headline-if '(project)
-                  :subtree-if '(inactive habit scheduled deadline)
-                  :subtree-if-restricted-and '(single-task)))
-  (org-agenda-sorting-strategy '(category-keep))
   (org-agenda-files '(,(org-file "inbox.org"))))))
+
+(setq all-todos `(tags-todo "-HABIT+TODO=\"TODO\"" (
+  (org-agenda-overriding-header "All Todos")
+)))
+
+(setq all-somedays `(tags "+TODO=\"MAYBE\"" (
+  (org-agenda-overriding-header "All Someday/Maybe") 
+)))
+
+
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE" (
   (org-agenda-overriding-header  "Active Projects")
@@ -82,9 +87,9 @@
                    ,week-agenda
                    ,next-actions
                    ,active-projects
-                   ,inbox
+                   ,all-todos
                    ,(recently-completed 2 "Recently Completed")
-                   ,someday))
+                   ,all-somedays))
   ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
 
   ("k" "Knowledge Base" tags  "KB" ,(with-org-file "notebook.org"))
