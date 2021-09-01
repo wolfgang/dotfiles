@@ -83,9 +83,7 @@
                    ,next-actions
                    ,active-projects
                    ,inbox
-                   ,(recently-completed
-                     2
-                     "Recently Completed")
+                   ,(recently-completed 2 "Recently Completed")
                    ,someday))
   ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
 
