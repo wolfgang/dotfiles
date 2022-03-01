@@ -125,4 +125,3 @@ export HISTIGNORE="exit:ls:shutdown:reboot"
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-[[ -f ~/.bashrc ]] && source ~/.bashrc # ghcup-env
