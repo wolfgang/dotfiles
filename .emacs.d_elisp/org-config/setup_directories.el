@@ -8,8 +8,6 @@
     (setq org-mobile-inbox-for-pull (org-file "inbox_r.org")))
   (progn
     (setq org-directory (getenv "ORG_DIRECTORY"))
-    (setq org-shared-directory org-directory)
-  )
-)
+    (setq org-shared-directory org-directory)))
 
-(setq org-agenda-files (list org-directory org-shared-directory))
+(setq org-agenda-files (list org-directory))
