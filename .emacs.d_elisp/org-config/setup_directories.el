@@ -7,9 +7,8 @@
     (setq org-mobile-directory "e:/Library/Dropbox/OrgMobile")
     (setq org-mobile-inbox-for-pull (org-file "inbox_r.org")))
   (progn
-    (setq org-directory "~/Dropbox/org")
-    (setq org-shared-directory "~/Dropbox/org-shared")
-    (setq org-mobile-directory "")
+    (setq org-directory (getenv "ORG_DIRECTORY"))
+    (setq org-shared-directory org-directory)
   )
 )
 
