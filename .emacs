@@ -6,6 +6,7 @@
 (savehist-mode 1)
 (setq vc-follow-symlinks t)
 (setq ring-bell-function 'ignore)
+(tool-bar-mode -1)
 
 (add-hook 'emacs-lisp-mode-hook 
 	  '(lambda () 
