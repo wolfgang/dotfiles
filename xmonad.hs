@@ -21,7 +21,9 @@ import XMonad.Hooks.EwmhDesktops
 
 
 main :: IO ()
-main = xmonad 
+main = xmonad
+    . ewmhFullscreen
+    . ewmh 
     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
     $ myConfig
 
