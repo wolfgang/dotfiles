@@ -24,8 +24,14 @@ main :: IO ()
 main = xmonad
     . ewmhFullscreen
     . ewmh 
-    . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+    . myStatusBar
     $ myConfig
+
+myStatusBar = 
+    withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) toggleStrutsKey
+  where
+    toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
+    toggleStrutsKey XConfig{ modMask = m } = (m .|. shiftMask, xK_b) 
 
 myConfig = def
     { startupHook = setWMName "LG3D"}
@@ -33,13 +39,14 @@ myConfig = def
     , layoutHook = myLayoutHook 
     }
     `additionalKeysP`
-    [ ("M-e" , spawn "emacs")
+    [ ("M-S-<Return>", spawn "gnome-terminal")
+    , ("M-e" , spawn "emacs")
     , ("M-s" , spawn "slack")
-    , ("M-S-b" , spawn "brave")
+    , ("M-b" , spawn "brave")
     , ("M-S-l", spawn "xscreensaver-command -lock")
-    , ("M-S-d", sendMessage $ JumpToLayout "Tall")
+    , ("M-S-t", sendMessage $ JumpToLayout "Tall")
+    , ("M-S-w", sendMessage $ JumpToLayout "TwoPane")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
-    , ("M-S-t", sendMessage $ JumpToLayout "TwoPane")
     ] 
 
 myLayoutHook =
