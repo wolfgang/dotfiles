@@ -5,10 +5,11 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.StatusBar
 
 
-
 main :: IO ()
-main = xmonad $ def
-       	{ startupHook = setWMName "LG3D"}
+main = xmonad $ myConfig
+
+myConfig = def
+    { startupHook = setWMName "LG3D"}
 	{ modMask = mod4Mask 
 	}
 	`additionalKeysP`
@@ -16,4 +17,4 @@ main = xmonad $ def
 	,  ("M-s" , spawn "slack")
 	, ("M-b" , spawn "brave")
 	, ("M-S-l", spawn "xscreensaver-command -lock")
-	]
+	] 
