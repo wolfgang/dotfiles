@@ -35,7 +35,7 @@ myConfig = def
     `additionalKeysP`
     [ ("M-e" , spawn "emacs")
     , ("M-s" , spawn "slack")
-    , ("M-b" , spawn "brave")
+    , ("M-S-b" , spawn "brave")
     , ("M-S-l", spawn "xscreensaver-command -lock")
     , ("M-S-d", sendMessage $ JumpToLayout "Tall")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
