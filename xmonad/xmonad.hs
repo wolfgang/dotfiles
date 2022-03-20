@@ -17,7 +17,7 @@ import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
 import XMonad.Hooks.EwmhDesktops
-
+import XMonad.Actions.CycleWS
 
 
 main :: IO ()
@@ -47,6 +47,10 @@ myConfig = def
     , ("M-S-t", sendMessage $ JumpToLayout "Tall")
     , ("M-S-w", sendMessage $ JumpToLayout "TwoPane")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
+    , ("M-<Right>", nextWS)
+    , ("M-<Left>", prevWS)
+    , ("M-S-<Right>", shiftToNext)
+    , ("M-S-<Left>", shiftToPrev)
     ] 
 
 myLayoutHook =
