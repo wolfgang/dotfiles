@@ -18,6 +18,8 @@ import XMonad.Hooks.StatusBar.PP
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.CycleWS
+import XMonad.Actions.GridSelect
+
 
 
 main :: IO ()
@@ -51,6 +53,7 @@ myConfig = def
     , ("M-<Left>", prevWS)
     , ("M-S-<Right>", shiftToNext)
     , ("M-S-<Left>", shiftToPrev)
+    , ("M-S-g", goToSelected def)
     ] 
 
 myLayoutHook =
