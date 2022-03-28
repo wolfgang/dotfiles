@@ -19,6 +19,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.CycleWS
 import XMonad.Actions.GridSelect
+import XMonad.Actions.CycleWindows
 
 
 
@@ -49,6 +50,10 @@ myConfig = def
     , ("M-S-t", sendMessage $ JumpToLayout "Mirror Tall")
     , ("M-S-w", sendMessage $ JumpToLayout "TwoPane")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
+    , ("M-C-<Up>", rotUnfocusedUp)
+    , ("M-C-<Down>", rotUnfocusedDown)
+    , ("M-C-<Left>", rotFocusedUp)
+    , ("M-C-<Right>", rotFocusedDown)
     , ("M-<Right>", nextWS)
     , ("M-<Left>", prevWS)
     , ("M-S-<Right>", shiftToNext)
