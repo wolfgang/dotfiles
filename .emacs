@@ -53,7 +53,10 @@
 (setq tramp-mode nil)
 
 (use-package solarized-theme
-  :ensure t)
+  :ensure t
+  :init
+  (setq solarized-scale-org-headlines nil))
+
 (load-theme 'solarized-dark t)
 
 
