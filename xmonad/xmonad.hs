@@ -50,6 +50,8 @@ myConfig = def
     , ("M-S-t", sendMessage $ JumpToLayout "Mirror Tall")
     , ("M-S-w", sendMessage $ JumpToLayout "TwoPane")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
+    , ("M-S-<Up>", sendMessage Shrink)
+    , ("M-S-<Down>", sendMessage Expand)
     , ("M-M1-<Up>", rotUnfocusedUp)
     , ("M-M1-<Down>", rotUnfocusedDown)
     , ("M-C-<Up>", rotFocusedUp)
