@@ -81,6 +81,8 @@
   :ensure t
   :bind (("<f6>" . magit-status)))
 
+(setq custom-file "~/.emacs.local")
+
 (if (file-exists-p "~/.emacs.local")
     (load "~/.emacs.local"))
 
