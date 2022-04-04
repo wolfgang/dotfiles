@@ -35,6 +35,14 @@
 	  '(lambda () 
 	     (local-set-key (kbd "RET") 'newline-and-indent)))
 
+
+(assq-delete-all 'org package--builtins)
+(assq-delete-all 'org package--builtin-versions)
+
+(use-package org
+  :ensure t
+  :defer t)
+
 (load-file "~/.emacs.d/elisp/org-config/config.el")
 
 (add-to-list 'load-path "~/.emacs.d/elisp")
