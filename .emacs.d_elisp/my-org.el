@@ -5,7 +5,7 @@
   :ensure t
   :defer t)
 
-(load "org-config/config.el")
+(load "org/config.el")
 
 (require 'linum-off)
 (global-linum-mode)
