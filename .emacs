@@ -61,6 +61,11 @@
   (setq history-length 100 ; determines file-name-history; see helm-ff-file-name-history-use-recentf
         helm-split-window-default-side 'right
         helm-find-files-ignore-thing-at-point t)
+  :bind
+  (("M-x"     . helm-M-x)
+   ("C-x C-f" . helm-find-files)
+   ("C-x b"   . helm-mini)
+   ("C-x C-r" . helm-recentf))
   :config
   (require 'tramp) ; otherwise void variable tramp-methods on projectile switch project
   (use-package helm-config)
