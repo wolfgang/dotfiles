@@ -43,9 +43,9 @@
   :ensure t
   :defer t)
 
-(load-file "~/.emacs.d/elisp/org-config/config.el")
-
 (add-to-list 'load-path "~/.emacs.d/elisp")
+
+(load "org-config/config.el")
 
 (require 'linum-off)
 
