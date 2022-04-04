@@ -35,21 +35,10 @@
 	  '(lambda () 
 	     (local-set-key (kbd "RET") 'newline-and-indent)))
 
-
-(assq-delete-all 'org package--builtins)
-(assq-delete-all 'org package--builtin-versions)
-
-(use-package org
-  :ensure t
-  :defer t)
-
 (add-to-list 'load-path "~/.emacs.d/elisp")
 
-(load "org-config/config.el")
+(require 'my-org)
 
-(require 'linum-off)
-
-(global-linum-mode)
 (column-number-mode)
 (delete-selection-mode 1)
 
