@@ -30,24 +30,22 @@
 (setq vc-follow-symlinks t)
 (setq ring-bell-function 'ignore)
 (tool-bar-mode -1)
-
-(add-hook 'emacs-lisp-mode-hook 
-	  '(lambda () 
-	     (local-set-key (kbd "RET") 'newline-and-indent)))
-
-(add-to-list 'load-path "~/.emacs.d/elisp")
-
-(require 'my-org)
-
 (column-number-mode)
 (delete-selection-mode 1)
+(setq tramp-mode nil)
 
 (global-set-key (kbd "C-c <left>")  'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
-(setq tramp-mode nil)
+(add-hook 'emacs-lisp-mode-hook 
+	  '(lambda () 
+	     (local-set-key (kbd "RET") 'newline-and-indent)))
+
+(add-to-list 'load-path (concat user-emacs-directory "elisp"))
+
+(require 'my-org)
 
 (use-package solarized-theme
   :ensure t
@@ -55,7 +53,6 @@
   (setq solarized-scale-org-headlines nil))
 
 (load-theme 'solarized-dark t)
-
 
 (use-package helm
   :ensure t
