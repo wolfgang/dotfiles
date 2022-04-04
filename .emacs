@@ -80,6 +80,26 @@
   :ensure t
   :bind (("<f6>" . magit-status)))
 
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.5
+        which-key-idle-secondary-delay 0.5)
+  (which-key-setup-side-window-bottom))
+
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :bind (:map company-active-map
+              ("<escape>" . company-abort))
+  :hook ((after-init . global-company-mode))
+  :config
+  ;; respect case when inserting into buffer, ignore when searching for candidates
+  (setq company-dabbrev-downcase nil
+        company-dabbrev-ignore-case 'yes
+        company-show-numbers t))
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
