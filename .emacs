@@ -100,6 +100,40 @@
         company-dabbrev-ignore-case 'yes
         company-show-numbers t))
 
+(use-package cider
+  :ensure t
+  :defer t
+  :bind (("C-<return>" . cider-format-buffer))
+  :init
+  (setq cider-repl-pop-to-buffer-on-connect nil
+        cider-repl-use-pretty-printing t)
+  :config
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  (add-hook 'cider-mode-hook #'cider-auto-test-mode)
+  (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
+
+  (use-package cider-eval-sexp-fu
+    :ensure t)
+  (use-package helm-cider
+    :ensure t
+    :config (helm-cider-mode)))
+
+(use-package clojure-mode
+  :ensure t
+  :defer t
+  :config
+  (use-package clj-refactor
+    :ensure t
+    :diminish clj-refactor-mode
+    :init
+    (setq cljr-warn-on-eval nil)
+    (add-hook 'clojure-mode-hook 'clj-refactor-mode))
+  (use-package flycheck-clj-kondo
+    :ensure t))
+
+;; Doesn't work
+(add-hook 'before-save-hook 'cider-format-buffer t t)
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
