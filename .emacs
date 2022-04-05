@@ -108,6 +108,10 @@
   (setq cider-repl-pop-to-buffer-on-connect nil
         cider-repl-use-pretty-printing t)
   :config
+  (add-hook 'clojure-mode-hook
+            (lambda () (add-hook 'before-save-hook 'cider-format-buffer nil 'local)))
+  (add-hook 'clojure-mode-hook
+            (lambda () (add-hook 'before-save-hook 'clojure-sort-ns nil 'local)))
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (add-hook 'cider-mode-hook #'cider-auto-test-mode)
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
@@ -131,8 +135,6 @@
   (use-package flycheck-clj-kondo
     :ensure t))
 
-;; Doesn't work
-(add-hook 'before-save-hook 'cider-format-buffer t t)
 
 (setq custom-file "~/.emacs.local")
 
