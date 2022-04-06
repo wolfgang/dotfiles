@@ -39,8 +39,8 @@
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
-(add-hook 'emacs-lisp-mode-hook 
-	  '(lambda () 
+(add-hook 'emacs-lisp-mode-hook
+	  '(lambda ()
 	     (local-set-key (kbd "RET") 'newline-and-indent)))
 
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
@@ -50,9 +50,26 @@
 (use-package solarized-theme
   :ensure t
   :init
-  (setq solarized-scale-org-headlines nil))
+  (setq solarized-scale-org-headlines nil)
+  :config
+  (load-theme 'solarized-dark t))
 
-(load-theme 'solarized-dark t)
+(use-package smart-mode-line
+  :ensure t
+  :hook ((after-init . sml/setup))
+  :config
+  (setq sml/theme 'dark))
+
+(use-package diminish
+  :ensure t
+  :defer t)
+
+(use-package flycheck
+  :ensure t
+  :config
+  (setq flycheck-check-syntax-automatically '())
+  :diminish flycheck-mode
+  :hook ((after-init . global-flycheck-mode)))
 
 (use-package helm
   :ensure t
