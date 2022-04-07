@@ -119,16 +119,12 @@
 (use-package cider
   :ensure t
   :defer t
-  :bind (("C-<return>" . cider-format-buffer))
+  :bind (("C-<return>" . my-clojure-format-buffer))
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil
 	cider-save-file-on-load t
         cider-repl-use-pretty-printing t)
   :config
-  (add-hook 'clojure-mode-hook
-            (lambda () (add-hook 'before-save-hook 'cider-format-buffer nil 'local)))
-  (add-hook 'clojure-mode-hook
-            (lambda () (add-hook 'before-save-hook 'clojure-sort-ns nil 'local)))
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (add-hook 'cider-mode-hook #'cider-auto-test-mode)
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
@@ -151,6 +147,7 @@
     :config
     (defun my-clj-refactor-set-keybinding-hook ()
       (cljr-add-keybindings-with-prefix "C-c C-m"))
+    (add-hook 'clojure-mode-hook 'my-clojure-before-save-hook)
     (add-hook 'clojure-mode-hook 'clj-refactor-mode)
     (add-hook 'clojure-mode-hook 'my-clj-refactor-set-keybinding-hook))
   (use-package flycheck-clj-kondo
