@@ -90,6 +90,7 @@
         helm-find-files-ignore-thing-at-point t)
   :bind
   (("M-x"     . helm-M-x)
+   ("<f2>"    . helm-for-files)
    ("M-f"     . helm-swoop)
    ("C-x C-f" . helm-find-files)
    ("C-x b"   . helm-mini)
