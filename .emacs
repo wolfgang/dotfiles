@@ -45,6 +45,7 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
+(require 'my-functions)
 (require 'my-org)
 
 (use-package solarized-theme
@@ -66,8 +67,6 @@
 
 (use-package flycheck
   :ensure t
-  :config
-  (setq flycheck-check-syntax-automatically '())
   :diminish flycheck-mode
   :hook ((after-init . global-flycheck-mode)))
 
@@ -123,6 +122,7 @@
   :bind (("C-<return>" . cider-format-buffer))
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil
+	cider-save-file-on-load t
         cider-repl-use-pretty-printing t)
   :config
   (add-hook 'clojure-mode-hook
