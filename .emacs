@@ -148,7 +148,11 @@
     :diminish clj-refactor-mode
     :init
     (setq cljr-warn-on-eval nil)
-    (add-hook 'clojure-mode-hook 'clj-refactor-mode))
+    :config
+    (defun my-clj-refactor-set-keybinding-hook ()
+      (cljr-add-keybindings-with-prefix "C-c C-m"))
+    (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+    (add-hook 'clojure-mode-hook 'my-clj-refactor-set-keybinding-hook))
   (use-package flycheck-clj-kondo
     :ensure t))
 
