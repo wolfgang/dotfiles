@@ -79,6 +79,7 @@
         helm-find-files-ignore-thing-at-point t)
   :bind
   (("M-x"     . helm-M-x)
+   ("M-f"     . helm-swoop)
    ("C-x C-f" . helm-find-files)
    ("C-x b"   . helm-mini)
    ("C-x C-r" . helm-recentf))
@@ -153,6 +154,10 @@
   (use-package flycheck-clj-kondo
     :ensure t))
 
+(use-package helm-swoop
+  :pin melpa
+  :ensure t
+  :defer t)
 
 (setq custom-file "~/.emacs.local")
 
