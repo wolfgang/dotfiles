@@ -49,11 +49,22 @@
 (require 'my-org)
 
 (use-package solarized-theme
-  :ensure t
+  :ensure nil
   :init
-  (setq solarized-scale-org-headlines nil)
+  (setq solarized-scale-org-headlines t)
   :config
   (load-theme 'solarized-dark t))
+
+(use-package monokai-theme
+  :ensure nil
+  :config
+  (load-theme 'monokai 'no-confirm))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-one 'no-confirm)
+  (doom-themes-visual-bell-config))
 
 (use-package smart-mode-line
   :ensure t

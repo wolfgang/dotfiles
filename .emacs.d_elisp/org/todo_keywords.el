@@ -25,7 +25,6 @@
 				:weight bold)
                                ("WAIT" :foreground "blue") 
                                ("PROJ" :background "blue" 
-				:foreground "darkgrey" 
 				:weight bold)))
 
 (defadvice org-schedule (after org-schedule-change-state) 
