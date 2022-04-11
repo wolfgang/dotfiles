@@ -93,6 +93,8 @@
         helm-find-files-ignore-thing-at-point t)
   :bind
   (("M-x"     . helm-M-x)
+   ("M-["     . helm-projectile-find-file)
+   ("M-S"     . helm-projectile-rg)
    ("<f2>"    . helm-for-files)
    ("M-f"     . helm-swoop)
    ("C-x C-f" . helm-find-files)
@@ -107,6 +109,36 @@
     :config (helm-descbinds-mode))
   (use-package helm-rg
     :ensure t))
+
+(use-package projectile
+  :ensure t
+  :diminish projectile-mode
+  :bind-keymap (("C-c p" . projectile-command-map))
+  :init
+  (setq projectile-enable-caching t
+        projectile-indexing-method 'native
+        projectile-hg-command "hg files -0 -I ."
+        projectile-create-missing-test-files t)
+  :config
+  (projectile-mode)
+  (--each '("target" "node_modules" ".gradle" ".clj-kondo")
+    (add-to-list 'projectile-globally-ignored-directories it))
+  (--each '("*-all.js")
+    (add-to-list 'projectile-globally-ignored-files it))
+  (--each '(".log" ".png" ".gif" ".jar")
+    (add-to-list 'projectile-globally-ignored-file-suffixes it))
+  (--each '("*.png" "*.jpg" "*.gif" "*.jar" "*.log" "*.pdf" "*.jasper")
+    (add-to-list 'grep-find-ignored-files it)))
+
+(use-package helm-projectile
+  :ensure t
+  :pin melpa ;; not released in a long time
+  :init
+  (setq projectile-completion-system 'helm
+        helm-source-projectile-files-and-dired-list '(helm-source-projectile-files-list))
+  :config
+  (helm-projectile-on))
+
 
 (use-package magit
   :ensure t
