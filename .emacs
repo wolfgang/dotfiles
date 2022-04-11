@@ -45,6 +45,9 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
+(require 'fill-column-indicator)
+(setq fci-rule-column 120)
+
 (require 'my-functions)
 (require 'my-org)
 
@@ -162,6 +165,7 @@
       (cljr-add-keybindings-with-prefix "C-c C-m"))
     (add-hook 'clojure-mode-hook 'my-clojure-before-save-hook)
     (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+    (add-hook 'clojure-mode-hook 'fci-mode)
     (add-hook 'clojure-mode-hook 'my-clj-refactor-set-keybinding-hook))
   (use-package flycheck-clj-kondo
     :ensure t))
