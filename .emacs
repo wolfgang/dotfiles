@@ -183,24 +183,24 @@
     :ensure t
     :config (helm-cider-mode)))
 
-(use-package lispy
-  :ensure t
-  :pin melpa
-  :diminish lispy-mode
-  :defer t
-  :bind
-  (("M-<up>" . lispy-mark))
-  :hook ((clojure-mode . lispy-mode)
-         (emacs-lisp-mode . lispy-mode)
-         (common-lisp-mode . lispy-mode)
-         (scheme-mode . lispy-mode)
-         (lisp-mode . lispy-mode))
-  :init
-  (setq lispy-compat '(cider)
-        lispy-key-theme '(special parinfer c-digits))
-  ;; https://github.com/abo-abo/lispy/pull/403
-  ;; temporary to get accustom to lispy
-  (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
+;; (use-package lispy
+;;   :ensure nil
+;;   :pin melpa
+;;   :diminish lispy-mode
+;;   :defer t
+;;   :bind
+;;   (("M-<up>" . lispy-mark))
+;;   :hook ((clojure-mode . lispy-mode)
+;;          (emacs-lisp-mode . lispy-mode)
+;;          (common-lisp-mode . lispy-mode)
+;;          (scheme-mode . lispy-mode)
+;;          (lisp-mode . lispy-mode))
+;;   :init
+;;   (setq lispy-compat '(cider)
+;;         lispy-key-theme '(special parinfer c-digits))
+;;   ;; https://github.com/abo-abo/lispy/pull/403
+;;   ;; temporary to get accustom to lispy
+;;   (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
 
 (use-package clojure-mode
   :ensure t
