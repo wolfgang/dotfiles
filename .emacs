@@ -159,28 +159,31 @@
         company-dabbrev-ignore-case 'yes
         company-show-numbers t))
 
-;; (use-package lispy
-;;   :ensure t
-;;   :pin melpa
-;;   :diminish lispy-mode
-;;   :defer t
-;;   :bind (([remap lispy-move-beginning-of-line] . mwim-beginning-of-code-or-line)
-;;          :map lispy-mode-map
-;;          (("C-d" . my-delete-region-or-line)
-;;           ("M-d" . lispy-delete)
-;;           ("M-e" . lispy-backward-kill-word)
-;;           ("M-r" . lispy-kill-word)))
-;;   :hook ((clojure-mode . lispy-mode)
-;;          (emacs-lisp-mode . lispy-mode)
-;;          (common-lisp-mode . lispy-mode)
-;;          (scheme-mode . lispy-mode)
-;;          (lisp-mode . lispy-mode))
-;;   :init
-;;   (setq lispy-compat '(cider)
-;;         lispy-key-theme '(special parinfer c-digits))
-;;   ;; https://github.com/abo-abo/lispy/pull/403
-;;   ;; temporary to get accustom to lispy
-;;   (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
+(use-package lispy
+  :ensure t
+  :pin melpa
+  :diminish lispy-mode
+  :defer t
+  :bind (([remap lispy-move-beginning-of-line] . mwim-beginning-of-code-or-line)
+         :map lispy-mode-map
+         (("C-d" . my-delete-region-or-line))
+	 ;; Don't overwrite cider binding
+	 ("M-." . nil)
+	 ("M-d" . lispy-delete)
+	 ("M-e" . lispy-backward-kill-word)
+	 ("M-r" . lispy-kill-word))
+  :hook ((clojure-mode . lispy-mode)
+         (emacs-lisp-mode . lispy-mode)
+         (common-lisp-mode . lispy-mode)
+         (scheme-mode . lispy-mode)
+         (lisp-mode . lispy-mode))
+  :init
+  (setq lispy-compat '(cider)
+        lispy-key-theme '(special parinfer c-digits))
+
+  ;; https://github.com/abo-abo/lispy/pull/403
+  ;; temporary to get accustom to lispy
+  (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
 
 (use-package cider
   :ensure t
