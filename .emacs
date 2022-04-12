@@ -58,11 +58,6 @@
   :config
   (load-theme 'solarized-dark t))
 
-(use-package monokai-theme
-  :ensure nil
-  :config
-  (load-theme 'monokai 'no-confirm))
-
 (use-package doom-themes
   :ensure t
   :config
