@@ -22,18 +22,33 @@
   (require 'use-package))
 
 (require 'cl)
-(setq make-backup-files nil)
-(setq inhibit-splash-screen t)
 (global-font-lock-mode 1)
 (transient-mark-mode 1)
 (savehist-mode 1)
-(setq vc-follow-symlinks t)
-(setq ring-bell-function 'ignore)
 (tool-bar-mode -1)
 (column-number-mode)
 (delete-selection-mode 1)
 (show-paren-mode 1)
-(setq tramp-mode nil)
+
+(setq-default tab-width      4
+              fill-column    80
+              indent-tabs-mode      nil
+              indicate-empty-lines  t
+              require-final-newline t
+              sentence-end-double-space nil
+              save-place nil)
+
+(setq frame-title-format '(buffer-file-name "%f" ("%b"))
+      inhibit-startup-screen t
+      inhibit-splash-screen t
+      ediff-window-setup-function 'ediff-setup-windows-plain
+      diff-switches "-u"
+      ;; node / create-react-app dislikes lock files
+      create-lockfiles nil
+      make-backup-files nil
+      vc-follow-symlinks t
+      ring-bell-function 'ignore
+      tramp-mode nil)
 
 (global-set-key (kbd "C-c <left>")  'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
