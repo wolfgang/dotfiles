@@ -150,10 +150,11 @@
   :config
   (helm-projectile-on))
 
-
 (use-package magit
   :ensure t
-  :bind (("<f6>" . magit-status)))
+  :bind (("<f6>" . magit-status))
+  :init
+  (setq magit-save-repository-buffers 'dontask))
 
 (use-package which-key
   :ensure t
