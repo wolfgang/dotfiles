@@ -32,6 +32,7 @@
 (tool-bar-mode -1)
 (column-number-mode)
 (delete-selection-mode 1)
+(show-paren-mode 1)
 (setq tramp-mode nil)
 
 (global-set-key (kbd "C-c <left>")  'windmove-left)
