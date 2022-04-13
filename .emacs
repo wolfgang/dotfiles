@@ -50,14 +50,17 @@
       ring-bell-function 'ignore
       tramp-mode nil)
 
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
+(bind-keys
+ ("C-|" . split-window-horizontally)
+ ("C-_" . split-window-vertically)
+ ("C-c <left>"  . windmove-left)
+ ("C-c <right>" . windmove-right)
+ ("C-c <up>" . windmove-up)
+ ("C-c <down>" . 'windmove-down))
 
 (add-hook 'emacs-lisp-mode-hook
-	  '(lambda ()
-	     (local-set-key (kbd "RET") 'newline-and-indent)))
+	      '(lambda ()
+	         (local-set-key (kbd "RET") 'newline-and-indent)))
 
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
