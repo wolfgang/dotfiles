@@ -255,10 +255,6 @@
   :config
   (super-save-mode))
 
-(use-package auto-dim-other-buffers
-  :ensure t
-  :hook ((after-init . auto-dim-other-buffers-mode)))
-
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
