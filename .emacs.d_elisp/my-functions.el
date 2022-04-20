@@ -15,4 +15,10 @@
   (interactive)
   (cider-interactive-eval "(dev/stop)"))
 
+(defun my-bloom-backend-restart ()
+  (interactive)
+  (progn
+    (my-bloom-backend-stop)
+    (my-bloom-backend-start)))
+
 (provide `my-functions)

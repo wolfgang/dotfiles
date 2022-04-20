@@ -208,8 +208,9 @@
 (use-package cider
   :ensure t
   :defer t
-  :bind (("C-<return>" . my-clojure-format-buffer)
-	 ("M-." . cider-find-var))
+  :bind (("C-c b" . my-bloom-backend-restart)
+         ("C-<return>" . my-clojure-format-buffer)
+	     ("M-." . cider-find-var))
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil
 	cider-save-file-on-load t
