@@ -256,6 +256,9 @@
   :config
   (super-save-mode))
 
+(use-package git-timemachine
+  :ensure t)
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
