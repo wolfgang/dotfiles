@@ -210,7 +210,8 @@
   :defer t
   :bind (("C-c b" . my-bloom-backend-restart)
          ("C-<return>" . my-clojure-format-buffer)
-	     ("M-." . cider-find-var))
+	     ("M-." . cider-find-var)
+         ("C-c C-d x" . cider-auto-test-mode))
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil
 	cider-save-file-on-load t
@@ -257,7 +258,8 @@
   (super-save-mode))
 
 (use-package git-timemachine
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (setq custom-file "~/.emacs.local")
 
