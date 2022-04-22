@@ -187,11 +187,13 @@
   :bind (([remap lispy-move-beginning-of-line] . mwim-beginning-of-code-or-line)
          :map lispy-mode-map
          (("C-d" . my-delete-region-or-line))
-	 ;; Don't overwrite cider binding
-	 ("M-." . nil)
-	 ("M-d" . lispy-delete)
-	 ("M-e" . lispy-backward-kill-word)
-	 ("M-r" . lispy-kill-word))
+	     ;; Don't overwrite cider binding
+	     ("M-." . nil)
+	     ("M-d" . lispy-delete)
+         ("M-m" . lispy-mark-symbol)
+         ("C-," . lispy-kill-at-point)
+	     ("M-e" . lispy-backward-kill-word)
+	     ("M-r" . lispy-kill-word))
   :hook ((clojure-mode . lispy-mode)
          (emacs-lisp-mode . lispy-mode)
          (common-lisp-mode . lispy-mode)
@@ -260,6 +262,11 @@
 (use-package git-timemachine
   :ensure t
   :defer t)
+
+(use-package mwim
+  :ensure t
+  :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
+         ([remap move-end-of-line] . mwim-end-of-code-or-line)))
 
 (setq custom-file "~/.emacs.local")
 

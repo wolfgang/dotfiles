@@ -21,4 +21,18 @@
     (my-bloom-backend-stop)
     (my-bloom-backend-start)))
 
+(defun my-delete-line-keep-column-position ()
+  "Delete current line and keep point at current column."
+  (interactive)
+  (let ((column-index (current-column)))
+    (kill-whole-line)
+    (move-to-column column-index)))
+
+(defun my-delete-region-or-line ()
+  "Delete region if active or current line."
+  (interactive)
+  (if (use-region-p)
+      (call-interactively 'kill-region)
+    (call-interactively 'my-delete-line-keep-column-position)))
+
 (provide `my-functions)
