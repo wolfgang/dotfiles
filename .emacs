@@ -248,6 +248,28 @@
   (use-package flycheck-clj-kondo
     :ensure t))
 
+
+(use-package json-mode
+  :ensure t
+  :defer t)
+
+(use-package js2-mode
+  :ensure t
+  :mode "\\.js\\'"
+  :interpreter "node")
+
+(use-package rjsx-mode
+  :ensure t
+  :mode "components\\/.*\\.js\\'"
+  :bind (:map rjsx-mode-map
+         ("C-d" . my-delete-region-or-line)))
+
+(use-package prettier-js
+  :ensure t
+  :hook ((rjsx-mode . prettier-js-mode)
+         (js2-mode . prettier-js-mode)
+         (json-mode . prettier-js-mode)))
+
 (use-package helm-swoop
   :pin melpa
   :ensure t
