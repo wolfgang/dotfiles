@@ -45,7 +45,7 @@ myConfig = def
     [ ("M-S-<Return>", spawn "gnome-terminal")
     , ("M-e" , spawn "emacs")
     , ("M-s" , spawn "slack")
-    , ("M-b" , spawn "brave")
+    , ("M-b" , spawn "brave-browser")
     , ("M-S-l", spawn "xscreensaver-command -lock")
     , ("M-S-t", sendMessage $ JumpToLayout "Mirror Tall")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
