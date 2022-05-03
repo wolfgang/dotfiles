@@ -193,6 +193,7 @@
          ("M-m" . lispy-mark-symbol)
          ("C-," . lispy-kill-at-point)
 	     ("M-e" . lispy-backward-kill-word)
+         ("C-M-," . lispy-mark)
 	     ("M-r" . lispy-kill-word))
   :hook ((clojure-mode . lispy-mode)
          (emacs-lisp-mode . lispy-mode)
