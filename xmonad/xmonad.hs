@@ -20,8 +20,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.CycleWS
 import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleWindows
-
-
+import XMonad.Actions.WindowGo
 
 main :: IO ()
 main = xmonad
@@ -43,9 +42,10 @@ myConfig = def
     }
     `additionalKeysP`
     [ ("M-S-<Return>", spawn "gnome-terminal")
-    , ("M-e" , spawn "emacs")
+    , ("M-e" , runOrRaise "emacs" (className=? "Emacs"))
+    , ("M-t" , runOrRaise "gnome-terminal" (className=? "Gnome-terminal"))
+    , ("M-r" , runOrRaise "brave-browser" (className=? "Brave-browser"))
     , ("M-s" , spawn "slack")
-    , ("M-b" , spawn "brave-browser")
     , ("M-S-l", spawn "xscreensaver-command -lock")
     , ("M-S-t", sendMessage $ JumpToLayout "Mirror Tall")
     , ("M-S-f", sendMessage $ JumpToLayout "Full")
@@ -59,8 +59,8 @@ myConfig = def
     , ("M-C-<Down>", rotFocusedDown)
     , ("M-<Right>", nextWS)
     , ("M-<Left>", prevWS)
-    , ("M-S-<Right>", shiftToNext)
-    , ("M-S-<Left>", shiftToPrev)
+--    , ("M-S-<Right>", shiftToNext)
+--    , ("M-S-<Left>", shiftToPrev)
     , ("M-S-g", goToSelected def)
     ] 
 
