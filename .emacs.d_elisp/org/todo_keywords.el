@@ -10,22 +10,23 @@
 
 
 (setq org-todo-keyword-faces '(("TODO" :foreground "red" 
-				:weight bold) 
-			       ("NEXT" :foreground "blue" 
-				:weight bold) 
-			       ("FREE" :foreground "black" 
-				:weight bold) 
-			       ("USED" :foreground "grey" 
-				:weight bold) 
-			       ("DONE" :foreground "forest green" 
-				:weight bold) 
-			       ("MAYBE" :foreground "orange" 
-				:weight bold) 
-			       ("SCHD" :foreground "navy blue" 
-				:weight bold)
-                               ("WAIT" :foreground "blue") 
-                               ("PROJ" :background "blue" 
-				:weight bold)))
+				                :weight bold) 
+			                   ("NEXT" :foreground "#8f3f71" 
+				                :weight bold) 
+			                   ("FREE" :foreground "black" 
+				                :weight bold) 
+			                   ("USED" :foreground "grey" 
+				                :weight bold) 
+			                   ("DONE" :foreground "forest green" 
+				                :weight bold) 
+			                   ("MAYBE" :foreground "orange" 
+				                :weight bold) 
+			                   ("SCHD" :foreground "#a8a8a8" 
+				                :weight bold)
+                               ("WAIT" :foreground "#949494") 
+                               ("PROJ" :background "blue"
+                                :foreground "#bcbcbc"
+				                :weight bold)))
 
 (defadvice org-schedule (after org-schedule-change-state) 
   (if (org-get-scheduled-time (point)) 

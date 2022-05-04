@@ -70,18 +70,10 @@
 (require 'my-functions)
 (require 'my-org)
 
-(use-package solarized-theme
-  :ensure nil
-  :init
-  (setq solarized-scale-org-headlines t)
-  :config
-  (load-theme 'solarized-dark t))
-
-(use-package doom-themes
+(use-package gruvbox-theme
   :ensure t
   :config
-  (load-theme 'doom-one 'no-confirm)
-  (doom-themes-visual-bell-config))
+  (load-theme 'gruvbox-dark-medium t))
 
 (use-package smart-mode-line
   :ensure t
