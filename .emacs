@@ -56,7 +56,8 @@
  ("C-c <left>"  . windmove-left)
  ("C-c <right>" . windmove-right)
  ("C-c <up>" . windmove-up)
- ("C-c <down>" . 'windmove-down))
+ ("C-c <down>" . 'windmove-down)
+ ("C-s" . swiper-isearch))
 
 (add-hook 'emacs-lisp-mode-hook
 	      '(lambda ()
