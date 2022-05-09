@@ -169,6 +169,7 @@
   ;; respect case when inserting into buffer, ignore when searching for candidates
   (setq company-dabbrev-downcase nil
         company-dabbrev-ignore-case 'yes
+        company-idle-delay 0.3
         company-show-numbers t))
 
 (use-package lispy
