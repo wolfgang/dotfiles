@@ -29,6 +29,7 @@
 (column-number-mode)
 (delete-selection-mode 1)
 (show-paren-mode 1)
+(menu-bar-mode -1)
 
 (setq-default tab-width      4
               fill-column    80
