@@ -3,9 +3,11 @@
 
 (defun my-clojure-format-buffer ()
   (interactive)
-  (progn
-    (cider-format-buffer)
-    (clojure-sort-ns)))
+  (let ((p (point)))
+    (progn
+      (cider-format-buffer)
+      (clojure-sort-ns)
+      (goto-char p))))
 
 (defun my-bloom-backend-start ()
   (interactive)
