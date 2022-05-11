@@ -204,7 +204,7 @@
   (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
 
 (use-package cider
-  :ensure t
+  :ensure nil
   :defer t
   :bind (("C-c b" . my-bloom-backend-restart)
          ("C-<return>" . my-clojure-format-buffer)
