@@ -22,6 +22,9 @@ import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleWindows
 import XMonad.Actions.WindowGo
 
+import XMonad.Prompt
+import XMonad.Prompt.Window
+
 main :: IO ()
 main = xmonad
     . ewmhFullscreen
@@ -59,9 +62,8 @@ myConfig = def
     , ("M-C-<Down>", rotFocusedDown)
     , ("M-<Right>", nextWS)
     , ("M-<Left>", prevWS)
---    , ("M-S-<Right>", shiftToNext)
---    , ("M-S-<Left>", shiftToPrev)
-    , ("M-S-g", goToSelected def)
+    , ("M-g",  windowPrompt def { autoComplete = Just 500000 }  Goto wsWindows)
+    , ("M-S-g",  windowPrompt def { autoComplete = Just 500000 }  Goto allWindows)
     ] 
 
 myLayoutHook =
