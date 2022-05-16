@@ -11,7 +11,7 @@ Config { overrideRedirect = False
                         ] 10
                     , Run Memory ["--template", "Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Network "wlp9s0" [ "--template" , "<rx>kB/s|<tx>kB/s"
+                    , Run Network "wlp9s0" [ "--template" , "Rx: <rx>kB/s Tx: <tx>kB/s"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "1000000"    -- units: B/s
                              , "--low"      , "green"
@@ -33,5 +33,5 @@ Config { overrideRedirect = False
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %cpu% | %memory% | %wlp9s0% || %date% | %battery% "
+       , template = "%XMonadLog% }{ %cpu% | %memory% | %wlp9s0% | %battery% ||  %date%"
        }
