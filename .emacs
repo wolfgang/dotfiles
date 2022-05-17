@@ -286,6 +286,11 @@
   :ensure t
   :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
          ([remap move-end-of-line] . mwim-end-of-code-or-line)))
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
+
 
 (setq custom-file "~/.emacs.local")
 
