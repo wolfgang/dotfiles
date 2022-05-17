@@ -31,6 +31,7 @@
 (show-paren-mode 1)
 (menu-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings)
 
 (setq-default tab-width      4
               fill-column    80
