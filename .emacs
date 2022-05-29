@@ -31,6 +31,7 @@
 (show-paren-mode 1)
 (menu-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings)
 
 (setq-default tab-width      4
               fill-column    80
@@ -336,6 +337,14 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
+
+(use-package helm-ag
+  :ensure t
+  :defer t)
 
 (setq custom-file "~/.emacs.local")
 

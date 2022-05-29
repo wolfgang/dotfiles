@@ -8,10 +8,12 @@ Config { overrideRedirect = False
                         , "-H", "50"
                         , "--high"  , "red"
                         , "--normal", "green"
+                        , "--ppad", "3"
                         ] 10
-                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Network "wlp9s0" [ "--template" , "<rx>kB/s|<tx>kB/s"
+                    , Run Memory ["--template", "Mem: <usedratio>%", "--ppad", "3"] 10
+                    , Run Network "wlp9s0" [
+                               "--template" , "Rx: <rx>kB/s Tx: <tx>kB/s"
+                             , "--minwidth", "4"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "1000000"    -- units: B/s
                              , "--low"      , "green"
@@ -21,17 +23,17 @@ Config { overrideRedirect = False
                     , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
                     , Run Battery [
                         "-t", "<acstatus>: <left>% - <timeleft>",
+                        "--ppad", "3",
                         "--",
                         --"-c", "charge_full",
                         "-O", "AC",
                         "-o", "Bat",
                         "-h", "green",
                         "-l", "red"
-                        ] 
-                        10
+                        ] 10
                     , Run XMonadLog
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %cpu% | %memory% | %wlp9s0% || %date% | %battery% "
+       , template = "%XMonadLog% }{ %cpu% | %memory% | %wlp9s0% | %battery% || %date%"
        }
