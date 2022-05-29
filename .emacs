@@ -302,9 +302,9 @@
               ("C-c C-c Q" . lsp-workspace-shutdown))
   :config
   ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-signature-auto-activate nil)
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-signature-auto-activate nil)
 
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t))
@@ -312,31 +312,37 @@
 (use-package lsp-mode
   :ensure t
   :defer t
-  :commands lsp
+  :init
+  (setq lsp-keymap-prefix "C-c C-l")
+  :commands (lsp lsp-deferred)
   :custom
-  ;; what to use when checking on-save. "check" is default, I prefer clippy
   (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
+  (lsp-eldoc-render-all nil)
   (lsp-idle-delay 0.6)
-  ;; enable / disable the hints as you prefer:
-  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-rust-analyzer-server-display-inlay-hints nil)
   (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
   (lsp-rust-analyzer-display-chaining-hints t)
   (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
   (lsp-rust-analyzer-display-closure-return-type-hints t)
   (lsp-rust-analyzer-display-parameter-hints nil)
   (lsp-rust-analyzer-display-reborrow-hints nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  :hook
+  ((lsp-mode . lsp-ui-mode)
+   (lsp-mode . lsp-enable-which-key-integration)))
 
 (use-package lsp-ui
   :ensure t
   :defer t
+  :bind (:map lsp-ui-mode-map
+              ("M-?" . lsp-ui-peek-find-references))
   :commands lsp-ui-mode
   :custom
+  (lsp-ui-peek-show-directory nil)
   (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-doc-enable nil))
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-show-with-cursor nil))
+
 (use-package beacon
   :ensure t
   :config
@@ -345,6 +351,12 @@
 (use-package helm-ag
   :ensure t
   :defer t)
+
+(use-package helm-lsp
+  :ensure t
+  :defer t
+  :commands
+  helm-lsp-workspace-symbol)
 
 (setq custom-file "~/.emacs.local")
 
