@@ -182,15 +182,15 @@
   :defer t
   :bind (([remap lispy-move-beginning-of-line] . mwim-beginning-of-code-or-line)
          :map lispy-mode-map
-         (("C-d" . my-delete-region-or-line))
-	     ;; Don't overwrite cider binding
-	     ("M-." . nil)
-	     ("M-d" . lispy-delete)
-         ("M-m" . lispy-mark-symbol)
-         ("C-," . lispy-kill-at-point)
-	     ("M-e" . lispy-backward-kill-word)
-         ("C-M-," . lispy-mark)
-	     ("M-r" . lispy-kill-word))
+         (("C-d" . my-delete-region-or-line)
+	      ;; Don't overwrite cider binding
+	      ("M-." . nil)
+	      ("M-d" . lispy-delete)
+          ("M-m" . lispy-mark-symbol)
+          ("C-," . lispy-kill-at-point)
+	      ("M-e" . lispy-backward-kill-word)
+          ("C-M-," . lispy-mark)
+	      ("M-r" . lispy-kill-word)))
   :hook ((clojure-mode . lispy-mode)
          (emacs-lisp-mode . lispy-mode)
          (common-lisp-mode . lispy-mode)
@@ -207,10 +207,6 @@
 (use-package cider
   :ensure nil
   :defer t
-  :bind (("C-c b" . my-bloom-backend-restart)
-         ("C-<return>" . my-clojure-format-buffer)
-	     ("M-." . cider-find-var)
-         ("C-c C-d x" . cider-auto-test-mode))
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil
 	cider-save-file-on-load t
@@ -229,6 +225,10 @@
 (use-package clojure-mode
   :ensure t
   :defer t
+  :bind (:map clojure-mode-map
+              (("C-<return>" . my-clojure-format-buffer)
+               ("M-." . cider-find-var)
+               ("C-c C-d x" . cider-auto-test-mode)))
   :config
   (use-package clj-refactor
     :ensure t
@@ -286,6 +286,56 @@
   :ensure t
   :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
          ([remap move-end-of-line] . mwim-end-of-code-or-line)))
+
+(use-package rustic
+  :ensure t
+  :defer t
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c s" . lsp-rust-analyzer-status)
+              ("C-c C-c Q" . lsp-workspace-shutdown))
+  :config
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
+
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t))
+
+(use-package lsp-mode
+  :ensure t
+  :defer t
+  :commands lsp
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  ;; enable / disable the hints as you prefer:
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+  (lsp-rust-analyzer-display-chaining-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+  (lsp-rust-analyzer-display-closure-return-type-hints t)
+  (lsp-rust-analyzer-display-parameter-hints nil)
+  (lsp-rust-analyzer-display-reborrow-hints nil)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-ui
+  :ensure t
+  :defer t
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
 
 (setq custom-file "~/.emacs.local")
 
