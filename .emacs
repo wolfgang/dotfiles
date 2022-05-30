@@ -358,6 +358,12 @@
   :commands
   helm-lsp-workspace-symbol)
 
+(use-package keyfreq
+  :ensure t
+  :config
+  (keyfreq-mode)
+  (keyfreq-autosave-mode))
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
