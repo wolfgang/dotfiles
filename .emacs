@@ -292,8 +292,7 @@
   :ensure t
   :defer t
   :bind (:map rustic-mode-map
-              ("M-j" . lsp-ui-imenu)
-              ("M-?" . lsp-find-references)
+              ("C-<return>" .  rustic-format-buffer)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c C-c a" . lsp-execute-code-action)
               ("C-c C-c r" . lsp-rename)
@@ -301,31 +300,33 @@
               ("C-c C-c s" . lsp-rust-analyzer-status)
               ("C-c C-c Q" . lsp-workspace-shutdown))
   :config
-  ;; uncomment for less flashiness
-  (setq lsp-eldoc-hook nil)
   (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-signature-auto-activate nil)
-
-  ;; comment to disable rustfmt on save
-  (setq rustic-format-on-save t))
+  (add-hook 'rustic-mode-hook 'my-rustic-mode-auto-save-hook)
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-signature-auto-activate nil)
+  (setq rustic-format-on-save nil))
 
 (use-package lsp-mode
   :ensure t
   :defer t
   :init
-  (setq lsp-keymap-prefix "C-c C-l")
-  :commands (lsp lsp-deferred)
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all nil)
-  (lsp-idle-delay 0.6)
-  (lsp-rust-analyzer-server-display-inlay-hints nil)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
-  (lsp-rust-analyzer-display-chaining-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
-  (lsp-rust-analyzer-display-closure-return-type-hints t)
-  (lsp-rust-analyzer-display-parameter-hints nil)
-  (lsp-rust-analyzer-display-reborrow-hints nil)
+  (setq lsp-keymap-prefix "C-c C-l"
+        lsp-idle-delay 0.3
+        lsp-modeline-code-actions-segments '(count name)
+        lsp-rust-analyzer-cargo-watch-command "check"
+        lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial"
+        lsp-rust-analyzer-display-chaining-hints t
+        lsp-rust-analyzer-display-closure-return-type-hints t
+        lsp-eldoc-render-all nil
+        lsp-rust-analyzer-server-display-inlay-hints nil
+        lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil
+        lsp-rust-analyzer-display-parameter-hints nil
+        lsp-rust-analyzer-display-reborrow-hints nil)
+  :commands
+  (lsp lsp-deferred)
+  :bind (:map lsp-mode-map
+              ("M-<f1>" . lsp-describe-thing-at-point))
   :hook
   ((lsp-mode . lsp-ui-mode)
    (lsp-mode . lsp-enable-which-key-integration)))
@@ -333,15 +334,18 @@
 (use-package lsp-ui
   :ensure t
   :defer t
+  :init
+  (setq lsp-ui-doc-enable t
+        lsp-ui-peek-always-show t
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-peek-show-directory nil
+        lsp-ui-sideline-show-hover nil
+        lsp-ui-doc-show-with-cursor nil)
   :bind (:map lsp-ui-mode-map
+              ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-ui-peek-find-references))
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-peek-show-directory nil)
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover nil)
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-show-with-cursor nil))
+  :commands
+  lsp-ui-mode)
 
 (use-package beacon
   :ensure t

@@ -37,4 +37,9 @@
       (call-interactively 'kill-region)
     (call-interactively 'my-delete-line-keep-column-position)))
 
+(defun my-rustic-mode-auto-save-hook ()
+  "Enable auto-saving in rustic-mode buffers."
+  (when buffer-file-name
+    (setq-local compilation-ask-about-save nil)))
+
 (provide `my-functions)
