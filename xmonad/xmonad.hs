@@ -48,6 +48,7 @@ myConfig = def
     , ("M-e" , runOrRaise "emacs" (className=? "Emacs"))
     , ("M-t" , runOrRaise "gnome-terminal" (className=? "Gnome-terminal"))
     , ("M-r" , runOrRaise "brave-browser" (className=? "Brave-browser"))
+    , ("M-w" , runOrRaise "webstorm" (className=? "jetbrains-webstorm"))
     , ("M-s" , spawn "slack")
     , ("M-S-l", spawn "xscreensaver-command -lock")
     , ("M-S-t", sendMessage $ JumpToLayout "Mirror Tall")
