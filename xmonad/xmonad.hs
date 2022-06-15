@@ -24,6 +24,8 @@ import XMonad.Actions.WindowGo
 
 import XMonad.Prompt
 import XMonad.Prompt.Window
+import XMonad.Prompt.FuzzyMatch
+
 
 main :: IO ()
 main = xmonad
@@ -37,6 +39,10 @@ myStatusBar =
   where
     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
     toggleStrutsKey XConfig{ modMask = m } = (m .|. shiftMask, xK_b) 
+
+myXPConfig = def { searchPredicate = fuzzyMatch
+                 , sorter          = fuzzySort
+                 }
 
 myConfig = def
     { startupHook = setWMName "LG3D"}
@@ -63,8 +69,8 @@ myConfig = def
     , ("M-C-<Down>", rotFocusedDown)
     , ("M-<Right>", nextWS)
     , ("M-<Left>", prevWS)
-    , ("M-g",  windowPrompt def { autoComplete = Just 500000 }  Goto wsWindows)
-    , ("M-S-g",  windowPrompt def { autoComplete = Just 500000 }  Goto allWindows)
+    , ("M-g",  windowPrompt myXPConfig { autoComplete = Just 500000 }  Goto wsWindows)
+    , ("M-S-g",  windowPrompt myXPConfig { autoComplete = Just 500000 }  Goto allWindows)
     ] 
 
 myLayoutHook =
