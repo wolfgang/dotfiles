@@ -46,7 +46,7 @@ myConfig = def
     `additionalKeysP`
     [ ("M-S-<Return>", spawn "gnome-terminal")
     , ("M-e" , runOrRaise "emacs" (className=? "Emacs"))
-    , ("M-t" , runOrRaise "gnome-terminal" (className=? "Gnome-terminal"))
+    , ("M-a" , runOrRaise "gnome-terminal" (className=? "Gnome-terminal"))
     , ("M-r" , runOrRaise "brave-browser" (className=? "Brave-browser"))
     , ("M-w" , runOrRaise "webstorm" (className=? "jetbrains-webstorm"))
     , ("M-s" , spawn "slack")
