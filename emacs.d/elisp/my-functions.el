@@ -13,6 +13,13 @@
   (interactive)
   (cider-interactive-eval "(do (load-file \"repl/miro/lib.clj\") (lib/start))"))
 
+
+(defun my-bloom-user-data-restart ()
+  (interactive)
+  (progn
+    (cider-quit)
+    (cider-jack-in `())))
+
 (defun my-bloom-backend-stop ()
   (interactive)
   (cider-interactive-eval "(dev/stop)"))
