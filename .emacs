@@ -373,7 +373,15 @@
   :bind (("C-<f1>" . helpful-at-point)
          ("C-h f" . helpful-function)))
 
+(use-package shackle
+  :ensure t
+  :config
+  (setq shackle-rules '((magit-status-mode :align 'below :inhibit-window-quit t :select t :size 0.45)
+                        (magit-diff-mode :align 'below :inhibit-window-quit t :size 0.3)))
+  (shackle-mode 1))
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
     (load "~/.emacs.local"))
+
