@@ -368,6 +368,11 @@
   (keyfreq-mode)
   (keyfreq-autosave-mode))
 
+(use-package helpful
+  :ensure t
+  :bind (("C-<f1>" . helpful-at-point)
+         ("C-h f" . helpful-function)))
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
