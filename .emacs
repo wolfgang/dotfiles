@@ -153,7 +153,8 @@
   :ensure t
   :bind (("<f6>" . magit-status))
   :init
-  (setq magit-save-repository-buffers 'dontask))
+  (setq magit-commit-show-diff nil
+        magit-save-repository-buffers 'dontask))
 
 (use-package which-key
   :ensure t
@@ -376,8 +377,7 @@
 (use-package shackle
   :ensure t
   :config
-  (setq shackle-rules '((magit-status-mode :align 'below :inhibit-window-quit t :select t :size 0.45)
-                        (magit-diff-mode :align 'below :inhibit-window-quit t :size 0.3)))
+  (setq shackle-rules '((magit-status-mode :align 'below :inhibit-window-quit t :select t :size 0.45)))
   (shackle-mode 1))
 
 (setq custom-file "~/.emacs.local")
