@@ -377,7 +377,8 @@
 (use-package shackle
   :ensure t
   :config
-  (setq shackle-rules '((magit-status-mode :align 'below :inhibit-window-quit t :select t :size 0.45)))
+  (setq shackle-rules '((magit-status-mode :align 'below :inhibit-window-quit t :select t :size 0.45)
+                        ("\\`\\*helm.*?\\*\\'" :regexp t :align right :size 0.4)))
   (shackle-mode 1))
 
 (use-package terraform-mode
