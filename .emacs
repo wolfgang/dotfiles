@@ -109,7 +109,8 @@
    ("<f2>"    . helm-for-files)
    ("C-x C-f" . helm-find-files)
    ("C-x b"   . helm-mini)
-   ("C-x C-r" . helm-recentf))
+   ("C-x C-r" . helm-recentf)
+   ("M-s o"   . helm-occur))
   :config
   (require 'tramp) ; otherwise void variable tramp-methods on projectile switch project
   (use-package helm-config)
@@ -385,8 +386,7 @@
 (use-package terraform-mode
   :ensure t)
 
-(setq(use-package terraform-mode
-  :ensure t) custom-file "~/.emacs.local")
+(setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
     (load "~/.emacs.local"))
