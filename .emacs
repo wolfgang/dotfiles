@@ -380,6 +380,9 @@
   (setq shackle-rules '((magit-status-mode :align 'below :inhibit-window-quit t :select t :size 0.45)))
   (shackle-mode 1))
 
+(use-package terraform-mode
+  :ensure t)
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
