@@ -386,6 +386,10 @@
 (use-package terraform-mode
   :ensure t)
 
+(use-package elfeed
+  :ensure t
+  :bind (("<f11>" . elfeed)))
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
