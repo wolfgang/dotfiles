@@ -74,10 +74,10 @@
 (require 'my-functions)
 (require 'my-org)
 
-(use-package gruvbox-theme
+(use-package doom-themes
   :ensure t
-  :config
-  (load-theme 'gruvbox-dark-medium t))
+   :config
+   (load-theme 'doom-palenight t))
 
 (use-package smart-mode-line
   :ensure t
@@ -120,6 +120,8 @@
     :config (helm-descbinds-mode))
   (use-package helm-rg
     :ensure t))
+
+(use-package dash :ensure t)
 
 (use-package projectile
   :ensure t
