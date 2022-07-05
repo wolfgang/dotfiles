@@ -379,8 +379,9 @@
   :ensure t
   :config
   (setq shackle-rules '((magit-status-mode :align below :inhibit-window-quit t :select t :size 0.45)
-                        (helpful-mode :select t :align right)
-                        ("\\`\\*helm.*?\\*\\'" :regexp t :align right :size 0.4)))
+                        (helpful-mode :select t :align below)
+                        ("*Help*" :select t :align below)
+                        ("\\`\\*helm.*?\\*\\'" :regexp t :align below :size 0.4)))
   (shackle-mode 1))
 
 (use-package terraform-mode
@@ -389,6 +390,9 @@
 (use-package elfeed
   :ensure t
   :bind (("<f11>" . elfeed)))
+
+(use-package ledger-mode
+  :ensure t)
 
 (setq custom-file "~/.emacs.local")
 
