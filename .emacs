@@ -389,7 +389,7 @@
 
 (use-package elfeed
   :ensure t
-  :bind (("<f11>" . elfeed)))
+  :bind (("<C-f11>" . elfeed)))
 
 (use-package ledger-mode
   :ensure t)
