@@ -22,6 +22,7 @@
   (require 'use-package))
 
 (require 'cl)
+(global-auto-revert-mode 1)
 (global-font-lock-mode 1)
 (transient-mark-mode 1)
 (savehist-mode 1)
