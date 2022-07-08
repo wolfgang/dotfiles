@@ -399,6 +399,9 @@
 (use-package ledger-mode
   :ensure t)
 
+(use-package pocket-reader
+  :ensure t)
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
