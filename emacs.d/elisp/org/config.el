@@ -87,7 +87,7 @@
 (add-hook 'org-agenda-mode-hook 'custom-org-agenda-mode-defaults 'append)
 
 
-(setq org-refile-use-outline-path t)
+(setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 (setq org-completion-use-ido nil)
