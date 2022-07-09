@@ -400,7 +400,8 @@
   :ensure t)
 
 (use-package pocket-reader
-  :ensure t)
+  :ensure t
+  :bind (("<C-f12>" . pocket-reader)))
 
 (setq custom-file "~/.emacs.local")
 
