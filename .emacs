@@ -403,6 +403,18 @@
   :ensure t
   :bind (("<C-f12>" . pocket-reader)))
 
+(use-package s :ensure t)
+(use-package multiple-cursors :ensure t)
+(use-package yasnippet :ensure t)
+
+(use-package js2-refactor
+  :ensure t
+  :defer t
+  :config
+  (js2r-add-keybindings-with-prefix "C-c C-m")
+  :hook ((js2-mode . js2-refactor-mode)))
+
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
