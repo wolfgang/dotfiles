@@ -415,6 +415,12 @@
   :hook ((js2-mode . js2-refactor-mode)))
 
 
+(use-package expand-region
+  :ensure t
+  :init
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+
 (setq custom-file "~/.emacs.local")
 
 (if (file-exists-p "~/.emacs.local")
