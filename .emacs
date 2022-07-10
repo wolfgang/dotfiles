@@ -31,6 +31,7 @@
 (delete-selection-mode 1)
 (show-paren-mode 1)
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (windmove-default-keybindings)
 
@@ -260,6 +261,7 @@
 (use-package js2-mode
   :ensure t
   :mode "\\.js\\'"
+  :hook ((js2-mode . paredit-mode))
   :interpreter "node")
 
 (use-package rjsx-mode
