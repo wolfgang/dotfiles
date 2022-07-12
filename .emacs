@@ -254,6 +254,12 @@
     :ensure t))
 
 
+(use-package smartparens
+  :ensure t)
+
+(use-package smartparens-config
+  :ensure smartparens)
+
 (use-package json-mode
   :ensure t
   :defer t)
@@ -261,7 +267,8 @@
 (use-package js2-mode
   :ensure t
   :mode "\\.js\\'"
-  :hook ((js2-mode . paredit-mode))
+  :hook ((js2-mode . smartparens-mode)
+         (js2-mode . sp-use-smartparens-bindings))
   :interpreter "node")
 
 (use-package rjsx-mode
