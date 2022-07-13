@@ -415,7 +415,14 @@
   :bind (("<C-f12>" . pocket-reader)))
 
 (use-package s :ensure t)
-(use-package multiple-cursors :ensure t)
+
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  (("C-c C-<" . mc/mark-all-like-this)
+   ("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)))
+
 (use-package yasnippet :ensure t)
 
 (use-package js2-refactor
