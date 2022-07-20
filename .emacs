@@ -394,7 +394,8 @@
   (setq shackle-rules '((magit-status-mode :align below :inhibit-window-quit t :select t :size 0.45)
                         (helpful-mode :select t :align below)
                         ("*Help*" :select t :align below)
-                        ("*cider-test-report*" :select t :align below :size 0.4)
+                        ("*cider-test-report*" :select t :align below)
+                        (cider-repl-mode :select t :align below :size 0.4)
                         ("\\`\\*helm.*?\\*\\'" :regexp t :align below :size 0.4)))
   (shackle-mode 1))
 
