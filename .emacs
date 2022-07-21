@@ -395,6 +395,7 @@
                         (helpful-mode :select t :align below)
                         ("*Help*" :select t :align below)
                         ("*cider-test-report*" :select t :align below)
+                        ("*Flycheck errors*" :select t :align below)
                         (cider-repl-mode :select t :align below :size 0.4)
                         ("\\`\\*helm.*?\\*\\'" :regexp t :align below :size 0.4)))
   (shackle-mode 1))
