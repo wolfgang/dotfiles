@@ -63,6 +63,7 @@
  ("C-c <up>" . windmove-up)
  ("C-c <down>" . 'windmove-down)
  ("C-s" . swiper-isearch)
+ ("C-S-s" . swiper-isearch-thing-at-point)
  ("C-`" . other-frame))
 
 (add-hook 'emacs-lisp-mode-hook
