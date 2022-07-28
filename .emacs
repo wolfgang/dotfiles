@@ -254,9 +254,14 @@
   (use-package flycheck-clj-kondo
     :ensure t))
 
-
 (use-package smartparens
-  :ensure t)
+  :ensure t
+  :bind
+  (:map smartparens-mode-map
+        ("C-<right>" . nil)
+        ("C-<left>" . nil)
+        ("C-M-<right>" . nil)
+        ("C-M-<left>" . nil)))
 
 (use-package smartparens-config
   :ensure smartparens)
