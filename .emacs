@@ -78,10 +78,15 @@
 (require 'my-functions)
 (require 'my-org)
 
-(use-package doom-themes
+(use-package modus-themes
   :ensure t
-   :config
-   (load-theme 'doom-palenight t))
+  :init
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil
+        modus-themes-region '(bg-only no-extend))
+  (modus-themes-load-themes)
+  :config
+  (modus-themes-load-vivendi))
 
 (use-package smart-mode-line
   :ensure t
