@@ -11,3 +11,4 @@
     (setq org-shared-directory org-directory)))
 
 (setq org-agenda-files (list org-directory))
+(setq org-journal-dir (concat org-directory "/journal")) 

@@ -75,8 +75,11 @@
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
 
+(require 'linum-off)
 (require 'my-functions)
 (require 'my-org)
+
+(global-linum-mode)
 
 (use-package modus-themes
   :ensure t
