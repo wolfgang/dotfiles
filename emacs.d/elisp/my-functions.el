@@ -49,4 +49,8 @@
   (when buffer-file-name
     (setq-local compilation-ask-about-save nil)))
 
+(defun my-consult-ripgrep (&optional dir initial)
+  (interactive "P")
+  (consult-ripgrep dir (ivy-thing-at-point)))
+
 (provide `my-functions)
