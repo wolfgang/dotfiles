@@ -155,6 +155,7 @@
 
 (use-package consult
   :ensure t
+  :after (projectile)
   :init
   (setq consult-project-function (lambda (_) (projectile-project-root)))
   :bind (("C-x b" . consult-buffer)
@@ -183,7 +184,7 @@
 (use-package embark-consult
   :ensure t
   :after (embark consult)
-  :demand t ; only necessary if you have the hook below
+  :demand t        ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
   ;; auto-updating embark collect buffer
   ;; :hook
