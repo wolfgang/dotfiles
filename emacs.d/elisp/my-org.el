@@ -8,7 +8,8 @@
   (add-to-list 'linum-disabled-modes-list 'org-journal-mode)
   (setq org-journal-file-type 'monthly)
   (setq org-journal-file-format "%Y-%m.org")
-  (setq org-journal-date-format "%A, %d.%m.%Y"))
+  (setq org-journal-date-format "%A, %d.%m.%Y")
+  :hook (org-journal-mode . flyspell-mode))
 
 (use-package org
   :ensure t
