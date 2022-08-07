@@ -139,7 +139,9 @@
   (setq projectile-enable-caching t
         projectile-indexing-method 'native
         projectile-hg-command "hg files -0 -I ."
-        projectile-create-missing-test-files t)
+        projectile-create-missing-test-files t
+        projectile-completion-system 'auto)
+  :bind (("M-[" . projectile-find-file))
   :config
   (projectile-mode)
   (--each '("target" "node_modules" ".gradle" ".clj-kondo")
@@ -170,6 +172,7 @@
   :init
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
+
   :config
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
