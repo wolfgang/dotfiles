@@ -81,6 +81,28 @@
 
 (global-linum-mode)
 
+
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode))
+
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless substring basic)))
+
+(use-package marginalia
+  :ensure t
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
+
 (use-package modus-themes
   :ensure t
   :init
@@ -106,32 +128,6 @@
   :diminish flycheck-mode
   :hook ((after-init . global-flycheck-mode)))
 
-(use-package helm
-  :ensure t
-  :diminish helm-mode
-  :init
-  (setq history-length 100 ; determines file-name-history; see helm-ff-file-name-history-use-recentf
-        helm-split-window-default-side 'right
-        helm-find-files-ignore-thing-at-point t)
-  :bind
-  (("M-x"     . helm-M-x)
-   ("M-["     . helm-projectile-find-file)
-   ("M-S"     . helm-projectile-rg)
-   ("M-f"     . helm-projectile-ag)
-   ("<f2>"    . helm-for-files)
-   ("C-x C-f" . helm-find-files)
-   ("C-x b"   . helm-mini)
-   ("C-x C-r" . helm-recentf)
-   ("M-s o"   . helm-occur))
-  :config
-  (require 'tramp) ; otherwise void variable tramp-methods on projectile switch project
-  (use-package helm-config)
-  (helm-mode)
-  (use-package helm-descbinds
-    :ensure t
-    :config (helm-descbinds-mode))
-  (use-package helm-rg
-    :ensure t))
 
 (use-package dash :ensure t)
 
@@ -155,14 +151,42 @@
   (--each '("*.png" "*.jpg" "*.gif" "*.jar" "*.log" "*.pdf" "*.jasper")
     (add-to-list 'grep-find-ignored-files it)))
 
-(use-package helm-projectile
+(use-package consult
   :ensure t
-  :pin melpa ;; not released in a long time
   :init
-  (setq projectile-completion-system 'helm
-        helm-source-projectile-files-and-dired-list '(helm-source-projectile-files-list))
+  (setq consult-project-function (lambda (_) (projectile-project-root)))
+  :bind (("C-x b" . consult-buffer)
+         ("C-x 4 b" . consult-buffer-other-window)
+         ("M-S" . consult-ripgrep))
   :config
-  (helm-projectile-on))
+  (use-package consult-ag :ensure t))
+
+(use-package embark
+  :ensure t
+  :bind
+  (("C-." . embark-act)
+   ("C-;" . embark-dwim)
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :ensure t
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  ;; :hook
+  ;; (embark-collect-mode . consult-preview-at-point-mode)
+  )
+
 
 (use-package magit
   :ensure t
@@ -234,10 +258,7 @@
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
 
   (use-package cider-eval-sexp-fu
-    :ensure t)
-  (use-package helm-cider
-    :ensure t
-    :config (helm-cider-mode)))
+    :ensure t))
 
 (use-package clojure-mode
   :ensure t
@@ -297,10 +318,6 @@
          (js2-mode . prettier-js-mode)
          (json-mode . prettier-js-mode)))
 
-(use-package helm-swoop
-  :pin melpa
-  :ensure t
-  :defer t)
 
 (use-package super-save
   :ensure t
@@ -381,15 +398,6 @@
   :config
   (beacon-mode 1))
 
-(use-package helm-ag
-  :ensure t
-  :defer t)
-
-(use-package helm-lsp
-  :ensure t
-  :defer t
-  :commands
-  helm-lsp-workspace-symbol)
 
 (use-package keyfreq
   :ensure t
@@ -412,8 +420,7 @@
                         ("*cider-error*"  :align below)
                         ("*cider-result*"  :align below :size 0.3)
                         ("*Flycheck errors*" :select t :align below)
-                        (cider-repl-mode :select t :align below :size 0.4)
-                        ("\\`\\*helm.*?\\*\\'" :regexp t :align below :size 0.4)))
+                        (cider-repl-mode :select t :align below :size 0.4)))
   (shackle-mode 1))
 
 (use-package terraform-mode
