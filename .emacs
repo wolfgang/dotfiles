@@ -30,6 +30,7 @@
 (column-number-mode)
 (delete-selection-mode 1)
 (show-paren-mode 1)
+(recentf-mode 1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
