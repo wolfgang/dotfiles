@@ -168,7 +168,7 @@
 (use-package embark
   :ensure t
   :bind
-  (("C-." . embark-act)
+  (("C-\\" . embark-act)
    ("C-;" . embark-dwim)
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
