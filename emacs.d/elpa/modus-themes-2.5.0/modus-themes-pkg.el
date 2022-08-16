@@ -1,9 +1,9 @@
-(define-package "modus-themes" "2.4.1" "Elegant, highly legible and customizable themes"
+(define-package "modus-themes" "2.5.0" "Elegant, highly legible and customizable themes"
   '((emacs "27.1"))
-  :commit "467aab71377a6e1476dcab7ab5f2c55d1ffc28fe" :authors
+  :commit "64f9378a5114399f3a47c9d23136af677c25e513" :authors
   '(("Protesilaos Stavrou" . "info@protesilaos.com"))
   :maintainer
-  '("Protesilaos Stavrou" . "info@protesilaos.com")
+  '("Modus-Themes Development" . "~protesilaos/modus-themes@lists.sr.ht")
   :keywords
   '("faces" "theme" "accessibility")
   :url "https://git.sr.ht/~protesilaos/modus-themes")
