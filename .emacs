@@ -88,6 +88,8 @@
 (use-package vertico
   :ensure t
   :init
+  (setq vertico-count 20
+        vertico-resize 'grow-only)
   (vertico-mode))
 
 
@@ -422,6 +424,8 @@
   :config
   (setq shackle-rules '((magit-status-mode :align below :inhibit-window-quit t :select t :size 0.45)
                         (helpful-mode :select t :align below)
+                        (embark-collect-mode :select t :align right)
+                        ("Embark Actions" :select t :align right)
                         ("*Help*" :select t :align below)
                         ("*cider-test-report*" :select t :align below)
                         ("*cider-error*"  :align below)
