@@ -475,6 +475,34 @@
 (use-package wgrep
   :ensure t)
 
+(use-package paradox
+  :ensure t
+  :defer t
+  :init
+  (setq paradox-display-star-count nil))
+
+(use-package crux
+  :ensure t
+  :pin melpa
+  :bind (("C-c o" . crux-open-with)
+         ("C-S-<return>" . crux-smart-open-line-above)
+         ("S-<return>" . crux-smart-open-line)
+         ("C-c u" . crux-view-url)
+         ("C-c e" . crux-eval-and-replace)
+         ("C-c D" . crux-delete-file-and-buffer)
+         ("C-M-<down>" . crux-duplicate-current-line-or-region)
+         ("C-S-M-<down>" . crux-duplicate-and-comment-current-line-or-region)
+         ("C-S-r" . crux-rename-file-and-buffer)
+         ("C-c t" . crux-visit-term-buffer)
+         ("C-c j" . crux-top-join-line)
+         ("M-E" . crux-kill-line-backwards)
+         ("C-c i" . crux-ispell-word-then-abbrev)
+         ("C-t" . crux-transpose-windows)))
+
+(use-package discover-my-major
+  :ensure t
+  :bind (("C-h C-m" . discover-my-major)
+         ("C-h M-m" . discover-my-mode)))
 
 (setq custom-file "~/.emacs.local")
 
