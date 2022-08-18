@@ -65,6 +65,11 @@ If nil then the project is simply created."
   :type 'string
   :group 'rustic-cargo)
 
+(defcustom rustic-cargo-default-install-arguments '("--path" ".")
+  "Default arguments when running 'cargo install'."
+  :type '(list string)
+  :group 'rustic-cargo)
+
 (defcustom rustic-cargo-check-arguments "--benches --tests --all-features"
   "Default arguments when running 'cargo check'."
   :type 'string
@@ -704,6 +709,67 @@ If running with prefix command `C-u', read whole command from minibuffer."
                               (read-from-minibuffer "Crate: ")))))
       (rustic-run-cargo-command command))))
 
+(defun rustic-cargo-add-missing-dependencies (&optional arg)
+  "Lookup and add missing dependencies to Cargo.toml.
+Adds all missing crates by default with latest version using lsp functionality.
+Supports both lsp-mode and egot.
+Use with 'C-u` to open prompt with missing crates."
+  (interactive)
+  (when (rustic-cargo-edit-installed-p)
+    (let (deps)
+      (setq deps
+            (cond ((featurep 'lsp-mode)
+                   (rustic-cargo-add-missing-dependencies-lsp-mode))
+                  ((featurep 'eglot)
+                   (rustic-cargo-add-missing-dependencies-eglot))
+                  (t
+                   nil)))
+      (if deps
+          (progn
+            (when (listp deps)
+              (setq deps (mapconcat 'identity  deps " ")))
+            (let (d)
+              (if current-prefix-arg
+                  (setq d (read-from-minibuffer "Add dependencies: " deps))
+                (setq d deps))
+              (rustic-run-cargo-command (concat (rustic-cargo-bin) " add " d))))
+        (message "No missing crates found. Maybe check your lsp server.")))))
+
+(defun rustic-cargo-add-missing-dependencies-lsp-mode ()
+  "Return missing dependencies using `lsp-diagnostics'."
+  (let* ((diags (gethash (buffer-file-name) (lsp-diagnostics t)))
+         (lookup-missing-crates
+          (lambda (missing-crates errortable)
+            (if (string= "E0432" (gethash "code" errortable))
+                (cons (nth 3 (split-string (gethash "message" errortable) "`"))
+                      missing-crates)
+              missing-crates))))
+    (delete-dups (seq-reduce lookup-missing-crates
+                             diags
+                             '()))))
+
+(defun rustic-cargo-add-missing-dependencies-eglot ()
+  "Return missing dependencies by parsing flymake diagnostics buffer."
+  (let* ((buf (flymake--diagnostics-buffer-name))
+         crates)
+    ;; ensure flymake diagnostics buffer exists
+    (unless (buffer-live-p buf)
+      (let* ((name (flymake--diagnostics-buffer-name))
+             (source (current-buffer))
+             (target (or (get-buffer name)
+                         (with-current-buffer (get-buffer-create name)
+                           (flymake-diagnostics-buffer-mode)
+                           (current-buffer)))))
+        (with-current-buffer target
+          (setq flymake--diagnostics-buffer-source source)
+          (revert-buffer))))
+    (with-current-buffer buf
+      (let ((errors (split-string (buffer-substring-no-properties (point-min) (point-max)) "\n")))
+        (dolist (s errors)
+          (if (string-match-p (regexp-quote "unresolved import") s)
+              (push (string-trim (car (reverse (split-string s))) "`" "`" ) crates)))))
+    crates))
+
 ;;;###autoload
 (defun rustic-cargo-rm (&optional arg)
   "Remove crate from Cargo.toml using 'cargo rm'.
@@ -740,6 +806,60 @@ If running with prefix command `C-u', read whole command from minibuffer."
 
   (interactive "sAPI token: ")
   (shell-command (format "%s login %s" (rustic-cargo-bin) token)))
+
+;; Install
+
+(defvar rustic-install-process-name "rustic-cargo-install-process"
+  "Process name for install processes.")
+
+(defvar rustic-install-buffer-name "*cargo-install*"
+  "Buffer name for install buffers.")
+
+(defvar rustic-install-arguments ""
+  "Holds arguments for 'cargo install', similar to `compilation-arguments`.
+Installs that are executed by `rustic-cargo-current-install' will also be
+stored in this variable.")
+
+(defvar rustic-install-project-dir nil
+  "Crate directory where rustic install should be done.")
+
+(defvar rustic-cargo-install-mode-map
+  (let ((map (make-sparse-keymap)))
+    (set-keymap-parent map rustic-compilation-mode-map)
+    (define-key map [remap recompile] 'rustic-cargo-install-rerun)
+    map)
+  "Local keymap for `rustic-cargo-install-mode' buffers.")
+
+(define-derived-mode rustic-cargo-install-mode rustic-compilation-mode "cargo-install"
+  :group 'rustic)
+
+;;;###autoload
+(defun rustic-cargo-install-rerun ()
+  "Run 'cargo install' with `rustic-install-arguments'."
+  (interactive)
+  (rustic-compilation-start rustic-install-arguments
+                              (list :buffer rustic-install-buffer-name
+                                    :process rustic-install-process-name
+                                    :mode 'rustic-cargo-install-mode
+                                    :directory rustic-install-project-dir)))
+;;;###autoload
+(defun rustic-cargo-install (&optional arg)
+  "Install rust binary using 'cargo install'.
+If running with prefix command `C-u', read whole command from minibuffer."
+  (interactive)
+  (let* ((command (if arg
+                      (read-from-minibuffer "Cargo install command: "
+                                            (rustic-cargo-bin) " install ")
+                    (s-join " " (cons (rustic-cargo-bin) (cons "install" rustic-cargo-default-install-arguments)))))
+         (c (s-split " " command))
+         (buf rustic-install-buffer-name)
+         (proc rustic-install-process-name)
+         (mode 'rustic-cargo-install-mode)
+         (default-directory (rustic-buffer-crate)))
+    (setq rustic-install-arguments c)
+    (setq rustic-install-project-dir default-directory)
+    (rustic-compilation-start c (list :buffer buf :process proc :mode mode
+                                      :directory default-directory))))
 
 (provide 'rustic-cargo)
 ;;; rustic-cargo.el ends here

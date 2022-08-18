@@ -173,6 +173,15 @@ Add crates.io API token using `cargo login'.
 
 \(fn TOKEN)" t nil)
 
+(autoload 'rustic-cargo-install-rerun "rustic-cargo" "\
+Run 'cargo install' with `rustic-install-arguments'." t nil)
+
+(autoload 'rustic-cargo-install "rustic-cargo" "\
+Install rust binary using 'cargo install'.
+If running with prefix command `C-u', read whole command from minibuffer.
+
+\(fn &optional ARG)" t nil)
+
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-cargo" '("rustic-")))
 
 ;;;***
@@ -445,6 +454,27 @@ Unlike `rustic-format-buffer' format file directly and revert the buffer.
 \(fn &optional FILE)" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-rustfmt" '("rustic-")))
+
+;;;***
+
+;;;### (autoloads nil "rustic-spellcheck" "rustic-spellcheck.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from rustic-spellcheck.el
+
+(autoload 'rustic-cargo-spellcheck "rustic-spellcheck" "\
+Run 'cargo spellcheck'.
+
+If ARG is not nil, use value as argument and store it in
+`rustic-spellcheck-arguments'.  When calling this function from
+`rustic-popup-mode', always use the value of
+`rustic-spellcheck-arguments'.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'rustic-cargo-spellcheck-rerun "rustic-spellcheck" "\
+Run 'cargo spellcheck' with `rustic-spellcheck-arguments'." t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-spellcheck" '("rustic-")))
 
 ;;;***
 
