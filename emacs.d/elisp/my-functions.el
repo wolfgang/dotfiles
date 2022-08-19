@@ -52,4 +52,7 @@
   (interactive "P")
   (consult-ripgrep dir (ivy-thing-at-point)))
 
+(fset 'my-org-daily-agenda
+      (kmacro-lambda-form [f12 ?d ?l] 0 "%d"))
+
 (provide `my-functions)

@@ -7,6 +7,7 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key (kbd "<f12>") 'org-agenda)
+(global-set-key (kbd "S-<f12>") 'my-org-daily-agenda)
 (global-set-key (kbd "<f11>") 'org-columns)
 (global-set-key (kbd "<f10>") 'org-refile-goto-last-stored)
 (global-set-key (kbd "<f9>") 'org-pomodoro)
