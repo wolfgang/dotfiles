@@ -26,9 +26,8 @@
 
 (defun my-bloom-backend-restart ()
   (interactive)
-  (progn
-    (my-bloom-backend-stop)
-    (my-bloom-backend-start)))
+  (my-bloom-backend-stop)
+  (run-with-idle-timer 0.3 nil 'my-bloom-backend-start))
 
 (defun my-delete-line-keep-column-position ()
   "Delete current line and keep point at current column."
