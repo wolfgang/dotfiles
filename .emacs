@@ -30,7 +30,6 @@
 (column-number-mode)
 (delete-selection-mode 1)
 (show-paren-mode 1)
-(recentf-mode 1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -108,6 +107,15 @@
   ;; enabled right away. Note that this forces loading the package.
   (marginalia-mode))
 
+
+(use-package recentf
+  :ensure nil
+  :defer t
+  :init
+  (setq recentf-max-saved-items 200)
+  :config
+  (recentf-mode 1))
+
 (use-package modus-themes
   :ensure t
   :init
@@ -165,7 +173,8 @@
   (setq consult-project-function (lambda (_) (projectile-project-root)))
   :bind (("C-x b" . consult-buffer)
          ("C-x 4 b" . consult-buffer-other-window)
-         ("M-S" . my-consult-ripgrep))
+         ("M-S" . my-consult-ripgrep)
+         ("C-x C-r" . consult-recent-file))
   :config
   (use-package consult-ag :ensure t))
 
@@ -293,13 +302,7 @@
     :ensure t))
 
 (use-package smartparens
-  :ensure t
-  :bind
-  (:map smartparens-mode-map
-        ("C-<right>" . nil)
-        ("C-<left>" . nil)
-        ("C-M-<right>" . nil)
-        ("C-M-<left>" . nil)))
+  :ensure t)
 
 (use-package smartparens-config
   :ensure smartparens)
@@ -311,8 +314,7 @@
 (use-package js2-mode
   :ensure t
   :mode "\\.js\\'"
-  :hook ((js2-mode . smartparens-mode)
-         (js2-mode . sp-use-smartparens-bindings))
+  :hook ((js2-mode . smartparens-mode))
   :interpreter "node")
 
 (use-package rjsx-mode
@@ -503,6 +505,13 @@
   :ensure t
   :bind (("C-h C-m" . discover-my-major)
          ("C-h M-m" . discover-my-mode)))
+
+
+(use-package dumb-jump
+  :ensure t
+  :pin melpa
+  :config
+  (dumb-jump-mode))
 
 (setq custom-file "~/.emacs.local")
 
