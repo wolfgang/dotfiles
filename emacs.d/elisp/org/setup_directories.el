@@ -8,7 +8,7 @@
     (setq org-mobile-inbox-for-pull (org-file "inbox_r.org")))
   (progn
     (setq org-directory (getenv "ORG_DIRECTORY"))
-    (setq org-shared-directory org-directory)))
+    (setq org-shared-directory (getenv "ORG_SHARED_DIRECTORY"))))
 
-(setq org-agenda-files (list org-directory))
-(setq org-journal-dir (concat org-directory "/journal")) 
+(setq org-agenda-files (remove-if (lambda (d) (eq nil d )) (list org-directory org-shared-directory)))
+(setq org-journal-dir (concat org-directory "/journal"))
