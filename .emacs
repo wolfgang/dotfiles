@@ -314,6 +314,7 @@
 (use-package js2-mode
   :ensure t
   :mode "\\.js\\'"
+  :bind (:map js2-mode-map ("M-." . dumb-jump-go))
   :hook ((js2-mode . smartparens-mode))
   :interpreter "node")
 
@@ -321,7 +322,8 @@
   :ensure t
   :mode "components\\/.*\\.js\\'"
   :bind (:map rjsx-mode-map
-         ("C-d" . my-delete-region-or-line)))
+              ("C-d" . my-delete-region-or-line)
+              ("M-." . dumb-jump-go)))
 
 (use-package prettier-js
   :ensure t
