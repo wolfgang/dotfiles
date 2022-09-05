@@ -55,4 +55,8 @@
 (fset 'my-org-daily-agenda
       (kmacro-lambda-form [f12 ?d ?l] 0 "%d"))
 
+(fset 'my-org-focus-task
+   (kmacro-lambda-form [f9 tab ?\C-x ?n ?s] 0 "%d"))
+
+
 (provide `my-functions)
