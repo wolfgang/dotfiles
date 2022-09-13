@@ -379,8 +379,7 @@ kill the current timer, this may be a break or a running pomodoro."
 
   (when (and org-pomodoro-last-clock-in
              org-pomodoro-expiry-time
-             (org-pomodoro-expires-p)
-             (y-or-n-p "Reset pomodoro count? "))
+             (org-pomodoro-expires-p))
     (setq org-pomodoro-count 0))
   (setq org-pomodoro-last-clock-in (current-time))
 
