@@ -1,7 +1,7 @@
 (load "util")
 
 (setq org-capture-templates `(
-	("t" "Todo" entry (file+headline ,(org-file "inbox.org") "Inbox") "* TODO  %?\n")
+	("t" "Todo" entry (file+headline ,(org-file "inbox.org") "Inbox") "* TODO %?\n")
 	("d" "Todo Today" entry (file+headline ,(org-file  "inbox.org") "Inbox") "* SCHD  %?\nSCHEDULED: %t")
 	("c" "[ ] under clocked" checkitem (clock) "[ ]  %?\n")
 	("o" "TODO under Clocked" entry (clock) "* TODO  %?\n")
