@@ -121,7 +121,8 @@
   (recentf-mode 1))
 
 (use-package modus-themes
-  :ensure t
+  :ensure nil
+  :disabled t
   :init
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs nil
@@ -130,11 +131,18 @@
   :config
   (modus-themes-load-vivendi))
 
+(use-package ef-themes
+  :ensure t
+  :config
+  (setq ef-themes-to-toggle '(ef-day ef-duo-dark))
+  (mapc #'disable-theme custom-enabled-themes)
+  (ef-themes-select 'ef-day))
+
 (use-package smart-mode-line
   :ensure t
   :hook ((after-init . sml/setup))
   :config
-  (setq sml/theme 'dark))
+  (setq sml/theme 'respetful))
 
 (use-package diminish
   :ensure t
