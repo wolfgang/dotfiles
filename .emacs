@@ -92,8 +92,14 @@
   :ensure t
   :init
   (setq vertico-count 20
-        vertico-resize 'grow-only)
-  (vertico-mode))
+        vertico-resize t )
+
+  ;; Don't reverse results in searches
+  (setq vertico-multiform-categories
+        '((consult-grep (:not reverse))))
+  (vertico-mode)
+  (vertico-multiform-mode)
+  (vertico-reverse-mode))
 
 
 (use-package orderless
