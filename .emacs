@@ -134,9 +134,9 @@
 (use-package ef-themes
   :ensure t
   :config
-  (setq ef-themes-to-toggle '(ef-day ef-duo-dark))
+  (setq ef-themes-to-toggle '(ef-duo-dark ef-day))
   (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-day))
+  (ef-themes-select 'ef-duo-dark))
 
 (use-package smart-mode-line
   :ensure t
