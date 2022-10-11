@@ -329,19 +329,31 @@
   :ensure t
   :defer t)
 
+(use-package xref-js2
+  :ensure t)
+
 (use-package js2-mode
   :ensure t
+  :after xref-js2
   :mode "\\.js\\'"
-  :bind (:map js2-mode-map ("M-." . dumb-jump-go))
   :hook ((js2-mode . smartparens-mode))
+  :config
+  ;; This binding is used by xref-js2
+  (define-key js2-mode-map (kbd "M-.") nil)
+  (add-hook 'js2-mode-hook (lambda ()
+                             (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
   :interpreter "node")
 
 (use-package rjsx-mode
   :ensure t
-  :mode "components\\/.*\\.js\\'"
+  :after xref-js2
   :bind (:map rjsx-mode-map
-              ("C-d" . my-delete-region-or-line)
-              ("M-." . dumb-jump-go)))
+              ("C-d" . my-delete-region-or-line))
+  :config
+  (define-key js2-mode-map (kbd "M-.") nil)
+  (add-hook 'rjsx-mode-hook (lambda ()
+                              (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
+
 
 (use-package prettier-js
   :ensure t
@@ -525,14 +537,6 @@
   :ensure t
   :bind (("C-h C-m" . discover-my-major)
          ("C-h M-m" . discover-my-mode)))
-
-
-(use-package dumb-jump
-  :ensure t
-  :pin melpa
-  :config
-  (dumb-jump-mode))
-
 
 (use-package yaml-mode
   :init
