@@ -357,6 +357,8 @@
 
 (use-package prettier-js
   :ensure t
+  :init
+  (setq pretter-js-show-errors nil)
   :hook ((rjsx-mode . prettier-js-mode)
          (js2-mode . prettier-js-mode)
          (json-mode . prettier-js-mode)))
