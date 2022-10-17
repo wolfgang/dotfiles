@@ -68,8 +68,7 @@ myConfig = def
     , ("M-C-<Down>", rotFocusedDown)
     , ("M-<Right>", nextWS)
     , ("M-<Left>", prevWS)
-    , ("M-g",  windowPrompt myXPConfig { autoComplete = Just 500000 }  Goto wsWindows)
-    , ("M-S-g",  windowPrompt myXPConfig { autoComplete = Just 500000 }  Goto allWindows)
+    , ("M-p", spawn "rofi -modi combi -show combi")
     ] 
 
 myLayoutHook =
