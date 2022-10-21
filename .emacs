@@ -361,7 +361,9 @@
   (setq pretter-js-show-errors nil)
   :hook ((rjsx-mode . prettier-js-mode)
          (js2-mode . prettier-js-mode)
-         (json-mode . prettier-js-mode)))
+         (json-mode . prettier-js-mode))
+  :config
+  (setq prettier-js-args '("--plugin" "@trivago/prettier-plugin-sort-imports")))
 
 
 (use-package super-save
