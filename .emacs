@@ -140,7 +140,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (setq ef-themes-to-toggle '(ef-duo-dark ef-day))
+  (setq ef-themes-to-toggle '(ef-tritanopia-dark ef-tritanopia-light))
   (mapc #'disable-theme custom-enabled-themes)
   (ef-themes-select 'ef-duo-dark))
 
