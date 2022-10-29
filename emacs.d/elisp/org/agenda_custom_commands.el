@@ -44,7 +44,8 @@
 
 (setq inbox `(todo "TODO"  (
   (org-agenda-overriding-header "Inbox")
-  (org-agenda-files '(,(org-file "inbox.org"))))))
+  (org-agenda-files '(,(org-file "inbox.org")
+                      ,(org-shared-file "inbox_shared.org"))))))
 
 (setq all-todos `(todo "TODO" (
   (org-agenda-overriding-header "All Todos")
