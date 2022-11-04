@@ -15,7 +15,16 @@
 (use-package org
   :ensure t
   :defer t
+  :init
+  ;; Replace S-<cursor keys> used by windmove
+  (setq org-replace-disputed-keys t)
   :config
+  ;; This enables windmove keys to work in org mode
+  ;; See https://orgmode.org/manual/Conflicts.html
+  (add-hook 'org-shiftup-final-hook 'windmove-up)
+  (add-hook 'org-shiftleft-final-hook 'windmove-left)
+  (add-hook 'org-shiftdown-final-hook 'windmove-down)
+  (add-hook 'org-shiftright-final-hook 'windmove-right)
   (load "org/config.el"))
 
 (provide 'my-org)
