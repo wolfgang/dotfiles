@@ -56,7 +56,8 @@
       make-backup-files nil
       vc-follow-symlinks t
       ring-bell-function 'ignore
-      tramp-mode nil)
+      tramp-mode nil
+      help-window-select t)
 
 (bind-keys
  ("C-|" . split-window-horizontally)
