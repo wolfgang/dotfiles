@@ -143,7 +143,7 @@
   :config
   (setq ef-themes-to-toggle '(ef-tritanopia-dark ef-tritanopia-light))
   (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-duo-dark))
+  (ef-themes-select 'ef-tritanopia-dark))
 
 (use-package smart-mode-line
   :ensure t
