@@ -57,7 +57,8 @@
       vc-follow-symlinks t
       ring-bell-function 'ignore
       tramp-mode nil
-      help-window-select t)
+      help-window-select t
+      bookmark-set-fringe-mark nil)
 
 (bind-keys
  ("C-|" . split-window-horizontally)
@@ -141,9 +142,9 @@
 (use-package ef-themes
   :ensure t
   :config
-  (setq ef-themes-to-toggle '(ef-tritanopia-dark ef-tritanopia-light))
+  (setq ef-themes-to-toggle '(ef-duo-dark ef-duo-light))
   (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-tritanopia-dark))
+  (ef-themes-select 'ef-duo-dark))
 
 (use-package smart-mode-line
   :ensure t
