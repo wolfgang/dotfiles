@@ -365,7 +365,8 @@
          (js2-mode . prettier-js-mode)
          (json-mode . prettier-js-mode))
   :config
-  (setq prettier-js-args '("--plugin" "@trivago/prettier-plugin-sort-imports")))
+  (setq prettier-js-args '("--plugin" "@trivago/prettier-plugin-sort-imports")
+        prettier-js-show-errors 'echo))
 
 
 (use-package super-save
