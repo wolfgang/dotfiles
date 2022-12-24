@@ -559,9 +559,16 @@
   :config
   (yas-global-mode))
 
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
+(require 'gdscript-mode)
+(add-hook 'gdscript-mode-hook
+          (lambda()
+            (local-unset-key (kbd "<f6>"))
+            (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
+            (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)))
+(setq gdscript-use-tab-indents nil
+      gdscript-gdformat-save-and-format nil)
 
 (setq custom-file "~/.emacs.local")
-
-(if (file-exists-p "~/.emacs.local")
-    (load "~/.emacs.local"))
+(if (file-exists-p custom-file) (load custom-file))
 
