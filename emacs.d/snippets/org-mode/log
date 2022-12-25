@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: org-log
+# key: ol
+# --
+* LOG
+  #+BEGIN: clocktable :scope file :maxlevel 5 :compact t :narrow 80 :block untilnow
+  #+CAPTION: Clock summary at [2022-12-25 Sun 14:56], for now.
+  #+END
