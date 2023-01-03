@@ -567,10 +567,11 @@
           (lambda()
             (local-unset-key (kbd "<f6>"))
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
-            (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)))
+            (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)
+            (define-key gdscript-mode-map (kbd "C-c C-b o") 'my-gdscript-docs-browse-symbol-at-point)))
 (setq gdscript-use-tab-indents t
       gdscript-gdformat-save-and-format t
-      gdscript-docs-use-eww nil)
+      gdscript-docs-use-eww t)
 
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
