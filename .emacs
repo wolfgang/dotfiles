@@ -425,7 +425,8 @@
               ("M-<f1>" . lsp-describe-thing-at-point))
   :hook
   ((lsp-mode . lsp-ui-mode)
-   (lsp-mode . lsp-enable-which-key-integration)))
+   (lsp-mode . lsp-enable-which-key-integration)
+   (gdscript-mode . lsp)))
 
 (use-package lsp-ui
   :ensure t
@@ -566,8 +567,8 @@
             (local-unset-key (kbd "<f6>"))
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
             (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)))
-(setq gdscript-use-tab-indents nil
-      gdscript-gdformat-save-and-format nil)
+(setq gdscript-use-tab-indents t
+      gdscript-gdformat-save-and-format t)
 
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
