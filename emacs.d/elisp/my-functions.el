@@ -62,30 +62,22 @@
   "Open the API reference for the symbol at point in the browser eww.
 If a page is already open, switch to its buffer. Use local docs if gdscripts-docs-local-path set. Use the universal prefix (C-u) to force browsing the online API."
   (interactive)
-  (message "FOO 1")
 
   (let* ((symbol-at-point (thing-at-point 'symbol t))
          (symbol (if symbol-at-point (downcase symbol-at-point) ""))
-         (buffer (if (not gdscript-docs-use-eww) nil
-                   (seq-find
-                    (lambda (current-buffer)
-                      (with-current-buffer current-buffer
-                        (when (derived-mode-p 'eww-mode)
-                          (string-suffix-p symbol (string-remove-suffix ".html" (plist-get eww-data :url)) t))))
-                    (buffer-list)))))
+         (buffer (seq-find
+                  (lambda (current-buffer)
+                    (with-current-buffer current-buffer
+                      (when (derived-mode-p 'eww-mode)
+                        (string-suffix-p symbol (string-remove-suffix ".html" (plist-get eww-data :url)) t))))
+                  (buffer-list))))
     (if buffer (pop-to-buffer-same-window buffer)
-      (progn (message "FOO 2")
-             (if (string= "" symbol)
-                 (message "No symbol at point or open API reference buffers.")
-               (if (and (not gdscript-docs-force-online-lookup) (not (or current-prefix-arg force-online)) (not (string= gdscript-docs-local-path "")))
-                   (let ((file (concat (file-name-as-directory gdscript-docs-local-path) (file-name-as-directory "classes") "class_" symbol ".html")))
-                     (if (file-exists-p file)
-                         (progn
-                           (setq debuggg-url (concat file "#" symbol))
-                           (eww-browse-url (concat "file:///" file "#" symbol)))
-                       (message "No local API help for \"%s\"." symbol)))
-                 (let ((url (format "https://docs.godotengine.org/en/stable/classes/class_%s.html#%s" symbol symbol)))
-                   (gdscript-docs-open url))))))))
+      (if (string= "" symbol)
+          (message "No symbol at point or open API reference buffers.")
+            (let ((file (concat (file-name-as-directory gdscript-docs-local-path) (file-name-as-directory "classes") "class_" symbol ".html")))
+              (if (file-exists-p file)
+                    (eww-browse-url (concat "file:///" file "#" symbol) t)
+                (message "No local API help for \"%s\"." symbol)))))))
 
 
 
