@@ -466,6 +466,7 @@
   :config
   (setq shackle-rules '((magit-status-mode :align below :inhibit-window-quit t :select t :size 0.45)
                         (helpful-mode :select t :align below)
+                        ("*lsp-help*" :select t :align below)
                         (embark-collect-mode :select t :align right)
                         ("Embark Actions" :select t :align right)
                         ("*Help*" :select t :align below)
@@ -568,7 +569,8 @@
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
             (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)))
 (setq gdscript-use-tab-indents t
-      gdscript-gdformat-save-and-format t)
+      gdscript-gdformat-save-and-format t
+      gdscript-docs-use-eww nil)
 
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
