@@ -573,6 +573,8 @@
       gdscript-gdformat-save-and-format t
       gdscript-docs-use-eww nil)
 
+(define-key global-map [C-f2] #'term-toggle-term)
+
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
 
