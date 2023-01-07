@@ -566,11 +566,12 @@
 (add-hook 'gdscript-mode-hook
           (lambda()
             (local-unset-key (kbd "<f6>"))
+            (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
             (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)
             (define-key gdscript-mode-map (kbd "C-c C-b w") 'my-gdscript-docs-browse-symbol-at-point)))
 (setq gdscript-use-tab-indents t
-      gdscript-gdformat-save-and-format t
+      gdscript-gdformat-save-and-format nil
       gdscript-docs-use-eww nil)
 
 (define-key global-map [C-f2] #'term-toggle-term)
