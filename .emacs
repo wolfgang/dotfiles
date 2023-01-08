@@ -426,7 +426,8 @@
   :hook
   ((lsp-mode . lsp-ui-mode)
    (lsp-mode . lsp-enable-which-key-integration)
-   (gdscript-mode . lsp)))
+   ;; (gdscript-mode . lsp)
+   ))
 
 (use-package lsp-ui
   :ensure t
@@ -565,6 +566,7 @@
 (require 'gdscript-mode)
 (add-hook 'gdscript-mode-hook
           (lambda()
+            (eglot-ensure)
             (local-unset-key (kbd "<f6>"))
             (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
@@ -575,6 +577,8 @@
       gdscript-docs-use-eww nil)
 
 (define-key global-map [C-f2] #'term-toggle-term)
+
+(use-package eglot :ensure t)
 
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
