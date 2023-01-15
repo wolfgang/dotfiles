@@ -60,6 +60,8 @@
       help-window-select t
       bookmark-set-fringe-mark nil)
 
+(if (eq system-type 'darwin) (setq mac-command-modifier 'control))
+
 (bind-keys
  ("C-|" . split-window-horizontally)
  ("C-_" . split-window-vertically)
@@ -89,6 +91,8 @@
 
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
+
+(global-unset-key "\C-z")
 
 
 ;; Ensure availability of ivy-thing-at-point
