@@ -572,6 +572,12 @@
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
 (require 'gdscript-mode)
+
+(defun maybe-save () (when buffer-file-name (save-buffer)))
+
+(advice-add 'gdscript-godot-run-project :before 'maybe-save)
+(advice-add 'gdscript-godot-run-current-scene :before 'maybe-save)
+
 (add-hook 'gdscript-mode-hook
           (lambda()
             (eglot-ensure)
