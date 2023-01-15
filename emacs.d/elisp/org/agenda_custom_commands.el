@@ -95,7 +95,7 @@
                    ,next-actions
                    ,active-projects
                    ,all-todos
-                   ,(recently-completed 2 "Recently Completed")
+                   ;; ,(recently-completed 2 "Recently Completed")
                    ,all-somedays))
   ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
 
