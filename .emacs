@@ -87,6 +87,10 @@
 
 (global-linum-mode)
 
+(setq custom-file "~/.emacs.local")
+(if (file-exists-p custom-file) (load custom-file))
+
+
 ;; Ensure availability of ivy-thing-at-point
 (use-package ivy)
 
@@ -580,6 +584,4 @@
 
 (use-package eglot :ensure t)
 
-(setq custom-file "~/.emacs.local")
-(if (file-exists-p custom-file) (load custom-file))
 
