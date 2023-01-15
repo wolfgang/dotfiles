@@ -91,12 +91,12 @@
   ; ("j" "Journal" tags-tree "JOURNAL")
 
   ("o" "Overview"  (
-                   ,week-agenda
-                   ,next-actions
-                   ,active-projects
-                   ,all-todos
-                   ;; ,(recently-completed 2 "Recently Completed")
-                   ,all-somedays))
+                    ,week-agenda
+                    ,next-actions
+                    ,active-projects
+                    ,all-todos
+                    ,all-somedays
+                    ,(recently-completed 2 "Recently Completed")))
   ("e" "Completed" (,(recently-completed 365 "Completed Tasks")))
 
   ("k" "Knowledge Base" tags  "KB" ,(with-org-file "notebook.org"))
