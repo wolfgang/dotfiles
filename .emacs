@@ -483,8 +483,10 @@
                         ("*cider-error*"  :align below)
                         ("*cider-result*"  :align below :size 0.3)
                         ("*Flycheck errors*" :select t :align below)
-                        (cider-repl-mode :select t :align below :size 0.4)))
+                        (cider-repl-mode :select t :align below :size 0.4)
+                        (godot-mode :select f :align below :size 0.3)))
   (shackle-mode 1))
+
 
 (use-package terraform-mode
   :ensure t)
