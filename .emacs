@@ -570,6 +570,18 @@
   :config
   (yas-global-mode))
 
+(use-package avy
+  :ensure t
+  :config
+  (avy-setup-default)
+  (global-set-key (kbd "C-c C-j") 'avy-resume)
+  (global-set-key (kbd "C-:") 'avy-goto-char)
+  (global-set-key (kbd "C-'") 'avy-goto-char-2)
+  (global-set-key (kbd "C-\"") 'avy-goto-char-timer)
+  
+  (global-set-key (kbd "M-g g") 'avy-goto-line)
+  (global-set-key (kbd "M-g w") 'avy-goto-word-1))
+
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
 (require 'gdscript-mode)
 
