@@ -582,6 +582,11 @@
   (global-set-key (kbd "M-g g") 'avy-goto-line)
   (global-set-key (kbd "M-g w") 'avy-goto-word-1))
 
+(use-package iedit
+  :ensure t
+  :init
+  (global-set-key (kbd "C-.") 'iedit-mode))
+
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
 (require 'gdscript-mode)
 
