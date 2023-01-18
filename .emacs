@@ -104,6 +104,14 @@
   (setq vertico-count 20
         vertico-resize t )
 
+  ;; https://github.com/minad/vertico#completion-at-point-and-completion-in-region
+  (setq completion-in-region-function
+        (lambda (&rest args)
+          (apply (if vertico-mode
+                     #'consult-completion-in-region
+                   #'completion--in-region)
+                 args)))
+
   ;; Don't reverse results in searches
   (setq vertico-multiform-categories
         '((consult-grep (:not reverse))))
@@ -584,10 +592,27 @@
   (global-set-key (kbd "M-g g") 'avy-goto-line)
   (global-set-key (kbd "M-g w") 'avy-goto-word-1))
 
+
 (use-package iedit
   :ensure t
   :init
   (global-set-key (kbd "C-.") 'iedit-mode))
+
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-completion-everywhere t)
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry "* %<%H:%M:%S>\n%?"
+           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+
+  (defun org-font-lock-ensure ())
+  :bind (("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert))
+  :bind-keymap ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies) ;; Ensure the keymap is available
+  (org-roam-setup))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
 (require 'gdscript-mode)
