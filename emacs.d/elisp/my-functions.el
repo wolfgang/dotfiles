@@ -9,6 +9,9 @@
       (clojure-sort-ns)
       (goto-char p))))
 
+(defun my-js-before-save-hook ()
+  (add-hook 'before-save-hook 'prettier-js))
+
 (defun my-bloom-backend-start ()
   (interactive)
   (cider-interactive-eval "(do (load-file \"repl/miro/lib.clj\") (lib/start))"))

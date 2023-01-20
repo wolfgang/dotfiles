@@ -381,7 +381,8 @@
          (js2-mode . prettier-js-mode)
          (json-mode . prettier-js-mode))
   :config
-  (setq prettier-js-args '("--plugin" "@trivago/prettier-plugin-sort-imports")
+  (add-hook 'prettier-js-mode 'my-js-before-save-hook)
+  (setq prettier-js-args '()
         prettier-js-show-errors 'echo))
 
 
