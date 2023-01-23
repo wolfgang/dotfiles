@@ -145,22 +145,21 @@
   (recentf-mode 1))
 
 (use-package modus-themes
-  :ensure nil
+  :ensure t
   :disabled t
   :init
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs nil
         modus-themes-region '(bg-only no-extend))
-  (modus-themes-load-themes)
   :config
-  (modus-themes-load-vivendi))
+  (load-theme 'modus-vivendi :no-confirm))
 
 (use-package ef-themes
   :ensure t
   :config
-  (setq ef-themes-to-toggle '(ef-duo-dark ef-duo-light))
+  (setq ef-themes-to-toggle '(ef-night ef-day))
   (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-duo-dark))
+  (ef-themes-select 'ef-night))
 
 (use-package smart-mode-line
   :ensure t
@@ -614,6 +613,12 @@
   :config
   (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-setup))
+
+(use-package symbol-overlay
+  :ensure t
+  :init
+  (global-set-key (kbd "M-i") 'symbol-overlay-put)
+  (global-set-key (kbd "<f5>") 'symbol-overlay-remove-all))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
 (require 'gdscript-mode)
