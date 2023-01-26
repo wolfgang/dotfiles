@@ -620,6 +620,16 @@
   (global-set-key (kbd "M-i") 'symbol-overlay-put)
   (global-set-key (kbd "<f5>") 'symbol-overlay-remove-all))
 
+(use-package eglot :ensure t)
+
+(use-package org-drill
+  :ensure t
+  :init
+  (setq org-drill-save-buffers-after-drill-sessions-p nil))
+
+
+;; Manual package installations
+
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
 (require 'gdscript-mode)
 
@@ -642,6 +652,5 @@
 
 (define-key global-map [C-f2] #'term-toggle-term)
 
-(use-package eglot :ensure t)
 
 
