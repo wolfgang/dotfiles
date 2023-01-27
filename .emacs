@@ -243,10 +243,13 @@
 
 (use-package magit
   :ensure t
-  :bind (("<f6>" . magit-status))
+  :bind (("<f6>" . magit-status)
+         ("S-<f6>" . my-magit-stage-all-no-confirm))
   :init
   (setq magit-commit-show-diff nil
-        magit-save-repository-buffers 'dontask))
+        magit-save-repository-buffers 'dontask)
+  :config
+  (setq magit-no-confirm (append magit-no-confirm '(stage-all-changes))))
 
 (use-package which-key
   :ensure t

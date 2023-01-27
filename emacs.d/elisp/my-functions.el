@@ -83,6 +83,9 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
                 (message "No local API help for \"%s\"." symbol)))))))
 
 
+(fset 'my-magit-stage-all-no-confirm
+   (kmacro-lambda-form [f6 ?S ?q] 0 "%d"))
+
 
 
 (provide `my-functions)
