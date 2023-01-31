@@ -99,29 +99,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 PS1="\[\033[35m\]\[\033[32m\]\w\n[\t] \[\033[1;31m\]\u@\h: \[\033[0m\]"
-export PATH="$PATH:/sbin"
-
-alias gs="git status"
-alias gc="git commit -am"
-alias gp="git push origin master"
-alias ga="git add -A"
 stty -ixon
-export GOPATH=~/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
 
-export NVM_DIR="$HOME/.nvm"                                                                                           
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm                                             
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # T
 
 
-alias msbuild.exe=msbuild 
-
-export PATH=$PATH:$HOME/bin
-export EDITOR=vi
-export HISTIGNORE="exit:ls:shutdown:reboot"
-
-[ -f $HOME/.bash_local ] && . $HOME/.bash_local
+[ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
