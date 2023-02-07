@@ -138,7 +138,6 @@
 
 (use-package recentf
   :ensure nil
-  :defer t
   :init
   (setq recentf-max-saved-items 200)
   :config
@@ -445,7 +444,7 @@
   :hook
   ((lsp-mode . lsp-ui-mode)
    (lsp-mode . lsp-enable-which-key-integration)
-   ;; (gdscript-mode . lsp)
+   (gdscript-mode . lsp)
    ))
 
 (use-package lsp-ui
@@ -643,7 +642,7 @@
 
 (add-hook 'gdscript-mode-hook
           (lambda()
-            (eglot-ensure)
+            ;; (eglot-ensure)
             (local-unset-key (kbd "<f6>"))
             (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
