@@ -426,6 +426,7 @@
   :defer t
   :init
   (setq lsp-keymap-prefix "C-c C-l"
+        lsp-signature-doc-lines 3
         lsp-idle-delay 0.3
         lsp-modeline-code-actions-segments '(count name)
         lsp-rust-analyzer-cargo-watch-command "check"
