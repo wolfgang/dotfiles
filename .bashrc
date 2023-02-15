@@ -101,10 +101,6 @@ fi
 PS1="\[\033[35m\]\[\033[32m\]\w\n[\t] \[\033[1;31m\]\u@\h: \[\033[0m\]"
 stty -ixon
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm                                             
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # T
-
-
 [ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
 
 
