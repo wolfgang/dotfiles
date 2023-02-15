@@ -73,9 +73,10 @@
                ,all-todos))
 
   ("d" "Today" ((agenda "" (,agenda-day-sort
-                           (org-agenda-span 'day)
-                           ,skip-used-timeslots))
-               ,next-actions))
+                            (org-agenda-span 'day)
+                            ,skip-used-timeslots))
+                ,active-projects
+                ,next-actions))
 
   ("w" "Week" (,week-agenda))
 
