@@ -58,7 +58,9 @@
       ring-bell-function 'ignore
       tramp-mode nil
       help-window-select t
-      bookmark-set-fringe-mark nil)
+      bookmark-set-fringe-mark nil
+      ;; Use right alt keyt for system functions (umlauts, etc)
+      ns-right-alternate-modifier 'none)
 
 (if (eq system-type 'darwin) (setq mac-command-modifier 'control))
 
