@@ -668,6 +668,13 @@
 ;; enable typescript - tslint checker
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
+(use-package org-download
+  :ensure t
+  :init
+  (setq org-download-method 'attach)
+  (setq org-image-actual-width nil)
+
+  )
 
 
 ;; Manual package installations
