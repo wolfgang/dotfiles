@@ -682,9 +682,24 @@
   :ensure t
   :init
   (setq org-download-method 'attach)
-  (setq org-image-actual-width nil)
+  (setq org-image-actual-width nil))
 
-  )
+(defun indent-region-advice (&rest ignored)
+  (let ((deactivate deactivate-mark))
+    (if (region-active-p)
+        (indent-region (region-beginning) (region-end))
+      (indent-region (line-beginning-position) (line-end-position)))
+    (setq deactivate-mark deactivate)))
+
+(use-package move-text
+  :ensure t
+  :config
+  (global-set-key (kbd "M-<up>") 'move-text-up)
+  (global-set-key (kbd "M-<down>") 'move-text-down)
+
+  (advice-add 'move-text-up :after 'indent-region-advice)
+  (advice-add 'move-text-down :after 'indent-region-advice))
+
 
 
 ;; Manual package installations
