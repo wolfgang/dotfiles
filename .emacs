@@ -635,7 +635,11 @@
 
 
 
-(use-package tide :ensure t)
+(use-package tide
+  :ensure t
+  :init
+  (setq tide-format-options '(:baseIndentSize 2 :indentSize 2 :tabSize 2 :convertTabsToSpaces t)
+        typescript-indent-level 2))
 
 (defun setup-tide-mode ()
   (interactive)
