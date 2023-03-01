@@ -40,9 +40,7 @@
 (setq org-columns-default-format "%70ITEM(Task) %8Effort(Effort){:} %8CLOCKSUM(Clock) %22CLOSED")
 (setq org-agenda-overriding-columns-format org-columns-default-format)
 (setq org-tags-exclude-from-inheritance '("PROJECT"))
-(setq org-tag-alist '(("PROJECT") 
-		      ("DONE") 
-		      ("INSPIRATION")))
+(setq org-tag-alist nil)
 
 (setq org-habit-graph-column 40)
 (setq org-modules (cons 'org-habit org-modules))

@@ -18,6 +18,7 @@
   :init
   ;; Replace S-<cursor keys> used by windmove
   (setq org-replace-disputed-keys t)
+  (setq org-complete-tags-always-offer-all-agenda-tags t)
   :bind (:map org-mode-map (( "C-M-<return>" . org-insert-heading-respect-content)
                             ("C-c r" . avy-org-refile-as-child))
               )
