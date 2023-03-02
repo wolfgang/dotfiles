@@ -607,6 +607,9 @@
   :ensure t
   :init
   (setq org-roam-completion-everywhere t)
+  (setq org-roam-node-display-template
+      (concat "${title:*} "
+              (propertize "${tags:64}" 'face 'org-tag)))
   (setq org-roam-dailies-capture-templates
         '(("d" "default" entry "* %<%H:%M:%S>\n%?"
            :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
