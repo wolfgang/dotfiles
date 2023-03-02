@@ -684,8 +684,9 @@
 (use-package org-download
   :ensure t
   :init
-  (setq org-download-method 'attach)
-  (setq org-image-actual-width nil))
+  (setq org-download-method 'attach
+        org-image-actual-width nil
+        org-download-image-html-width 400))
 
 (defun indent-region-advice (&rest ignored)
   (let ((deactivate deactivate-mark))
