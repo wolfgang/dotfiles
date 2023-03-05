@@ -1,4 +1,4 @@
-;;; consult-ag-autoloads.el --- automatically extracted autoloads
+;;; consult-ag-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -14,7 +14,7 @@ Consult ag for query in TARGET file(s) with INITIAL input.
 
 \(fn &optional TARGET INITIAL)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "consult-ag" '("consult-ag--")))
+(register-definition-prefixes "consult-ag" '("consult-ag--"))
 
 ;;;***
 

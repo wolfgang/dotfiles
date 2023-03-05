@@ -4,11 +4,11 @@
 
 ;; Author: Kanon Kakuno <yadex205@outlook.jp>
 ;; Homepage: https://github.com/yadex205/consult-ag
-;; Package-Requires: ((emacs "27.1") (consult "0.16"))
-;; Package-Version: 0.1.2
-;; Package-Commit: 2460ae6829e86c9f1186a852304d919526838cb8
+;; Package-Requires: ((emacs "27.1") (consult "0.32"))
+;; Package-Version: 0.2.0
+;; Package-Commit: 25d7a2a8fafbaa956610023e4ca17389294773fd
 ;; SPDX-License-Identifier: MIT
-;; Version: 0.1.2
+;; Version: 0.2.0
 
 ;; This file is not part of GNU Emacs.
 
@@ -50,7 +50,7 @@ FIND-FILE is the file open function, defaulting to `find-file`."
     (let ((file (get-text-property 0 'filename cand))
           (row (string-to-number (get-text-property 0 'row cand)))
           (column (- (string-to-number (get-text-property 0 'column cand)) 1)))
-      (consult--position-marker (funcall (or find-file #'find-file) file) row column))))
+      (consult--marker-from-line-column (funcall (or find-file #'find-file) file) row column))))
 
 (defun consult-ag--grep-state ()
   "Not documented."
