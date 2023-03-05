@@ -502,17 +502,20 @@
 
 
 (use-package terraform-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package elfeed
   :ensure t
   :bind (("<C-f11>" . elfeed)))
 
 (use-package ledger-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package pocket-reader
   :ensure t
+  :defer t
   :bind (("<C-f12>" . pocket-reader)))
 
 (use-package s :ensure t)
@@ -622,12 +625,6 @@
   :config
   (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-setup))
-
-(use-package symbol-overlay
-  :ensure t
-  :init
-  (global-set-key (kbd "M-i") 'symbol-overlay-put)
-  (global-set-key (kbd "<f5>") 'symbol-overlay-remove-all))
 
 (use-package eglot :ensure t)
 
