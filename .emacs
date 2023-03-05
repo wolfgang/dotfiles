@@ -588,19 +588,6 @@
   :config
   (yas-global-mode))
 
-(use-package avy
-  :ensure t
-  :config
-  (avy-setup-default)
-  (global-set-key (kbd "C-c C-j") 'avy-resume)
-  (global-set-key (kbd "C-:") 'avy-goto-char)
-  (global-set-key (kbd "C-'") 'avy-goto-char-2)
-  (global-set-key (kbd "C-\"") 'avy-goto-char-timer)
-  
-  (global-set-key (kbd "M-g g") 'avy-goto-line)
-  (global-set-key (kbd "M-g w") 'avy-goto-word-1))
-
-
 (use-package iedit
   :ensure t
   :init
@@ -626,7 +613,9 @@
   (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-setup))
 
-(use-package eglot :ensure t)
+(use-package eglot
+  :ensure t
+  :defer t)
 
 (use-package org-drill
   :ensure t
