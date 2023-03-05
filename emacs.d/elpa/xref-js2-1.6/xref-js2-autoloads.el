@@ -1,4 +1,4 @@
-;;; xref-js2-autoloads.el --- automatically extracted autoloads
+;;; xref-js2-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -12,7 +12,7 @@
 (autoload 'xref-js2-xref-backend "xref-js2" "\
 Xref-Js2 backend for Xref." nil nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "xref-js2" '("xref-js2-")))
+(register-definition-prefixes "xref-js2" '("xref-js2-"))
 
 ;;;***
 

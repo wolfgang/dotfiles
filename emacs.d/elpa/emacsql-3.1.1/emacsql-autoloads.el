@@ -27,6 +27,35 @@ A prefix argument causes the SQL to be printed into the current buffer.
 
 ;;;***
 
+;;;### (autoloads nil "emacsql-mysql" "emacsql-mysql.el" (0 0 0 0))
+;;; Generated autoloads from emacsql-mysql.el
+
+(register-definition-prefixes "emacsql-mysql" '("emacsql-mysql-"))
+
+;;;***
+
+;;;### (autoloads nil "emacsql-pg" "emacsql-pg.el" (0 0 0 0))
+;;; Generated autoloads from emacsql-pg.el
+
+(register-definition-prefixes "emacsql-pg" '("emacsql-pg-connection"))
+
+;;;***
+
+;;;### (autoloads nil "emacsql-psql" "emacsql-psql.el" (0 0 0 0))
+;;; Generated autoloads from emacsql-psql.el
+
+(register-definition-prefixes "emacsql-psql" '("emacsql-psql-"))
+
+;;;***
+
+;;;### (autoloads nil "emacsql-sqlite" "emacsql-sqlite.el" (0 0 0
+;;;;;;  0))
+;;; Generated autoloads from emacsql-sqlite.el
+
+(register-definition-prefixes "emacsql-sqlite" '("emacsql-sqlite-"))
+
+;;;***
+
 ;;;### (autoloads nil nil ("emacsql-pkg.el") (0 0 0 0))
 
 ;;;***

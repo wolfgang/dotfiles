@@ -1,4 +1,4 @@
-;;; discover-my-major-autoloads.el --- automatically extracted autoloads
+;;; discover-my-major-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -16,7 +16,7 @@ If ARG is non-nil recreate the makey popup function even if it is already define
 
 \(fn ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "discover-my-major" '("dmm/")))
+(register-definition-prefixes "discover-my-major" '("dmm/"))
 
 ;;;***
 

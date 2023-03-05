@@ -1,4 +1,4 @@
-;;; pocket-reader-autoloads.el --- automatically extracted autoloads
+;;; pocket-reader-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -35,7 +35,7 @@ Add link at point in `shr-mode' buffer to Pocket." t nil)
 (autoload 'pocket-reader-generic-add-link "pocket-reader" "\
 Try to add URL at point to Pocket using `thing-at-pt'." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "pocket-reader" '("pocket-reader-")))
+(register-definition-prefixes "pocket-reader" '("pocket-reader-"))
 
 ;;;***
 

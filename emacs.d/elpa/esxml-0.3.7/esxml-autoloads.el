@@ -1,4 +1,4 @@
-;;; esxml-autoloads.el --- automatically extracted autoloads
+;;; esxml-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -9,14 +9,14 @@
 ;;;### (autoloads nil "esxml" "esxml.el" (0 0 0 0))
 ;;; Generated autoloads from esxml.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "esxml" '("attr" "esxml-" "pp-esxml-to-xml" "string-trim-whitespace" "sxml-to-" "xml-to-esxml")))
+(register-definition-prefixes "esxml" '("attr" "esxml-" "pp-esxml-to-xml" "string-trim-whitespace" "sxml-to-" "xml-to-esxml"))
 
 ;;;***
 
 ;;;### (autoloads nil "esxml-query" "esxml-query.el" (0 0 0 0))
 ;;; Generated autoloads from esxml-query.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "esxml-query" '("esxml-")))
+(register-definition-prefixes "esxml-query" '("esxml-"))
 
 ;;;***
 

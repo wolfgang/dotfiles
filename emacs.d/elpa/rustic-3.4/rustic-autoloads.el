@@ -1,4 +1,4 @@
-;;; rustic-autoloads.el --- automatically extracted autoloads
+;;; rustic-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -18,14 +18,14 @@ Major mode for Rust code.
 
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic" '("rustic-")))
+(register-definition-prefixes "rustic" '("rustic-"))
 
 ;;;***
 
 ;;;### (autoloads nil "rustic-babel" "rustic-babel.el" (0 0 0 0))
 ;;; Generated autoloads from rustic-babel.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-babel" '("cargo-toml-dependencies" "crate-dependencies" "org-babel-execute:rust" "rustic-")))
+(register-definition-prefixes "rustic-babel" '("cargo-toml-dependencies" "crate-dependencies" "org-babel-execute:rust" "rustic-"))
 
 ;;;***
 
@@ -195,7 +195,7 @@ If running with prefix command `C-u', read whole command from minibuffer.
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-cargo" '("rustic-")))
+(register-definition-prefixes "rustic-cargo" '("rustic-"))
 
 ;;;***
 
@@ -222,7 +222,7 @@ When calling this function from `rustic-popup-mode', always use the value of
 (autoload 'rustic-cargo-clippy-rerun "rustic-clippy" "\
 Run 'cargo clippy' with `rustic-clippy-arguments'." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-clippy" '("rustic-")))
+(register-definition-prefixes "rustic-clippy" '("rustic-"))
 
 ;;;***
 
@@ -247,7 +247,7 @@ If running with prefix command `C-u', read whole command from minibuffer.
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-comint" '("poly-rustic-cargo-comint-switch-buffer-hook" "rustic-")))
+(register-definition-prefixes "rustic-comint" '("poly-rustic-cargo-comint-switch-buffer-hook" "rustic-"))
 
 ;;;***
 
@@ -269,7 +269,7 @@ In either store the used command in `compilation-arguments'.
 (autoload 'rustic-recompile "rustic-compile" "\
 Re-compile the program using `compilation-arguments'." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-compile" '("rust")))
+(register-definition-prefixes "rustic-compile" '("rust"))
 
 ;;;***
 
@@ -312,14 +312,23 @@ If NOCONFIRM is non-nil, install all dependencies without prompting user.
 (autoload 'rustic-doc-mode "rustic-doc" "\
 Convert rust html docs to .org, and browse the converted docs.
 
-If called interactively, enable Rustic-Doc mode if ARG is
-positive, and disable it if ARG is zero or negative.  If called
-from Lisp, also enable the mode if ARG is omitted or nil, and
-toggle it if ARG is `toggle'; disable the mode otherwise.
+This is a minor mode.  If called interactively, toggle the
+`Rustic-Doc mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `rustic-doc-mode'.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-doc" '("rustic-doc-")))
+(register-definition-prefixes "rustic-doc" '("rustic-doc-"))
 
 ;;;***
 
@@ -339,7 +348,7 @@ If ARG is not nil, use value as argument and store it in
 (autoload 'rustic-cargo-expand-rerun "rustic-expand" "\
 Run 'cargo expand' with `rustic-expand-arguments'." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-expand" '("rustic-")))
+(register-definition-prefixes "rustic-expand" '("rustic-"))
 
 ;;;***
 
@@ -353,7 +362,7 @@ Setup Rust in Flycheck.
 If the current file is part of a Cargo project, configure
 Flycheck according to the Cargo project layout." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-flycheck" '("rustic-flycheck-")))
+(register-definition-prefixes "rustic-flycheck" '("rustic-flycheck-"))
 
 ;;;***
 
@@ -365,7 +374,7 @@ Flycheck according to the Cargo project layout." t nil)
 Open the 'Cargo.toml' file at the project root if the current buffer is
 visiting a project." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-interaction" '("rustic-")))
+(register-definition-prefixes "rustic-interaction" '("rustic-"))
 
 ;;;***
 
@@ -377,7 +386,7 @@ Default method for displaying macro expansion results.
 
 \(fn RESULT)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-lsp" '("rustic-")))
+(register-definition-prefixes "rustic-lsp" '("rustic-"))
 
 ;;;***
 
@@ -391,7 +400,7 @@ src-block or buffer on the Rust playpen.
 
 \(fn BEGIN END)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-playpen" '("rustic-")))
+(register-definition-prefixes "rustic-playpen" '("rustic-"))
 
 ;;;***
 
@@ -419,7 +428,7 @@ Display help buffer for cargo command at point." t nil)
 (autoload 'rustic-popup-kill-help-buffer "rustic-popup" "\
 Kill popup help buffer and switch to popup buffer." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-popup" '("rustic-")))
+(register-definition-prefixes "rustic-popup" '("rustic-"))
 
 ;;;***
 
@@ -429,7 +438,7 @@ Kill popup help buffer and switch to popup buffer." t nil)
 (autoload 'rustic-racer-describe "rustic-racer" "\
 Show a *Racer Help* buffer for the function or type at point." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-racer" '("racer-src-button" "rustic-racer-")))
+(register-definition-prefixes "rustic-racer" '("racer-src-button" "rustic-racer-"))
 
 ;;;***
 
@@ -440,7 +449,7 @@ Show a *Racer Help* buffer for the function or type at point." t nil)
 (autoload 'rustic-rustfix "rustic-rustfix" "\
 Run 'cargo fix'." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-rustfix" '("rustic-rustfix-")))
+(register-definition-prefixes "rustic-rustfix" '("rustic-rustfix-"))
 
 ;;;***
 
@@ -466,7 +475,7 @@ Unlike `rustic-format-buffer' format file directly and revert the buffer.
 
 \(fn &optional FILE)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-rustfmt" '("rustic-")))
+(register-definition-prefixes "rustic-rustfmt" '("rustic-"))
 
 ;;;***
 
@@ -487,7 +496,7 @@ If ARG is not nil, use value as argument and store it in
 (autoload 'rustic-cargo-spellcheck-rerun "rustic-spellcheck" "\
 Run 'cargo spellcheck' with `rustic-spellcheck-arguments'." t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rustic-spellcheck" '("rustic-")))
+(register-definition-prefixes "rustic-spellcheck" '("rustic-"))
 
 ;;;***
 

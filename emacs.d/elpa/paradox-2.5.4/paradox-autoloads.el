@@ -1,4 +1,4 @@
-;;; paradox-autoloads.el --- automatically extracted autoloads
+;;; paradox-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -6,9 +6,8 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "paradox" "../../../../.emacs.d/elpa/paradox-2.5.4/paradox.el"
-;;;;;;  "bbd57f329e05a4aa984f0da86dfbc581")
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox.el
+;;;### (autoloads nil "paradox" "paradox.el" (0 0 0 0))
+;;; Generated autoloads from paradox.el
 
 (autoload 'paradox-list-packages "paradox" "\
 Improved version of `package-list-packages'.  The heart of Paradox.
@@ -64,71 +63,50 @@ By default, the current package database is only updated if it is
 empty.  Passing a non-nil REFRESH argument forces this update.
 
 \(fn FEATURE &optional FILENAME NOERROR PACKAGE REFRESH)" nil nil)
+
+(register-definition-prefixes "paradox" '("paradox-"))
+
+;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "paradox" "../../../../.emacs.d/elpa/paradox-2.5.4/paradox.el"
+;;;### (autoloads nil "paradox-commit-list" "paradox-commit-list.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox.el
+;;; Generated autoloads from paradox-commit-list.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "paradox" '("paradox-")))
-
-;;;***
+(register-definition-prefixes "paradox-commit-list" '("paradox-"))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "paradox-commit-list"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-commit-list.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox-commit-list.el
+;;;### (autoloads nil "paradox-core" "paradox-core.el" (0 0 0 0))
+;;; Generated autoloads from paradox-core.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "paradox-commit-list" '("paradox-")))
+(register-definition-prefixes "paradox-core" '("paradox-"))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "paradox-core"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-core.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox-core.el
+;;;### (autoloads nil "paradox-execute" "paradox-execute.el" (0 0
+;;;;;;  0 0))
+;;; Generated autoloads from paradox-execute.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "paradox-core" '("paradox-")))
-
-;;;***
-
-;;;### (autoloads "actual autoloads are elsewhere" "paradox-execute"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-execute.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox-execute.el
-
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "paradox-execute" '("paradox-")))
+(register-definition-prefixes "paradox-execute" '("paradox-"))
 
 ;;;***
 
-;;;### (autoloads "actual autoloads are elsewhere" "paradox-github"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-github.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox-github.el
+;;;### (autoloads nil "paradox-github" "paradox-github.el" (0 0 0
+;;;;;;  0))
+;;; Generated autoloads from paradox-github.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "paradox-github" '("paradox-")))
-
-;;;***
-
-;;;### (autoloads "actual autoloads are elsewhere" "paradox-menu"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-menu.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from ../../../../.emacs.d/elpa/paradox-2.5.4/paradox-menu.el
-
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "paradox-menu" '("paradox-")))
+(register-definition-prefixes "paradox-github" '("paradox-"))
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../.emacs.d/elpa/paradox-2.5.4/paradox-autoloads.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-commit-list.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-core.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-execute.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-github.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-menu.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox-pkg.el"
-;;;;;;  "../../../../.emacs.d/elpa/paradox-2.5.4/paradox.el") (0
-;;;;;;  0 0 0))
+;;;### (autoloads nil "paradox-menu" "paradox-menu.el" (0 0 0 0))
+;;; Generated autoloads from paradox-menu.el
+
+(register-definition-prefixes "paradox-menu" '("paradox-"))
+
+;;;***
+
+;;;### (autoloads nil nil ("paradox-pkg.el") (0 0 0 0))
 
 ;;;***
 

@@ -1,4 +1,4 @@
-;;; mwim-autoloads.el --- automatically extracted autoloads
+;;; mwim-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -38,7 +38,7 @@ Interactively, with prefix argument, move to the previous position.
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "mwim" '("mwim-")))
+(register-definition-prefixes "mwim" '("mwim-"))
 
 ;;;***
 

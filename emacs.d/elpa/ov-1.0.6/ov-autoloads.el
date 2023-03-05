@@ -1,4 +1,4 @@
-;;; ov-autoloads.el --- automatically extracted autoloads
+;;; ov-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
 ;;
 ;;; Code:
 
@@ -26,7 +26,7 @@ With no arguments, clear all overlays in the buffer.
 
 \(fn &optional PROP-OR-BEG (VAL-OR-END \\='any) BEG END)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ov" 'nil))
+(register-definition-prefixes "ov" 'nil)
 
 ;;;***
 
