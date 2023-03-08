@@ -522,10 +522,12 @@
 
 (use-package multiple-cursors
   :ensure t
+  :init
+  (setq mc/always-run-for-all t)
   :bind
   (("C-c C-<" . mc/mark-all-like-this)
-   ("C->" . mc/mark-next-like-this)
-   ("C-<" . mc/mark-previous-like-this)))
+   ("C->" . mc/mark-next-like-this-symbol)
+   ("C-<" . mc/mark-previous-like-this-symbo)))
 
 (use-package yasnippet :ensure t)
 
