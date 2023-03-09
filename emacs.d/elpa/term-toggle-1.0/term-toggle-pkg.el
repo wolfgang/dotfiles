@@ -1,0 +1,2 @@
+;;; Generated package description from term-toggle.el  -*- no-byte-compile: t -*-
+(define-package "term-toggle" "1.0" "Toggle to and from the *terminal* buffer" 'nil :authors '(("Joseph" . "jixiuf@gmail.com") ("Yatao" . "yatao.li@live.com") ("Arthur" . "arthur.miller@live.com")) :maintainer '(("Joseph" . "jixiuf@gmail.com") ("Yatao" . "yatao.li@live.com") ("Arthur" . "arthur.miller@live.com")) :keywords '("term" "toggle" "shell") :url "https://github.com/v-yadli/emacs-term-toggle")
