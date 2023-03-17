@@ -696,6 +696,17 @@
   (advice-add 'move-text-up :after 'indent-region-advice)
   (advice-add 'move-text-down :after 'indent-region-advice))
 
+(use-package dired-sidebar
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  (setq dired-sidebar-subtree-line-prefix "-"
+        dired-sidebar-theme 'acii
+        dired-sidebar-use-term-integration t
+        dired-sidebar-use-custom-font t)
+  :config
+  (add-to-list 'linum-disabled-modes-list 'dired-sidebar-mode)
+  :bind (("C-z s" . dired-sidebar-toggle-sidebar)))
 
 
 ;; Manual package installations
