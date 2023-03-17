@@ -625,14 +625,6 @@
   (setq org-drill-save-buffers-after-drill-sessions-p nil))
 
 
-
-
-(use-package tide
-  :ensure t
-  :init
-  (setq tide-format-options '(:baseIndentSize 2 :indentSize 2 :tabSize 2 :convertTabsToSpaces t)
-        typescript-indent-level 2))
-
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -645,13 +637,25 @@
   ;; `M-x package-install [ret] company`
   (company-mode +1))
 
+(use-package tide
+  :ensure t
+  :init
+  (setq tide-format-options '(:indentSize 2 :tabSize 2 :convertTabsToSpaces t)
+        typescript-indent-level 2
+        company-tooltip-align-annotations t)
+
+  :config
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+
+
+
 ;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
 
 ;; formats the buffer before saving
-;; (add-hook 'before-save-hook 'tide-format-before-save)
 
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+
 
 (use-package web-mode
   :ensure t
