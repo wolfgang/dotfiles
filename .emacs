@@ -701,6 +701,7 @@
   :commands (dired-sidebar-toggle-sidebar)
   :init
   (setq dired-sidebar-subtree-line-prefix "-"
+        dired-sidebar-should-follow-file t
         dired-sidebar-theme 'acii
         dired-sidebar-use-term-integration t
         dired-sidebar-use-custom-font t)
