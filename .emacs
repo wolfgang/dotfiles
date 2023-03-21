@@ -634,7 +634,7 @@
   (tide-hl-identifier-mode +1)
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
+  ;; `M-x packagex-install [ret] company`
   (company-mode +1))
 
 (use-package tide
@@ -644,21 +644,18 @@
         typescript-indent-level 2
         company-tooltip-align-annotations t)
 
+  :bind (:map tide-mode-map
+              ("M-<return>" . tide-fix)
+              ("C-c d" . tide-documentation-at-point))
+
   :config
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 
-
-;; aligns annotation to the right hand side
-
-;; formats the buffer before saving
-
-
-
-
 (use-package web-mode
   :ensure t
+  :after (flycheck)
   :config
   ;; enable typescript - tslint checker
   (flycheck-add-mode 'typescript-tslint 'web-mode)
