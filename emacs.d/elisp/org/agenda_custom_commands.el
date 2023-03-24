@@ -76,7 +76,8 @@
                             (org-agenda-span 'day)
                             ,skip-used-timeslots))
                 ,active-projects
-                ,next-actions))
+                ,next-actions
+                ,all-todos))
 
   ("w" "Week" (,week-agenda))
 
