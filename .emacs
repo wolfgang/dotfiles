@@ -116,7 +116,9 @@
 
   ;; Don't reverse results in searches
   (setq vertico-multiform-categories
-        '((consult-grep (:not reverse))))
+        '((consult-grep (:not reverse))
+          (consult-org-heading (:not reverse))
+          (consult-org-agenda (:not reverse))))
   (vertico-mode)
   (vertico-multiform-mode)
   (vertico-reverse-mode))
