@@ -650,6 +650,17 @@
   (tide-hl-identifier-mode +1)
   (company-mode +1))
 
+
+(defun flycheck-angular-eslint-setup ()
+  (setq-local flycheck-checker 'javascript-eslint)
+  (setq-local flycheck-javascript-eslint-args
+              '("--ext" ".ts"
+                "--parser" "@typescript-eslint/parser"
+                "--plugin" "angular"
+                "--config" ".eslintrc.json"
+                "--resolve-plugins-relative-to" "."))
+  (setq-local flycheck-javascript-eslint-executable "eslint"))
+
 (use-package tide
   :ensure t
   :after (tree-sitter-langs)
@@ -661,6 +672,9 @@
   ;; For some reason this does not work in :config
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-angular-eslint-setup)
   
   :bind (:map tide-mode-map
               ("M-<return>" . tide-fix)
