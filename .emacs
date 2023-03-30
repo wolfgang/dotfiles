@@ -652,7 +652,7 @@
 
 
 (defun flycheck-angular-eslint-setup ()
-  (setq-local flycheck-checker 'javascript-eslint)
+  (flycheck-add-next-checker 'typescript-tide '(warning . javascript-eslint))
   (setq-local flycheck-javascript-eslint-args
               '("--ext" ".ts"
                 "--parser" "@typescript-eslint/parser"
