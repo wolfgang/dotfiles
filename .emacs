@@ -627,6 +627,20 @@
   (setq org-drill-save-buffers-after-drill-sessions-p nil))
 
 
+
+(use-package tree-sitter
+  :ensure t
+  :config
+  ;; activate tree-sitter on any buffer containing code for which it has a parser available
+  (global-tree-sitter-mode)
+  ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
+  ;; by switching on and off
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs
+  :ensure t
+  :after tree-sitter)
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -634,25 +648,26 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x packagex-install [ret] company`
   (company-mode +1))
 
 (use-package tide
   :ensure t
+  :after (tree-sitter-langs)
   :init
   (setq tide-format-options '(:indentSize 2 :tabSize 2 :convertTabsToSpaces t)
         typescript-indent-level 2
         company-tooltip-align-annotations t)
 
+  :config
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  
   :bind (:map tide-mode-map
               ("M-<return>" . tide-fix)
               ("C-c d" . tide-documentation-at-point))
 
-  :config
-  (add-hook 'before-save-hook 'tide-format-before-save)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+  )
+
 
 
 (use-package web-mode
