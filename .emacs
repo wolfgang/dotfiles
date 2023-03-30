@@ -658,7 +658,7 @@
         typescript-indent-level 2
         company-tooltip-align-annotations t)
 
-  :config
+  ;; For some reason this does not work in :config
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   
