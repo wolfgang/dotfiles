@@ -628,8 +628,10 @@
 
 
 
+;; Problems with tsc-dynlib on different platforms, disabled for now
 (use-package tree-sitter
-  :ensure t
+  :ensure nil
+  :disabled t
   :config
   ;; activate tree-sitter on any buffer containing code for which it has a parser available
   (global-tree-sitter-mode)
@@ -638,7 +640,8 @@
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (use-package tree-sitter-langs
-  :ensure t
+  :ensure nil
+  :disabled t
   :after tree-sitter)
 
 (defun setup-tide-mode ()
@@ -663,7 +666,7 @@
 
 (use-package tide
   :ensure t
-  :after (tree-sitter-langs)
+  ;; :after (tree-sitter-langs)
   :init
   (setq tide-format-options '(:indentSize 2 :tabSize 2 :convertTabsToSpaces t)
         typescript-indent-level 2
