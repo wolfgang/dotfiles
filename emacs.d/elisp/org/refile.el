@@ -21,4 +21,5 @@
 (defun matches-someday-maybe (str)
     (or 
         (not (eq nil (string-match-p (regexp-quote "Someday") str)))
+        (not (eq nil (string-match-p (regexp-quote "Backlog") str)))
         (not (eq nil (string-match-p (regexp-quote "Later") str)))))
