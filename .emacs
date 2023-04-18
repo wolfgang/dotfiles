@@ -99,8 +99,8 @@
 (global-unset-key "\C-z")
 
 
-;; Ensure availability of ivy-thing-at-point
-(use-package ivy)
+(use-package ivy :ensure t)
+(use-package swiper :ensure t :after (ivy))
 
 (use-package vertico
   :ensure t
