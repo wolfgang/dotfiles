@@ -64,7 +64,9 @@
       auto-revert-interval 3
       auto-revert-check-vc-info t)
 
-(if (eq system-type 'darwin) (setq mac-command-modifier 'control))
+(if (eq system-type 'darwin) (progn
+                               (set ns-function-modifier 'super)
+                               (setq mac-command-modifier 'control)))
 
 (bind-keys
  ("C-|" . split-window-horizontally)
@@ -74,6 +76,7 @@
  ("C-c <up>" . windmove-up)
  ("C-c <down>" . 'windmove-down)
  ("C-s" . swiper-isearch)
+ ("s-s" . swiper-isearch-backward)
  ("C-S-s" . swiper-isearch-thing-at-point)
  ("C-z" . undo)
  ("C-`" . other-frame))
