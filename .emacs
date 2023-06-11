@@ -454,7 +454,7 @@
   :hook
   ((lsp-mode . lsp-ui-mode)
    (lsp-mode . lsp-enable-which-key-integration)
-   (gdscript-mode . lsp)
+   ;; (gdscript-mode . lsp)
    ))
 
 (use-package lsp-ui
@@ -756,9 +756,11 @@
 (advice-add 'gdscript-godot-run-project :before 'maybe-save)
 (advice-add 'gdscript-godot-run-current-scene :before 'maybe-save)
 
+(setq gdscript-eglot-version 3)
+
 (add-hook 'gdscript-mode-hook
           (lambda()
-            ;; (eglot-ensure)
+            (eglot-ensure)
             (local-unset-key (kbd "<f6>"))
             (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
             (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
