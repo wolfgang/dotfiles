@@ -1,6 +1,20 @@
 (setq gc-cons-threshold (* 100 1024 1024))
 (setq gc-cons-percentage 0.6)
 
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
 (setq package-user-dir (locate-user-emacs-file "elpa"))
 (setq package-archives
       '(("melpa-stable" . "https://stable.melpa.org/packages/")
@@ -746,29 +760,52 @@
   :bind (("C-z s" . dired-sidebar-toggle-sidebar)))
 
 
-;; Manual package installations
 
-(add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
-(require 'gdscript-mode)
+;; (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
+;; (require 'gdscript-mode)
+
 
 (defun maybe-save () (when buffer-file-name (save-buffer)))
 
-(advice-add 'gdscript-godot-run-project :before 'maybe-save)
-(advice-add 'gdscript-godot-run-current-scene :before 'maybe-save)
+(defun lsp--gdscript-ignore-errors (original-function &rest args)
+  "Ignore the error message resulting from Godot not replying to the `JSONRPC' request."
+  (if (string-equal major-mode "gdscript-mode")
+      (let ((json-data (nth 0 args)))
+        (if (and (string= (gethash "jsonrpc" json-data "") "2.0")
+                 (not (gethash "id" json-data nil))
+                 (not (gethash "method" json-data nil)))
+            nil ; (message "Method not found")
+          (apply original-function args)))
+    (apply original-function args)))
 
-(setq gdscript-eglot-version 3)
 
-(add-hook 'gdscript-mode-hook
-          (lambda()
-            (eglot-ensure)
-            (local-unset-key (kbd "<f6>"))
-            (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
-            (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
-            (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)
-            (define-key gdscript-mode-map (kbd "C-c C-b w") 'my-gdscript-docs-browse-symbol-at-point)))
-(setq gdscript-use-tab-indents t
-      gdscript-gdformat-save-and-format nil
-      gdscript-docs-use-eww nil)
+(use-package gdscript-mode
+  :straight (gdscript-mode
+             :type git
+             :host github
+             :repo "godotengine/emacs-gdscript-mode")
+  :hook (gdscript-mode . eglot-ensure)
+  :custom (gdscript-eglot-version 3)
+
+  :init
+  (setq gdscript-use-tab-indents t
+        gdscript-gdformat-save-and-format nil
+        gdscript-docs-use-eww nil)
+
+  :config
+  (advice-add 'gdscript-godot-run-project :before 'maybe-save)
+  (advice-add 'gdscript-godot-run-current-scene :before 'maybe-save)
+  (advice-add #'lsp--get-message-type :around #'lsp--gdscript-ignore-errors)
+
+  (add-hook 'gdscript-mode-hook
+            (lambda()
+              (local-unset-key (kbd "<f6>"))
+              (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
+              (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
+              (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)
+              (define-key gdscript-mode-map (kbd "C-c C-b w") 'my-gdscript-docs-browse-symbol-at-point))))
+
+;; Manual package installations
 
 (define-key global-map [C-f2] #'term-toggle-term)
 
