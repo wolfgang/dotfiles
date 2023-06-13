@@ -93,6 +93,8 @@
  ("s-s" . swiper-isearch-backward)
  ("C-S-s" . swiper-isearch-thing-at-point)
  ("C-z" . undo)
+ ("<end>" . mwim-end-of-code-or-line)
+ ("<home>" . mwim-beginning-of-code-or-line)
  ("C-`" . other-frame))
 
 (add-hook 'emacs-lisp-mode-hook
