@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: org-log
-# key: ol
+# key: log
 # --
 * LOG
   #+BEGIN: clocktable :scope file :maxlevel 5 :compact t :narrow 80 :block untilnow
