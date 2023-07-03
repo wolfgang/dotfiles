@@ -1,0 +1,2 @@
+;; Generated package description from beframe.el  -*- no-byte-compile: t -*-
+(define-package "beframe" "0.3.0" "Isolate buffers per frame" '((emacs "28.1")) :commit "24551a22b4561cdf4c256b941aeb6176e993c280" :authors '(("Protesilaos Stavrou" . "info@protesilaos.com")) :maintainer '("Protesilaos Stavrou General Issues" . "~protesilaos/general-issues@lists.sr.ht") :url "https://git.sr.ht/~protesilaos/beframe")

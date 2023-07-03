@@ -807,6 +807,34 @@
               (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)
               (define-key gdscript-mode-map (kbd "C-c C-b w") 'my-gdscript-docs-browse-symbol-at-point))))
 
+(use-package beframe
+  :ensure t
+  :init
+  (defvar consult-buffer-sources)
+  (declare-function consult--buffer-state "consult")
+
+  (with-eval-after-load 'consult
+    (defface beframe-buffer
+      '((t :inherit font-lock-string-face))
+      "Face for `consult' framed buffers.")
+
+    (defvar beframe-consult-source
+      `( :name     "Frame-specific buffers (current frame)"
+         :narrow   ?F
+         :category buffer
+         :face     beframe-buffer
+         :history  beframe-history
+         :items    ,#'beframe-buffer-names
+         :action   ,#'switch-to-buffer
+         :state    ,#'consult--buffer-state))
+
+    (add-to-list 'consult-buffer-sources 'beframe-consult-source)
+
+    (define-key global-map (kbd "C-c b") beframe-prefix-map))
+
+  :config
+  (beframe-mode 1))
+
 ;; Manual package installations
 
 (define-key global-map [C-f2] #'term-toggle-term)
