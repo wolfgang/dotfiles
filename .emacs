@@ -103,6 +103,9 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
 
