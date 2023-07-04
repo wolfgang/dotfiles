@@ -92,10 +92,10 @@
  ("C-s" . swiper-isearch)
  ("s-s" . swiper-isearch-backward)
  ("C-S-s" . swiper-isearch-thing-at-point)
- ("C-z" . undo)
  ("<end>" . mwim-end-of-code-or-line)
  ("<home>" . mwim-beginning-of-code-or-line)
- ("C-`" . other-frame))
+ ("C-`" . other-frame)
+ ("C-z n" . make-frame))
 
 (add-hook 'emacs-lisp-mode-hook
 	      '(lambda ()
@@ -857,6 +857,12 @@
 
   :config
   (beframe-mode 1))
+
+
+(use-package nameframe
+  :ensure t
+  :bind (("C-z f" . nameframe-switch-frame)))
+
 
 ;; Manual package installations
 
