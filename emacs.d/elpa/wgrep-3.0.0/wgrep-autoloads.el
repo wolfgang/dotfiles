@@ -18,6 +18,10 @@ Setup wgrep preparation." nil nil)
 
 ;;;***
 
+;;;### (autoloads nil nil ("wgrep-pkg.el") (0 0 0 0))
+
+;;;***
+
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t

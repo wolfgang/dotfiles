@@ -238,7 +238,7 @@
   (use-package consult-ag :ensure t))
 
 (use-package embark
-  :ensure t
+  :straight t
   :bind
   (("C-\\" . embark-act)
    ("C-;" . embark-dwim)
