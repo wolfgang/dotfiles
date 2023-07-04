@@ -105,6 +105,14 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+(defun show-scratch-buffer (frame)
+  "Display the scratch buffer in the newly created FRAME."
+  (with-selected-frame frame
+    (switch-to-buffer "*scratch*")))
+
+(add-hook 'after-make-frame-functions 'show-scratch-buffer)
+
+
 
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
@@ -211,6 +219,9 @@
   :diminish projectile-mode
   :bind-keymap (("C-c p" . projectile-command-map))
   :init
+
+  
+  
   (setq projectile-enable-caching t
         projectile-indexing-method 'native
         projectile-hg-command "hg files -0 -I ."
@@ -226,7 +237,16 @@
   (--each '(".log" ".png" ".gif" ".jar")
     (add-to-list 'projectile-globally-ignored-file-suffixes it))
   (--each '("*.png" "*.jpg" "*.gif" "*.jar" "*.log" "*.pdf" "*.jasper")
-    (add-to-list 'grep-find-ignored-files it)))
+    (add-to-list 'grep-find-ignored-files it))
+
+  (defun rename-frame-after-switch-project ()
+    "Rename the frame after switching Projectile projects."
+    (let ((project-name (projectile-project-name)))
+      (when project-name
+        (modify-frame-parameters nil `((name . ,project-name))))))
+
+  (add-hook 'projectile-after-switch-project-hook 'rename-frame-after-switch-project))
+
 
 (use-package consult
   :ensure t
