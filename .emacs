@@ -82,6 +82,9 @@
                                (set ns-function-modifier 'super)
                                (setq mac-command-modifier 'control)))
 
+(global-unset-key "\C-z")
+
+
 (bind-keys
  ("C-|" . split-window-horizontally)
  ("C-_" . split-window-vertically)
@@ -126,7 +129,6 @@
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
 
-(global-unset-key "\C-z")
 
 
 (use-package ivy :ensure t)
@@ -191,16 +193,22 @@
 
 (use-package ef-themes
   :ensure t
+  :disabled t
   :config
   (setq ef-themes-to-toggle '(ef-dark ef-light))
   (mapc #'disable-theme custom-enabled-themes)
   (ef-themes-select 'ef-dark))
 
+(use-package nord-theme
+  :ensure t
+  :config
+  (load-theme 'nord :no-confirm))
+
 (use-package smart-mode-line
   :ensure t
   :hook ((after-init . sml/setup))
   :config
-  (setq sml/theme 'respetful))
+  (setq sml/theme 'respecful))
 
 (use-package diminish
   :ensure t
@@ -243,7 +251,7 @@
     "Rename the frame after switching Projectile projects."
     (let ((project-name (projectile-project-name)))
       (when project-name
-        (modify-frame-parameters nil `((name . ,project-name))))))
+        (modify-frame-parameters nil `((name . ,(concat "PRJ: " project-name )))))))
 
   (add-hook 'projectile-after-switch-project-hook 'rename-frame-after-switch-project))
 
