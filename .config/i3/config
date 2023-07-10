@@ -117,7 +117,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+Shit+space focus mode_toggle
+#bindsym $mod+Mod4+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -201,5 +201,5 @@ bindsym $mod+Mod1+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3status -c ~/.config/i3/i3status.config
 }
