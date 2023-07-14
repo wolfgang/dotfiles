@@ -872,6 +872,11 @@
   :bind (("C-z f" . nameframe-switch-frame)))
 
 
+(use-package denote
+  :straight t
+  :config
+  (add-hook 'dired-mode-hook #'denote-dired-mode))
+
 ;; Manual package installations
 
 (define-key global-map [C-f2] #'term-toggle-term)
