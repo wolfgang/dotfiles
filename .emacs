@@ -649,26 +649,6 @@
   :init
   (global-set-key (kbd "C-.") 'iedit-mode))
 
-(use-package org-roam
-  :ensure t
-  :init
-  (setq org-roam-completion-everywhere t)
-  (setq org-roam-node-display-template
-      (concat "${title:*} "
-              (propertize "${tags:64}" 'face 'org-tag)))
-  (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry "* %<%H:%M:%S>\n%?"
-           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-
-  (defun org-font-lock-ensure ())
-  :bind (("C-c n f" . org-roam-node-find)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n t" . org-roam-tag-add))
-  :bind-keymap ("C-c n d" . org-roam-dailies-map)
-  :config
-  (require 'org-roam-dailies) ;; Ensure the keymap is available
-  (org-roam-setup))
-
 (use-package eglot
   :ensure t
   :defer t)
@@ -874,6 +854,9 @@
 
 (use-package denote
   :straight t
+  :bind (("C-c n n" . denote)
+         ("C-c n l" . denote-link)
+         ("C-c n b" . denote-backlinks))
   :config
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
