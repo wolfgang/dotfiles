@@ -247,13 +247,22 @@
   (--each '("*.png" "*.jpg" "*.gif" "*.jar" "*.log" "*.pdf" "*.jasper")
     (add-to-list 'grep-find-ignored-files it))
 
-  (defun rename-frame-after-switch-project ()
+  (defun update-frame-title-with-projectile-and-file ()
     "Rename the frame after switching Projectile projects."
     (let ((project-name (projectile-project-name)))
       (when project-name
-        (modify-frame-parameters nil `((name . ,(concat "PRJ: " project-name )))))))
+        (setq frame-title-format
+              (format "%s - %s"
+                      (projectile-project-name)
+                      (if (buffer-file-name)
+                          (file-relative-name (buffer-file-name) (projectile-project-root))
+                        "%b")))
+        
+        )))
 
-  (add-hook 'projectile-after-switch-project-hook 'rename-frame-after-switch-project))
+  (add-hook 'projectile-after-switch-project-hook 'update-frame-title-with-projectile-and-file)
+  (add-hook 'buffer-list-update-hook #'update-frame-title-with-projectile-and-file))
+
 
 
 (use-package consult
