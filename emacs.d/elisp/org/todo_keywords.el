@@ -10,7 +10,7 @@
 
 
 (setq org-todo-keyword-faces '(("TODO" :foreground "red" :weight bold) 
-			                   ("NEXT" :foreground "blue" :weight bold) 
+			                   ("NEXT" :foreground "#007fff" :weight bold) 
 			                   ("FREE" :foreground "black" :weight bold) 
 			                   ("USED" :foreground "grey" :weight bold) 
 			                   ("DONE" :foreground "forest green" :weight bold) 
