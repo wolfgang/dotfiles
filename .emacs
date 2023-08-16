@@ -79,8 +79,8 @@
       auto-revert-check-vc-info t)
 
 (if (eq system-type 'darwin) (progn
-                               (set ns-function-modifier 'super)
-                               (setq mac-command-modifier 'control)))
+                               (setq ns-function-modifier 'control)
+                               (setq mac-command-modifier 'super)))
 
 (global-unset-key "\C-z")
 
