@@ -874,6 +874,9 @@
   :config
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
+(use-package ob-async
+  :ensure t)
+
 ;; Manual package installations
 
 (define-key global-map [C-f2] #'term-toggle-term)
