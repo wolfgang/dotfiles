@@ -272,6 +272,7 @@
   :bind (("C-x b" . consult-buffer)
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-S" . my-consult-ripgrep)
+         ("C-S-l" . consult-line)
          ("C-x C-r" . consult-recent-file))
   :config
   (use-package consult-ag :ensure t))
