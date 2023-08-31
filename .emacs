@@ -80,7 +80,8 @@
 
 (if (eq system-type 'darwin) (progn
                                (setq ns-function-modifier 'control)
-                               (setq mac-command-modifier 'super)))
+                               (setq mac-command-modifier 'super)
+                               (setq mac-right-command-modifier 'control)))
 
 (global-unset-key "\C-z")
 
@@ -344,6 +345,7 @@
   :bind (([remap lispy-move-beginning-of-line] . mwim-beginning-of-code-or-line)
          :map lispy-mode-map
          (("C-d" . my-delete-region-or-line)
+          ("M-o" . nil)
 	      ;; Don't overwrite cider binding
 	      ("M-." . nil)
 	      ("M-d" . lispy-delete)
@@ -871,11 +873,22 @@
          ("C-c n o" . denote-open-or-create)
          ("C-c n l" . denote-link)
          ("C-c n b" . denote-backlinks))
-  :config
+  :init
+  (setq aw-scope 'frame)
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
 (use-package ob-async
   :ensure t)
+
+
+(use-package ace-window
+  :ensure t
+  :init
+  (setq aw-scope 'frame
+        aw-dispatch-always t)
+  :config
+  (global-set-key (kbd "M-o") 'ace-window))
+
 
 ;; Manual package installations
 
