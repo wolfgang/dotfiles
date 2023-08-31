@@ -274,7 +274,8 @@
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-S" . my-consult-ripgrep)
          ("C-S-l" . consult-line)
-         ("C-x C-r" . consult-recent-file))
+         ("C-x C-r" . consult-recent-file)
+         ("C-z p" . consult-project-buffer))
   :config
   (use-package consult-ag :ensure t))
 
@@ -889,6 +890,11 @@
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
+(use-package zoom-window
+  :ensure t
+  :init
+  (setq zoom-window-mode-line-color "black")
+  :bind (("C-z z" . zoom-window-zoom)))
 
 ;; Manual package installations
 
