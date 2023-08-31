@@ -53,11 +53,19 @@
                   
 )))
 
-(setq all-somedays `(todo "MAYBE" (
-  (org-agenda-overriding-header "All Someday/Maybe")
-  ,skip-children-of-inactive
 
+(setq all-waiting-fors `(todo "WAIT" (
+  (org-agenda-overriding-header "Waiting for")
+  ,skip-children-of-inactive
+                  
 )))
+
+
+(setq all-somedays `(todo "MAYBE" (
+                                   (org-agenda-overriding-header "All Someday/Maybe")
+                                   ,skip-children-of-inactive
+
+                                   )))
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE" (
   (org-agenda-overriding-header  "Active Projects")
@@ -69,14 +77,16 @@
 
 (setq org-agenda-custom-commands `(
   ("t" "Tasks" (,next-actions
-               ,(scheduled-today)
-               ,all-todos))
+                ,all-waiting-fors
+                ,(scheduled-today)
+                ,all-todos))
 
   ("d" "Today" ((agenda "" (,agenda-day-sort
                             (org-agenda-span 'day)
                             ,skip-used-timeslots))
                 ,active-projects
                 ,next-actions
+                ,all-waiting-fors
                 ,all-todos))
 
   ("w" "Week" (,week-agenda))
@@ -95,6 +105,7 @@
   ("o" "Overview"  (
                     ,week-agenda
                     ,next-actions
+                    ,all-waiting-fors
                     ,active-projects
                     ,all-todos
                     ,all-somedays
