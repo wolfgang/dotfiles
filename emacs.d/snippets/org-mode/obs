@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Shell block
+# key: obs
+# --
+
+#+begin_src shell :shebang #!/usr/bin/env bash  :results output :async
+
+#+end_src
