@@ -56,7 +56,7 @@ tiling_drag modifier titlebar
 #bindsym $mod+Shift+e exec /usr/bin/emacs
 #bindsym $mod+Shift+e exec /usr/bin/emacs
 bindsym $mod+Shift+e [class="Emacs"] focus
-bindsym $mod+Shift+b [class="Brave"] focus
+bindsym $mod+Shift+b [class="Vivaldi"] focus
 bindsym $mod+Shift+t [class="org.wezfurlong.wezterm"] focus
 
 
