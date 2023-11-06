@@ -149,11 +149,11 @@
                    #'completion--in-region)
                  args)))
 
-  ;; Don't reverse results in searches
-  (setq vertico-multiform-categories
+  (setq vertico-multiform-commands
         '((consult-grep (:not reverse))
           (consult-org-heading (:not reverse))
-          (consult-org-agenda (:not reverse))))
+          (consult-org-agenda (:not reverse))
+          (consult-buffer (:not reverse))))
   (vertico-mode)
   (vertico-multiform-mode)
   (vertico-reverse-mode))
@@ -277,6 +277,9 @@
          ("C-x C-r" . consult-recent-file)
          ("C-z p" . consult-project-buffer))
   :config
+  (add-to-list 'consult-buffer-sources persp-consult-source)
+  
+
   (use-package consult-ag :ensure t))
 
 (use-package embark
@@ -905,6 +908,16 @@
   :init
   (setq zoom-window-mode-line-color "black")
   :bind (("C-z z" . zoom-window-zoom)))
+
+(use-package perspective
+  :ensure t
+  :bind
+  ("C-x C-b" . persp-list-buffers)      ; or use a nicer switcher, see below
+  :custom
+  (persp-mode-prefix-key (kbd "C-c C-p")) ; pick your own prefix key here
+  :init
+
+  (persp-mode))
 
 ;; Manual package installations
 
