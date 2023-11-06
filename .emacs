@@ -150,11 +150,12 @@
                  args)))
 
   (setq vertico-multiform-commands
-        '((consult-grep (:not reverse))
-          (consult-org-heading (:not reverse))
+        '((consult-org-heading (:not reverse))
           (consult-org-agenda (:not reverse))
           (consult-buffer (:not reverse))
           (consult-project-buffer (:not reverse))))
+
+  (setq vertico-multiform-categories '((consult-grep (:not reverse))))
   (vertico-mode)
   (vertico-multiform-mode)
   (vertico-reverse-mode))
