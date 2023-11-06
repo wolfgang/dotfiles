@@ -279,6 +279,8 @@
          ("C-x C-r" . consult-recent-file)
          ("C-z p" . consult-project-buffer))
   :config
+  ;;  hide default buffer source, use current perspective
+  (consult-customize consult--source-buffer :hidden t :default nil)
   (add-to-list 'consult-buffer-sources persp-consult-source)
   
 
