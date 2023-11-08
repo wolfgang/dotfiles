@@ -153,6 +153,8 @@
         '((consult-org-heading (:not reverse))
           (consult-org-agenda (:not reverse))
           (consult-buffer (:not reverse))
+          (consult-buffer-other-window (:not reverse))
+          (consult-buffer-other-frame (:not reverse))
           (consult-project-buffer (:not reverse))))
 
   (setq vertico-multiform-categories '((consult-grep (:not reverse))))
@@ -230,9 +232,6 @@
   :diminish projectile-mode
   :bind-keymap (("C-c p" . projectile-command-map))
   :init
-
-  
-  
   (setq projectile-enable-caching t
         projectile-indexing-method 'native
         projectile-hg-command "hg files -0 -I ."
