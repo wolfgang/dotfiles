@@ -101,6 +101,9 @@ fi
 PS1="\[\033[35m\]\[\033[32m\]\w\n[\t] \[\033[1;31m\]\u@\h: \[\033[0m\]"
 stty -ixon
 
+[ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+  source "$EAT_SHELL_INTEGRATION_DIR/bash"
+
 [ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
 
 
