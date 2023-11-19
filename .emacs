@@ -384,11 +384,8 @@
   ;; temporary to get accustom to lispy
   (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
 
-;; (use-package cider
-;;   :straight t)
-
 (use-package cider
-  :straight t
+  :ensure t
   :defer t
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil
