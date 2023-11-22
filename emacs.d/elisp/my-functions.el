@@ -9,29 +9,6 @@
       (clojure-sort-ns)
       (goto-char p))))
 
-(defun my-js-before-save-hook ()
-  (add-hook 'before-save-hook 'prettier-js))
-
-(defun my-bloom-backend-start ()
-  (interactive)
-  (cider-interactive-eval "(do (load-file \"repl/miro/lib.clj\") (lib/start))"))
-
-
-(defun my-bloom-user-data-restart ()
-  (interactive)
-  (progn
-    (cider-quit)
-    (cider-jack-in `())))
-
-(defun my-bloom-backend-stop ()
-  (interactive)
-  (cider-interactive-eval "(dev/stop)"))
-
-(defun my-bloom-backend-restart ()
-  (interactive)
-  (my-bloom-backend-stop)
-  (run-with-idle-timer 0.3 nil 'my-bloom-backend-start))
-
 (defun my-delete-line-keep-column-position ()
   "Delete current line and keep point at current column."
   (interactive)

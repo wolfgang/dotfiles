@@ -463,10 +463,11 @@
   :init
   (setq pretter-js-show-errors nil)
   :hook ((rjsx-mode . prettier-js-mode)
-         (js2-mode . prettier-js-mode)
+         ;; breaks in perspective mode somehow
+         ;; (js2-mode . prettier-js-mode)
          (json-mode . prettier-js-mode))
+  :bind (:map js2-mode-map (("C-<return>" . prettier-js)))
   :config
-  (add-hook 'prettier-js-mode 'my-js-before-save-hook)
   (setq prettier-js-args '()
         prettier-js-show-errors 'echo))
 
