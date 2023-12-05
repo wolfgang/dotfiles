@@ -198,14 +198,14 @@
 
 (use-package ef-themes
   :ensure t
-  :disabled t
   :config
-  (setq ef-themes-to-toggle '(ef-dark ef-light))
+  (setq ef-themes-to-toggle '(ef-winter ef-summer))
   (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-dark))
+  (ef-themes-select 'ef-winter))
 
 (use-package nord-theme
   :ensure t
+  :disabled t
   :config
   (load-theme 'nord :no-confirm))
 
