@@ -923,6 +923,23 @@
 
   (persp-mode))
 
+(package-install 'quelpa-use-package)
+(require 'quelpa-use-package)
+
+(use-package dogears
+  :quelpa (dogears :fetcher github :repo "alphapapa/dogears.el"
+                   :files (:defaults (:exclude "helm-dogears.el")))
+
+  :bind (:map global-map
+              ("M-g d" . dogears-go)
+              ("M-g M-b" . dogears-back)
+              ("M-g M-f" . dogears-forward)
+              ("M-g M-d" . dogears-list)
+              ("M-g M-D" . dogears-sidebar))
+
+  :config
+  (dogears-mode 1))
+
 
 ;; Manual package installations
 
