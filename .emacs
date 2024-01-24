@@ -941,7 +941,6 @@
   (dogears-mode 1))
 
 
-;; Manual package installations
 
 (straight-use-package
  '(eat :type git
@@ -952,6 +951,19 @@
                ("terminfo/65" "terminfo/65/*")
                ("integration" "integration/*")
                (:exclude ".dir-locals.el" "*-tests.el"))))
+    
+(use-package moody
+  :ensure t
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+  (moody-replace-eldoc-minibuffer-message-function))
+
+(use-package minions :ensure t
+  :config
+  (minions-mode 1))
+
 
 (define-key global-map [C-f2] #'term-toggle-term)
 
