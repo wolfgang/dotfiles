@@ -929,6 +929,9 @@
   :config
   (minions-mode 1))
 
+(use-package eyebrowse :ensure t
+  :config
+  (eyebrowse-mode 1))
 
 (define-key global-map [C-f2] #'term-toggle-term)
 
