@@ -278,11 +278,6 @@
          ("C-x C-r" . consult-recent-file)
          ("C-z p" . consult-project-buffer))
   :config
-  ;;  hide default buffer source, use current perspective
-  (consult-customize consult--source-buffer :hidden t :default nil)
-  (add-to-list 'consult-buffer-sources persp-consult-source)
-  
-
   (use-package consult-ag :ensure t))
 
 (use-package embark
@@ -463,8 +458,7 @@
   :init
   (setq pretter-js-show-errors nil)
   :hook ((rjsx-mode . prettier-js-mode)
-         ;; breaks in perspective mode somehow
-         ;; (js2-mode . prettier-js-mode)
+         (js2-mode . prettier-js-mode)
          (json-mode . prettier-js-mode))
   :bind (:map js2-mode-map (("C-<return>" . prettier-js)))
   :config
@@ -912,16 +906,6 @@
   :init
   (setq zoom-window-mode-line-color "black")
   :bind (("C-z z" . zoom-window-zoom)))
-
-(use-package perspective
-  :ensure t
-  :bind
-  ("C-x C-b" . persp-list-buffers)      ; or use a nicer switcher, see below
-  :custom
-  (persp-mode-prefix-key (kbd "C-c C-p")) ; pick your own prefix key here
-  :init
-
-  (persp-mode))
 
 (straight-use-package
  '(eat :type git
