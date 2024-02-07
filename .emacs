@@ -930,6 +930,8 @@
   (minions-mode 1))
 
 (use-package eyebrowse :ensure t
+  :init
+  (setq eyebrowse-keymap-prefix (kbd "C-z C-w"))
   :config
   (eyebrowse-mode 1))
 
