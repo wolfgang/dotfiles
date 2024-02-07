@@ -29,6 +29,13 @@
   (add-hook 'org-shiftleft-final-hook 'windmove-left)
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
+  (add-hook 'org-after-todo-state-change-hook
+	        (lambda ()
+              (if (string= "WAIT" org-state)
+                  (progn
+	                (message (concat "TODO state changed: " org-state))
+                    (insert "(<REASON>) ")))))
+  
   (load "org/config.el"))
 
 (provide 'my-org)
