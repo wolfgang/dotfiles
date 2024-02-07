@@ -931,8 +931,21 @@
 
 (use-package eyebrowse :ensure t
   :init
-  (setq eyebrowse-keymap-prefix (kbd "C-z C-w"))
+  (setq eyebrowse-keymap-prefix (kbd "C-z C-w")
+        eyebrowse-wrap-around t)
+  :bind (("C-z ." . eyebrowse-switch-to-window-config)
+         ("C-z 0" . eyebrowse-switch-to-window-config-0)
+         ("C-z 1" . eyebrowse-switch-to-window-config-1)
+         ("C-z 2" . eyebrowse-switch-to-window-config-2)
+         ("C-z 3" . eyebrowse-switch-to-window-config-3)
+         ("C-z 4" . eyebrowse-switch-to-window-config-4)
+         ("C-z 5" . eyebrowse-switch-to-window-config-5)
+         ("C-z 6" . eyebrowse-switch-to-window-config-6)
+         ("C-z 7" . eyebrowse-switch-to-window-config-7)
+         ("C-z 8" . eyebrowse-switch-to-window-config-8)
+         ("C-z 9" . eyebrowse-switch-to-window-config-9))
   :config
+  (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (eyebrowse-mode 1))
 
 (define-key global-map [C-f2] #'term-toggle-term)
