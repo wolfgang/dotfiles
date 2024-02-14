@@ -155,7 +155,8 @@
           (consult-buffer (:not reverse))
           (consult-buffer-other-window (:not reverse))
           (consult-buffer-other-frame (:not reverse))
-          (consult-project-buffer (:not reverse))))
+          (consult-project-buffer (:not reverse))
+          (projectile-find-file (:not reverse))))
 
   (setq vertico-multiform-categories '((consult-grep (:not reverse))))
   (vertico-mode)
