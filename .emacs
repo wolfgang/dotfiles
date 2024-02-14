@@ -148,20 +148,7 @@
                      #'consult-completion-in-region
                    #'completion--in-region)
                  args)))
-
-  (setq vertico-multiform-commands
-        '((consult-org-heading (:not reverse))
-          (consult-org-agenda (:not reverse))
-          (consult-buffer (:not reverse))
-          (consult-buffer-other-window (:not reverse))
-          (consult-buffer-other-frame (:not reverse))
-          (consult-project-buffer (:not reverse))
-          (projectile-find-file (:not reverse))))
-
-  (setq vertico-multiform-categories '((consult-grep (:not reverse))))
-  (vertico-mode)
-  (vertico-multiform-mode)
-  (vertico-reverse-mode))
+  (vertico-mode))
 
 
 (use-package orderless
