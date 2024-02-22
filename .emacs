@@ -138,8 +138,8 @@
 (use-package vertico
   :ensure t
   :init
-  (setq vertico-count 20
-        vertico-resize t )
+  (setq vertico-count 15
+        vertico-resize nil)
 
   ;; https://github.com/minad/vertico#completion-at-point-and-completion-in-region
   (setq completion-in-region-function
