@@ -939,8 +939,5 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (eyebrowse-mode 1))
 
-
-
-
-
-
+(use-package racket-mode
+  :ensure t)
