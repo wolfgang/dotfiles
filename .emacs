@@ -101,6 +101,9 @@
  ("C-`" . other-frame)
  ("C-z n" . make-frame))
 
+
+(define-key global-map [C-f2] #'term-toggle-term)
+
 (add-hook 'emacs-lisp-mode-hook
 	      '(lambda ()
 	         (local-set-key (kbd "RET") 'newline-and-indent)))
@@ -936,7 +939,7 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (eyebrowse-mode 1))
 
-(define-key global-map [C-f2] #'term-toggle-term)
+
 
 
 
