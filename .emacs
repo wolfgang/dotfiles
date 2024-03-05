@@ -223,6 +223,7 @@
   :diminish projectile-mode
   :bind-keymap (("C-c p" . projectile-command-map))
   :init
+  (projectile-mode)
   (setq projectile-enable-caching t
         projectile-indexing-method 'native
         projectile-hg-command "hg files -0 -I ."
@@ -230,7 +231,6 @@
         projectile-completion-system 'auto)
   :bind (("M-[" . projectile-find-file))
   :config
-  (projectile-mode)
   (--each '("target" "node_modules" ".gradle" ".clj-kondo")
     (add-to-list 'projectile-globally-ignored-directories it))
   (--each '("*-all.js")
@@ -939,5 +939,9 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (eyebrowse-mode 1))
 
-(use-package racket-mode
-  :ensure t)
+(use-package racket-mode :ensure t)
+
+(use-package org-pomodoro :ensure t)
+
+
+
