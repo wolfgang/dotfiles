@@ -76,7 +76,8 @@
       ;; Use right alt keyt for system functions (umlauts, etc)
       ns-right-alternate-modifier 'none
       auto-revert-interval 3
-      auto-revert-check-vc-info t)
+      auto-revert-check-vc-info t
+      ispell-silently-savep t)
 
 (if (eq system-type 'darwin) (progn
                                (setq ns-function-modifier 'control)
@@ -120,6 +121,42 @@
 (add-hook 'after-make-frame-functions 'show-scratch-buffer)
 
 
+(defun flyspell-on-for-buffer-type ()
+  (interactive)
+  (if (and (not (symbol-value flyspell-mode)) (use-flyspell-here))
+  (progn
+	(if (derived-mode-p 'prog-mode)
+	    (progn
+	      (message "Flyspell on (code)")
+	      (flyspell-prog-mode))
+	  (progn
+	    (message "Flyspell on (text)")
+	    (flyspell-mode 1))))))
+
+(defun use-flyspell-here ()
+  (not (derived-mode-p 'magit-mode)))
+
+(defun flyspell-toggle ()
+  (interactive)
+  (if (symbol-value flyspell-mode)
+	  (progn
+	    (message "Flyspell off")
+	    (flyspell-mode -1))
+	(flyspell-on-for-buffer-type)))
+
+(add-hook 'find-file-hook 'flyspell-on-for-buffer-type)
+;; (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type)
+
+
+(use-package ispell
+  :init
+  (setq ispell-program-name "hunspell")
+  (setq ispell-dictionary "en_US,de_AT_frami")
+  :config
+  ;; ispell-set-spellchecker-params has to be called
+  ;; before ispell-hunspell-add-multi-dic will work
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "en_US,de_AT_frami"))
 
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
