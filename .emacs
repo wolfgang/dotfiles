@@ -980,5 +980,10 @@
 
 (use-package org-pomodoro :ensure t)
 
+(use-package avy :ensure t
+  :init
+  (setq avy-timeout-seconds 10.0)
+  :bind (("M-j" . avy-goto-char-timer)))
+
 
 
