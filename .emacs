@@ -127,8 +127,7 @@
   (progn
 	(if (derived-mode-p 'prog-mode)
 	    (progn
-	      (message "Flyspell on (code)")
-	      (flyspell-prog-mode))
+	      (message "Flyspell not used (code)"))
 	  (progn
 	    (message "Flyspell on (text)")
 	    (flyspell-mode 1))))))
@@ -148,15 +147,15 @@
 ;; (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type)
 
 
-(use-package ispell
-  :init
+(with-eval-after-load "ispell"
   (setq ispell-program-name "hunspell")
   (setq ispell-dictionary "en_US,de_AT_frami")
-  :config
   ;; ispell-set-spellchecker-params has to be called
   ;; before ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
   (ispell-hunspell-add-multi-dic "en_US,de_AT_frami"))
+
+(load-library "ispell.el")
 
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
