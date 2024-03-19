@@ -147,15 +147,14 @@
 ;; (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type)
 
 
-(with-eval-after-load "ispell"
+(use-package ispell
+  :config
   (setq ispell-program-name "hunspell")
   (setq ispell-dictionary "en_US,de_AT_frami")
   ;; ispell-set-spellchecker-params has to be called
   ;; before ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
   (ispell-hunspell-add-multi-dic "en_US,de_AT_frami"))
-
-(load-library "ispell.el")
 
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
