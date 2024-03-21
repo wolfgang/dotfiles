@@ -124,13 +124,17 @@
 (defun flyspell-on-for-buffer-type ()
   (interactive)
   (if (and (not (symbol-value flyspell-mode)) (use-flyspell-here))
-  (progn
-	(if (derived-mode-p 'prog-mode)
-	    (progn
-	      (message "Flyspell not used (code)"))
-	  (progn
-	    (message "Flyspell on (text)")
-	    (flyspell-mode 1))))))
+      (progn
+	    (if (derived-mode-p 'prog-mode)
+	        (progn
+	          (message "Flyspell not used (code)"))
+	      (progn
+	        (message "Flyspell on (text)")
+            (setq ispell-program-name "hunspell")
+            (setq ispell-dictionary "en_US,de_AT_frami")
+            (ispell-set-spellchecker-params)
+            (ispell-hunspell-add-multi-dic "en_US,de_AT_frami")
+	        (flyspell-mode 1))))))
 
 (defun use-flyspell-here ()
   (not (derived-mode-p 'magit-mode)))
@@ -146,11 +150,11 @@
 (add-hook 'find-file-hook 'flyspell-on-for-buffer-type)
 ;; (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type)
 
-
 (use-package ispell
-  :config
+  :init
   (setq ispell-program-name "hunspell")
   (setq ispell-dictionary "en_US,de_AT_frami")
+  :config
   ;; ispell-set-spellchecker-params has to be called
   ;; before ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
