@@ -1,0 +1,7 @@
+# key: obsf
+# name: Shell mode with file oputput
+# --
+#+name: $1
+#+begin_src shell :shebang #!/usr/bin/env bash  :results output file :file-ext txt :output-dir ${2:output/}
+    $0          
+#+end_src

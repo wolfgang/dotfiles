@@ -694,6 +694,7 @@
   :diminish yas-minor-mode
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  :bind (("C-z y" . yas-insert-snippet))
   :config
   (yas-global-mode))
 
