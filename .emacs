@@ -100,7 +100,8 @@
  ("<end>" . mwim-end-of-code-or-line)
  ("<home>" . mwim-beginning-of-code-or-line)
  ("C-`" . other-frame)
- ("C-z n" . make-frame))
+ ("C-z n" . make-frame)
+ ("C-z C-z" . my-babel-call))
 
 
 (define-key global-map [C-f2] #'term-toggle-term)
@@ -920,8 +921,7 @@
   (setq aw-scope 'frame)
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
-(use-package ob-async
-  :ensure t)
+(use-package ob-async :ensure t)
 
 
 (use-package ace-window

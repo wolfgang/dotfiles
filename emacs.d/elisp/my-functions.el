@@ -1,5 +1,30 @@
+(defun my-babel-call ()
+  (interactive)
+  (progn
+    (let* ((context
+	        (org-element-lineage
+	         (org-element-context)
+	         ;; Limit to supported contexts.
+	         '(babel-call clock dynamic-block footnote-definition
+			              footnote-reference inline-babel-call inline-src-block
+			              inlinetask item keyword node-property paragraph
+			              plain-list planning property-drawer radio-target
+			              src-block statistics-cookie table table-cell table-row
+			              timestamp)
+	         t)) 
+           (type (org-element-type context)))
+      (if (or (eq type 'babel-call ) (eq type 'inline-babel-call))
+          (progn
+            (advice-remove 'org-babel-execute-src-block  'ob-async-org-babel-execute-src-block)
+            (let ((info (org-babel-lob-get-info context)))
+	          (when info (org-babel-execute-src-block nil info nil type)))
+            (advice-add 'org-babel-execute-src-block :around 'ob-async-org-babel-execute-src-block))))))
+
+
 (defun my-clojure-before-save-hook ()
-    (add-hook 'before-save-hook 'my-clojure-format-buffer nil 'local))
+  (add-hook 'before-save-hook 'my-clojure-format-buffer nil 'local))
+
+
 
 (defun my-clojure-format-buffer ()
   (interactive)
