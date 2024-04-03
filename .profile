@@ -1,13 +1,19 @@
-export GOPATH=~/go
-export GOBIN=$GOPATH/bin
+# Avoid duplicate entries in $PATH
+function addToPATH {
+  case ":$PATH:" in
+    *":$1:"*) :;; # already there
+    *) PATH="$1:$PATH";; # or PATH="$PATH:$1"
+  esac
+}
+
 export NVM_DIR="$HOME/.nvm"                                                                                           
 export EDITOR=vi
 export HISTIGNORE="exit:ls:shutdown:reboot"
-export PATH=$PATH:$GOBIN
-export PATH=$PATH:$HOME/bin
-export PATH="$PATH:/sbin"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+
+addToPATH /sbin
+addToPATH "$HOME/.yarn/bin"
+addToPATH "$HOME/.config/yarn/global/node_modules/.bin"
+addToPATH "$HOME/.cargo/bin"
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm                                             
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # T
@@ -16,3 +22,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Call .bashrc if this is an interative shell
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
+
+echo +++++ Called .profile DATE=$(date) PATH=$PATH >> ~/profile_calls.log
