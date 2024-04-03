@@ -10,7 +10,6 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR=vi
 export HISTIGNORE="exit:ls:shutdown:reboot"
 
-addToPATH /sbin
 addToPATH "$HOME/.yarn/bin"
 addToPATH "$HOME/.config/yarn/global/node_modules/.bin"
 addToPATH "$HOME/.cargo/bin"
