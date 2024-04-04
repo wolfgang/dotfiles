@@ -401,7 +401,8 @@
          (emacs-lisp-mode . lispy-mode)
          (common-lisp-mode . lispy-mode)
          (scheme-mode . lispy-mode)
-         (lisp-mode . lispy-mode))
+         (lisp-mode . lispy-mode)
+         (racket-mode . lispy-mode))
   :init
   (setq lispy-compat '(cider)
         lispy-key-theme '(special parinfer c-digits))
@@ -979,7 +980,12 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (eyebrowse-mode 1))
 
-(use-package racket-mode :ensure t)
+(use-package racket-mode
+  :ensure t
+  :diminish racket-xp-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+  (add-hook 'racket-mode-hook 'racket-xp-mode))
 
 (use-package org-pomodoro :ensure t)
 
