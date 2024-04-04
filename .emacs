@@ -983,6 +983,9 @@
 (use-package racket-mode
   :ensure t
   :diminish racket-xp-mode
+  :bind
+  (:map racket-mode-map
+        ("C-c r e" . racket-eval-last-sexp))
   :config
   (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
   (add-hook 'racket-mode-hook 'racket-xp-mode))
