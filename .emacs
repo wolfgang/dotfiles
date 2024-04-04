@@ -601,11 +601,13 @@
                         (embark-collect-mode :select t :align right)
                         ("Embark Actions" :select t :align right)
                         ("*Help*" :select t :align below)
+                        (racket-describe-mode :select t :align below)
                         ("*cider-test-report*" :select t :align below)
                         ("*cider-error*"  :align below)
                         ("*cider-result*"  :align below :size 0.3)
                         ("*Flycheck errors*" :select t :align below)
                         (cider-repl-mode :select t :align below :size 0.4)
+                        (racket-repl-mode :align below :size 0.3)
                         (godot-mode :select f :align below :size 0.3)))
   (shackle-mode 1))
 
