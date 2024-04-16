@@ -987,7 +987,7 @@
   (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
   (add-hook 'racket-mode-hook 'racket-xp-mode))
 
-(use-package org-pomodoro :ensure t)
+
 
 (use-package avy :ensure t
   :init

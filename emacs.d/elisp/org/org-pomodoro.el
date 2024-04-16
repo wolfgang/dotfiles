@@ -411,7 +411,7 @@ invokes the handlers for finishing."
   (when (and (not (org-pomodoro-active-p)) org-pomodoro-timer)
     (org-pomodoro-reset))
   (when (org-pomodoro-active-p)
-    (setq org-pomodoro-countdown (- org-pomodoro-countdown 1))
+    (setq org-pomodoro-countdown (- org-pomodoro-countdown 5))
     (when (< org-pomodoro-countdown 1)
       (cl-case org-pomodoro-state
         (:pomodoro (org-pomodoro-finished))
@@ -430,7 +430,7 @@ invokes the handlers for finishing."
             (:pomodoro (* 60 org-pomodoro-length))
             (:short-break (* 60 org-pomodoro-short-break-length))
             (:long-break (* 60 org-pomodoro-long-break-length)))
-        org-pomodoro-timer (run-with-timer t 1 'org-pomodoro-tick)))
+        org-pomodoro-timer (run-with-timer t 5 'org-pomodoro-tick)))
 
 (defun org-pomodoro-start (&optional state)
   "Start the `org-pomodoro` timer.
