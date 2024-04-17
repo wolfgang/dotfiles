@@ -497,10 +497,11 @@ This may send a notification, play a sound and adds log."
 This may send a notification and play a sound."
   (when org-pomodoro-clock-break
     (org-clock-out nil t))
-  (org-pomodoro-reset)
-  (org-pomodoro-notify "Short break finished." "Ready for another pomodoro?")
-  (org-pomodoro-maybe-play-sound :short-break)
-  (run-hooks 'org-pomodoro-break-finished-hook 'org-pomodoro-short-break-finished-hook))
+  (when (> org-pomodoro-short-break-length 0)
+    (org-pomodoro-reset)
+    (org-pomodoro-notify "Short break finished." "Ready for another pomodoro?")
+    (org-pomodoro-maybe-play-sound :short-break)
+    (run-hooks 'org-pomodoro-break-finished-hook 'org-pomodoro-short-break-finished-hook)))
 
 (defun org-pomodoro-long-break-finished ()
   "Is invoked when a long break is finished.
