@@ -21,7 +21,8 @@
         org-complete-tags-always-offer-all-agenda-tags t
         org-hide-emphasis-markers t
         org-special-ctrl-a/e t
-        org-pretty-entities t)
+        org-pretty-entities t
+        org-pretty-entities-include-sub-superscripts nil)
   :bind (:map org-mode-map (( "C-M-<return>" . org-insert-heading-respect-content)
                             ("C-c r" . avy-org-refile-as-child))
               )
