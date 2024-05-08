@@ -21,5 +21,3 @@ addToPATH "$HOME/.cargo/bin"
 
 # Call .bashrc if this is an interative shell
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
-
-echo +++++ Called .profile DATE=$(date) PATH=$PATH >> ~/profile_calls.log
