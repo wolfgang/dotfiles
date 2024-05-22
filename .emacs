@@ -999,5 +999,37 @@
   (setq avy-timeout-seconds 10.0)
   :bind (("M-j" . avy-goto-char-timer)))
 
+(use-package hammy
+  :ensure t
+  :config
+  (global-set-key (kbd "<f9>") 'hammy-start-org-clock-in)
+  (global-set-key (kbd "M-<f9>") 'hammy-next)
+  (global-set-key (kbd "C-<f9>") 'hammy-stop)
+  (setq hammy-hammys '())
+  (hammy-mode)
+
+  (hammy-define (propertize "🍅" 'face '(:foreground "tomato"))
+    :documentation "The classic pomodoro timer."
+    :intervals
+    (list
+     (interval :name "Work"
+               :duration "25 minutes"
+               :before (do (alert "Starting work" :title "Pomodoro" :category 'work-timer)
+                           (announce "Starting work time."))
+               :after (do (alert "Break time" :title "Pomodoro" :category 'work-timer)
+                          (announce "Break time!")))
+     (interval :name "Break"
+               :duration (do (if (and (not (zerop cycles))
+                                      (zerop (mod cycles 3)))
+                                 ;; If a multiple of three cycles have
+                                 ;; elapsed, the fourth work period was
+                                 ;; just completed, so take a longer break.
+                                 "30 minutes"
+                               "5 minutes"))
+               :before (do (announce "Starting break time."))
+               :advance (do (alert "Break time is over!" :title "Pomodoro" :category 'work-timer)
+                            (announce "Break time is over!")))
+     ))
+  )
 
 
