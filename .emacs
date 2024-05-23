@@ -1005,19 +1005,24 @@
   (global-set-key (kbd "<f9>") 'hammy-start-org-clock-in)
   (global-set-key (kbd "M-<f9>") 'hammy-next)
   (global-set-key (kbd "C-<f9>") 'hammy-stop)
-  (setq hammy-hammys '())
-  (hammy-mode)
 
+  (setq hammy-hammys '())
+  (add-to-list 'hammy-stopped (lambda (hammy) (cancel-timer hammy-pomodoro-timer)))
+  
+  (hammy-mode)
+  
   (hammy-define (propertize "🍅" 'face '(:foreground "tomato"))
     :documentation "The classic pomodoro timer."
     :intervals
     (list
      (interval :name "Work"
                :duration "25 minutes"
-               :before (do (alert "Starting work" :title "Pomodoro" :category 'work-timer)
-                           (announce "Starting work time."))
-               :after (do (alert "Break time" :title "Pomodoro" :category 'work-timer)
-                          (announce "Break time!")))
+               :before (do (setq hammy-pomodoro-timer (run-with-timer 300 300 (lambda () (alert (hammy-format-current-times (car hammy-active)) :title "Pomodoro" :category 'work-timer) )))
+                           (alert "Starting work" :title "Pomodoro" :category 'work-timer)
+                         (announce "Starting work time."))
+               :after (do (cancel-timer hammy-pomodoro-timer)
+                          (alert "Break time" :title "Pomodoro" :category 'work-timer)
+                        (announce "Break time!")))
      (interval :name "Break"
                :duration (do (if (and (not (zerop cycles))
                                       (zerop (mod cycles 3)))
