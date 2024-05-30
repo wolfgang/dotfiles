@@ -1017,11 +1017,14 @@
     (list
      (interval :name "Work"
                :duration "25 minutes"
-               :before (do (setq hammy-pomodoro-timer (run-with-timer 300 300 (lambda () (alert (hammy-format-current-times (car hammy-active)) :title "Pomodoro" :category 'work-timer) )))
-                           (alert "Starting work" :title "Pomodoro" :category 'work-timer)
+               :before (do (setq hammy-pomodoro-timer (run-with-timer
+                                                       300 300
+                                                       (lambda ()
+                                                         (notifications-notify :body (hammy-format-current-times (car hammy-active)) :title "Pomodoro") )))
+                           (notifications-notify :body "Starting work" :title "Pomodoro")
                          (announce "Starting work time."))
                :after (do (cancel-timer hammy-pomodoro-timer)
-                          (alert "Break time" :title "Pomodoro" :category 'work-timer)
+                          (notifications-notify :body "Break time" :title "Pomodoro")
                         (announce "Break time!")))
      (interval :name "Break"
                :duration (do (if (and (not (zerop cycles))
@@ -1034,7 +1037,6 @@
                :before (do (announce "Starting break time."))
                :advance (do (alert "Break time is over!" :title "Pomodoro" :category 'work-timer)
                             (announce "Break time is over!")))
-     ))
-  )
+     )))
 
 
