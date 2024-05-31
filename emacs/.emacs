@@ -569,7 +569,9 @@
         lsp-ui-sideline-show-code-actions nil
         lsp-ui-peek-show-directory nil
         lsp-ui-sideline-show-hover nil
-        lsp-ui-doc-show-with-cursor nil)
+        lsp-ui-doc-show-with-cursor nil
+        lsp-ui-sideline-show-diagnostics nil
+        lsp-ui-doc-enable nil)
   :bind (:map lsp-ui-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-ui-peek-find-references))
