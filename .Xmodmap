@@ -1,5 +1,0 @@
-! Map Caps Lock as addition ctrl key
-clear lock
-clear control
-add control = Caps_Lock Control_L Control_R
-keycode 90 = Control_L
