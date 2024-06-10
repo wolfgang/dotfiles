@@ -1,7 +1,8 @@
-(define-package "hammy" "0.2.1" "Programmable, interactive interval timers"
+(define-package "hammy" "0.3" "Programmable, interactive interval timers"
   '((emacs "28.1")
+    (svg-lib "0.2.5")
     (ts "0.2.2"))
-  :commit "84c0f14e2fcbaa36dfbf2986d44e672d028fa2e6" :authors
+  :commit "d5d154060bb13e9b61d74a83b25a12238973099d" :authors
   '(("Adam Porter" . "adam@alphapapa.net"))
   :maintainers
   '(("Adam Porter" . "adam@alphapapa.net"))
