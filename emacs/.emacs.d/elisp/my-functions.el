@@ -89,5 +89,10 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
    (kmacro-lambda-form [f6 ?S ?q] 0 "%d"))
 
 
+(defun my-notify (body title)
+  (if (eq system-type 'darwin)
+      (alert body :title title)
+    (notifications-notify :body body :title title ) ))
+
 
 (provide `my-functions)
