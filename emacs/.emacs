@@ -101,6 +101,7 @@
  ("<home>" . mwim-beginning-of-code-or-line)
  ("C-`" . other-frame)
  ("C-z n" . make-frame)
+ ("C-z m" . mc/mark-all-dwim)
  ("C-z C-z" . my-babel-call))
 
 
