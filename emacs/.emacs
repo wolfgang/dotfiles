@@ -888,6 +888,7 @@
          ("C-c n b" . denote-backlinks))
   :init
   (setq aw-scope 'frame)
+  (setq denote-prompts '(title))
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
 (use-package ob-async :ensure t)
