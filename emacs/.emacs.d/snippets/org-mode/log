@@ -2,7 +2,6 @@
 # name: org-log
 # key: log
 # --
-* LOG
-  #+BEGIN: clocktable :scope file :maxlevel 5 :compact t :narrow 80 :block untilnow
-  #+CAPTION: Clock summary at [2022-12-25 Sun 14:56], for now.
-  #+END
+#+BEGIN: clocktable :scope subtree :maxlevel 5 :compact t :narrow 80 :block untilnow
+#+CAPTION: Clock summary at [2022-12-25 Sun 14:56], for now.
+#+END

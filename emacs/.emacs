@@ -953,7 +953,8 @@
   :diminish racket-xp-mode
   :bind
   (:map racket-mode-map
-        ("C-c r e" . racket-eval-last-sexp))
+        ("C-c r e" . racket-eval-last-sexp)
+        ("C-c C-r" . racket-run))
   :config
   (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
   (add-hook 'racket-mode-hook 'racket-xp-mode))
