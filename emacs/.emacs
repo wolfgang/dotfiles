@@ -884,11 +884,23 @@
   :straight t
   :bind (("C-c n n" . denote)
          ("C-c n o" . denote-open-or-create)
-         ("C-c n l" . denote-link)
-         ("C-c n b" . denote-backlinks))
+         ("C-c n l" . denote-link-or-create)
+         ("C-c n b" . denote-backlinks)
+         ("C-c n r" . my-denote-create-rpong-devlog))
   :init
+  (setq denote-link-backlinks-display-buffer-action
+        '((display-buffer-reuse-window
+         display-buffer-in-side-window)
+        (side . bottom)
+        (slot . 99)
+        (window-height . 0.4)
+        (dedicated . t)
+        (preserve-size . (t . t))))
+
+  (setq denote-templates
+        '((rpong-devlog . "[[denote:20240617T161853][RPONG Devlog Index]]\n\n" )))
   (setq aw-scope 'frame)
-  (setq denote-prompts '(title))
+  (setq denote-prompts '(title keywords))
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
 (use-package ob-async :ensure t)
