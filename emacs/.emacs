@@ -608,10 +608,11 @@
                         ("*cider-test-report*" :select t :align below)
                         ("*cider-error*"  :align below)
                         ("*cider-result*"  :align below :size 0.3)
+                        ("*cargo-run*"  :align below :size 0.3)
                         ("*Flycheck errors*" :select t :align below)
                         (cider-repl-mode :select t :align below :size 0.4)
                         (racket-repl-mode :align below :size 0.3)
-                        (godot-mode :select f :align below :size 0.3)))
+                        (godot-mode :align below :size 0.3)))
   (shackle-mode 1))
 
 
@@ -886,7 +887,7 @@
          ("C-c n o" . denote-open-or-create)
          ("C-c n l" . denote-link-or-create)
          ("C-c n b" . denote-backlinks)
-         ("C-c n r" . my-denote-create-rpong-devlog))
+         ("C-c n r" . my-denote-create-devlog))
   :init
   (setq denote-link-backlinks-display-buffer-action
         '((display-buffer-reuse-window
@@ -898,7 +899,7 @@
         (preserve-size . (t . t))))
 
   (setq denote-templates
-        '((rpong-devlog . "[[denote:20240617T161853][RPONG Devlog Index]]\n\n" )))
+        '((devlog . "[[denote:20240617T161853][Devlog Index]]\n\n" )))
   (setq aw-scope 'frame)
   (setq denote-prompts '(title keywords))
   (add-hook 'dired-mode-hook #'denote-dired-mode))

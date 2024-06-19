@@ -95,13 +95,13 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
     (notifications-notify :body body :title title ) ))
 
 
-(defun my-denote-create-rpong-devlog ()
+(defun my-denote-create-devlog ()
   (interactive)
   (let ((date-string (format-time-string "%Y-%m-%d") ))
-    (denote (format "RPONG Devlog %s" date-string)
-            '("dev" "racket" "rpong")
+    (denote (format "Devlog %s" date-string)
+            '("devlog")
             nil nil nil
-            'rpong-devlog)))
+            'devlog)))
 
 (provide `my-functions)
 
