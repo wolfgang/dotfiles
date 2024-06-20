@@ -887,7 +887,8 @@
          ("C-c n o" . denote-open-or-create)
          ("C-c n l" . denote-link-or-create)
          ("C-c n b" . denote-backlinks)
-         ("C-c n r" . my-denote-create-devlog))
+         ("C-c n d" . my-denote-create-devlog)
+         ("C-c n j" . denote-journal-extras-new-entry))
   :init
   (setq denote-link-backlinks-display-buffer-action
         '((display-buffer-reuse-window
