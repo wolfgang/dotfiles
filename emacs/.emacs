@@ -723,20 +723,20 @@
 
 
 ;; Problems with tsc-dynlib on different platforms, disabled for now
-(use-package tree-sitter
-  :ensure nil
-  :disabled t
-  :config
-  ;; activate tree-sitter on any buffer containing code for which it has a parser available
-  (global-tree-sitter-mode)
-  ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
-  ;; by switching on and off
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+;; (use-package tree-sitter
+;;   :ensure nil
+;;   :disabled t
+;;   :config
+;;   ;; activate tree-sitter on any buffer containing code for which it has a parser available
+;;   (global-tree-sitter-mode)
+;;   ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
+;;   ;; by switching on and off
+;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-(use-package tree-sitter-langs
-  :ensure nil
-  :disabled t
-  :after tree-sitter)
+;; (use-package tree-sitter-langs
+;;   :ensure nil
+;;   :disabled t
+;;   :after tree-sitter)
 
 (defun setup-tide-mode ()
   (interactive)
@@ -1021,4 +1021,10 @@
                             (announce "Break time is over!")))
      )))
 
+(straight-use-package
+ '(unison-ts-mode :type git
+                  :host github
+                  :repo "fmguerreiro/unison-ts-mode"
+                  :files ("*.el")))
 
+(setq treesit-language-source-alist '((unison "https://github.com/fmguerreiro/tree-sitter-unison-kylegoetz" "build/include-parser-in-src-control")))
