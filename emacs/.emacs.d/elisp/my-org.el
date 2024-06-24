@@ -34,6 +34,7 @@
   (add-hook 'org-shiftleft-final-hook 'windmove-left)
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
+  (add-to-list 'safe-local-variable-values '(org-confirm-babel-evaluate))
   (add-hook 'org-after-todo-state-change-hook
 	        (lambda ()
               (if (string= "WAIT" org-state)
