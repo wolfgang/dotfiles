@@ -437,6 +437,7 @@ invokes the handlers for finishing."
 The argument STATE is optional.  The default state is `:pomodoro`."
   (when org-pomodoro-timer (cancel-timer org-pomodoro-timer))
 
+  (org-pomodoro-notify "Pomodoro started" "It's on!" )
   ;; add the org-pomodoro-mode-line to the global-mode-string
   (unless global-mode-string (setq global-mode-string '("")))
   (unless (memq 'org-pomodoro-mode-line global-mode-string)
@@ -462,7 +463,7 @@ The argument STATE is optional.  The default state is `:pomodoro`."
 
 (defun org-pomodoro-notify (title message)
   "Send a notification with TITLE and MESSAGE using `alert'."
-  (alert message :title title :category 'org-pomodoro))
+  (my-notify message title ))
 
 ;; Handlers for pomodoro events.
 

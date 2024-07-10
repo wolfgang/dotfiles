@@ -48,6 +48,7 @@
 (scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (windmove-default-keybindings)
+(electric-pair-mode)
 
 (setq-default tab-width      4
               fill-column    80
@@ -984,7 +985,8 @@
   :bind (("M-j" . avy-goto-char-timer)))
 
 (use-package hammy
-  :ensure t
+  :ensure nil
+  :disabled t
   :config
   (global-set-key (kbd "<f9>") 'hammy-start-org-clock-in)
   (global-set-key (kbd "M-<f9>") 'hammy-next)
@@ -1020,9 +1022,7 @@
                                "5 minutes"))
                :before (do (announce "Starting break time."))
                :advance (do (my-notify "Break time is over!" "Pomodoro")
-                            (announce "Break time is over!")))
-     )))
-
+                            (announce "Break time is over!"))))))
 (straight-use-package
  '(unison-ts-mode :type git
                   :host github

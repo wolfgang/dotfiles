@@ -12,7 +12,7 @@
 (load "agenda_custom_commands.el")
 (load "alert-config.el")
 (load "refile.el")
-;; (load "org-pomodoro-config.el")
+(load "org-pomodoro-config.el")
 
 (require 'org-helpers)
 

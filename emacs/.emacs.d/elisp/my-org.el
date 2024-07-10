@@ -25,8 +25,7 @@
         org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
         org-pretty-entities-include-sub-superscripts nil)
   :bind (:map org-mode-map (( "C-M-<return>" . org-insert-heading-respect-content)
-                            ("C-c r" . avy-org-refile-as-child))
-              )
+                            ("C-c r" . avy-org-refile-as-child)))
   :config
   ;; This enables windmove keys to work in org mode
   ;; See https://orgmode.org/manual/Conflicts.html
@@ -34,6 +33,7 @@
   (add-hook 'org-shiftleft-final-hook 'windmove-left)
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
+  (global-set-key (kbd "<f9>") 'org-pomodoro)
   (add-to-list 'safe-local-variable-values '(org-confirm-babel-evaluate))
   (add-hook 'org-after-todo-state-change-hook
 	        (lambda ()
