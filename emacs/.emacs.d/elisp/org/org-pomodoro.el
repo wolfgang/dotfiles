@@ -312,6 +312,10 @@ or :break when starting a break.")
 (defvar org-pomodoro-ticks-since-notification 0
   "Number of ticks since last intermittent notification.")
 
+(defvar org-pomodoro-start-time 0
+  "Time of pomodoro start")
+
+
 ;;; Internal
 
 ;; Helper Functions
@@ -414,20 +418,23 @@ invokes the handlers for finishing."
   (when (and (not (org-pomodoro-active-p)) org-pomodoro-timer)
     (org-pomodoro-reset))
   (when (org-pomodoro-active-p)
-    (setq org-pomodoro-countdown (- org-pomodoro-countdown 1))
-    (when (< org-pomodoro-countdown 1)
-      (cl-case org-pomodoro-state
-        (:pomodoro (org-pomodoro-finished))
-        (:short-break (org-pomodoro-short-break-finished))
-        (:long-break (org-pomodoro-long-break-finished))))
-    (setq org-pomodoro-ticks-since-notification (+ 1 org-pomodoro-ticks-since-notification))
-    (when (> org-pomodoro-ticks-since-notification 300 )
-      (setq org-pomodoro-ticks-since-notification 0)
-      (org-pomodoro-notify "Pomodoro progress" (format "%d Minutes left" (ceiling (/ (float org-pomodoro-countdown) 60.0)))))
-    (run-hooks 'org-pomodoro-tick-hook)
-    (org-pomodoro-update-mode-line)
-    (when (member org-pomodoro-state org-pomodoro-ticking-sound-states)
-      (org-pomodoro-maybe-play-sound :tick))))
+    (let* ((now (float-time))
+           (round-secs (round (- now org-pomodoro-start-time))))
+      (setq org-pomodoro-countdown  (- (* org-pomodoro-length 60) round-secs))
+      (when (< org-pomodoro-countdown 1)
+        (cl-case org-pomodoro-state
+          (:pomodoro (org-pomodoro-finished))
+          (:short-break (org-pomodoro-short-break-finished))
+          (:long-break (org-pomodoro-long-break-finished))))
+      (setq org-pomodoro-ticks-since-notification (+ 1 org-pomodoro-ticks-since-notification))
+      (when (> org-pomodoro-ticks-since-notification 300 )
+        (setq org-pomodoro-ticks-since-notification 0)
+        (org-pomodoro-notify "Pomodoro progress" (format "%d Minutes left" (ceiling (/ (float org-pomodoro-countdown) 60.0)))))
+      (run-hooks 'org-pomodoro-tick-hook)
+      (org-pomodoro-update-mode-line)
+      (when (member org-pomodoro-state org-pomodoro-ticking-sound-states)
+        (org-pomodoro-maybe-play-sound :tick)))))
+
 
 (defun org-pomodoro-set (state)
   "Set the org-pomodoro STATE."
@@ -444,8 +451,6 @@ invokes the handlers for finishing."
 The argument STATE is optional.  The default state is `:pomodoro`."
   (when org-pomodoro-timer (cancel-timer org-pomodoro-timer))
 
-  (org-pomodoro-notify "Pomodoro started" "It's on!" )
-  (setq org-pomodoro-ticks-since-notification 0)
   ;; add the org-pomodoro-mode-line to the global-mode-string
   (unless global-mode-string (setq global-mode-string '("")))
   (unless (memq 'org-pomodoro-mode-line global-mode-string)
@@ -455,6 +460,9 @@ The argument STATE is optional.  The default state is `:pomodoro`."
   (org-pomodoro-set (or state :pomodoro))
 
   (when (eq org-pomodoro-state :pomodoro)
+    (org-pomodoro-notify "Pomodoro started" "It's on!" )
+    (setq org-pomodoro-ticks-since-notification 0)
+    (setq org-pomodoro-start-time (float-time))
     (org-pomodoro-maybe-play-sound :start)
     (run-hooks 'org-pomodoro-started-hook))
   (org-pomodoro-update-mode-line)
