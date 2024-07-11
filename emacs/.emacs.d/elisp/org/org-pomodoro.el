@@ -309,6 +309,9 @@ or :break when starting a break.")
 (defvar org-pomodoro-last-clock-in nil
   "The last time the pomodoro was set.")
 
+(defvar org-pomodoro-ticks-since-notification 0
+  "Number of ticks since last intermittent notification.")
+
 ;;; Internal
 
 ;; Helper Functions
@@ -411,12 +414,16 @@ invokes the handlers for finishing."
   (when (and (not (org-pomodoro-active-p)) org-pomodoro-timer)
     (org-pomodoro-reset))
   (when (org-pomodoro-active-p)
-    (setq org-pomodoro-countdown (- org-pomodoro-countdown 5))
+    (setq org-pomodoro-countdown (- org-pomodoro-countdown 1))
     (when (< org-pomodoro-countdown 1)
       (cl-case org-pomodoro-state
         (:pomodoro (org-pomodoro-finished))
         (:short-break (org-pomodoro-short-break-finished))
         (:long-break (org-pomodoro-long-break-finished))))
+    (setq org-pomodoro-ticks-since-notification (+ 1 org-pomodoro-ticks-since-notification))
+    (when (> org-pomodoro-ticks-since-notification 300 )
+      (setq org-pomodoro-ticks-since-notification 0)
+      (org-pomodoro-notify "Pomodoro progress" (format "%d Minutes left" (ceiling (/ (float org-pomodoro-countdown) 60.0)))))
     (run-hooks 'org-pomodoro-tick-hook)
     (org-pomodoro-update-mode-line)
     (when (member org-pomodoro-state org-pomodoro-ticking-sound-states)
@@ -426,11 +433,11 @@ invokes the handlers for finishing."
   "Set the org-pomodoro STATE."
   (setq org-pomodoro-state state
         org-pomodoro-countdown
-          (cl-case state
-            (:pomodoro (* 60 org-pomodoro-length))
-            (:short-break (* 60 org-pomodoro-short-break-length))
-            (:long-break (* 60 org-pomodoro-long-break-length)))
-        org-pomodoro-timer (run-with-timer t 5 'org-pomodoro-tick)))
+        (cl-case state
+          (:pomodoro (* 60 org-pomodoro-length))
+          (:short-break (* 60 org-pomodoro-short-break-length))
+          (:long-break (* 60 org-pomodoro-long-break-length)))
+        org-pomodoro-timer (run-with-timer t 1 'org-pomodoro-tick)))
 
 (defun org-pomodoro-start (&optional state)
   "Start the `org-pomodoro` timer.
@@ -438,6 +445,7 @@ The argument STATE is optional.  The default state is `:pomodoro`."
   (when org-pomodoro-timer (cancel-timer org-pomodoro-timer))
 
   (org-pomodoro-notify "Pomodoro started" "It's on!" )
+  (setq org-pomodoro-ticks-since-notification 0)
   ;; add the org-pomodoro-mode-line to the global-mode-string
   (unless global-mode-string (setq global-mode-string '("")))
   (unless (memq 'org-pomodoro-mode-line global-mode-string)
