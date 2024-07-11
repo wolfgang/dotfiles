@@ -36,6 +36,8 @@
   (require 'use-package))
 
 (require 'cl)
+(require 'notifications) ;; for (notifications-notify)
+
 (global-auto-revert-mode 1)
 (global-font-lock-mode 1)
 (transient-mark-mode 1)
