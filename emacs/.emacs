@@ -893,6 +893,7 @@
   :bind (("C-c n n" . denote)
          ("C-c n o" . denote-open-or-create)
          ("C-c n l" . denote-link-or-create)
+         ("C-c n h" . denote-org-extras-link-to-heading)
          ("C-c n b" . denote-backlinks)
          ("C-c n d" . my-denote-create-devlog)
          ("C-c n j" . denote-journal-extras-new-entry))
