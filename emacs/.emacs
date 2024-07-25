@@ -244,7 +244,8 @@
   :config
   (load-theme 'nord :no-confirm))
 
-(use-package smart-mode-linensure t
+(use-package smart-mode-line
+  :ensure t
   :hook ((after-init . sml/setup))
   :config
   (setq sml/theme 'respecful))
