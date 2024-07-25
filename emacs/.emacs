@@ -236,7 +236,7 @@
   :config
   (setq ef-themes-to-toggle '(ef-winter ef-summer))
   (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-winter))
+  (ef-themes-select 'ef-maris-dark))
 
 (use-package nord-theme
   :ensure t
@@ -244,8 +244,7 @@
   :config
   (load-theme 'nord :no-confirm))
 
-(use-package smart-mode-line
-  :ensure t
+(use-package smart-mode-linensure t
   :hook ((after-init . sml/setup))
   :config
   (setq sml/theme 'respecful))
