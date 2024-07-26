@@ -1,6 +1,9 @@
 
 format = '$all$username$hostname$character'
 
+[character]
+success_symbol = '[❱](green) '
+error_symbol = '[](bold red) '
 
 
 [username]
@@ -11,6 +14,7 @@ format='[$user]($style)@'
 disabled = false
 format = '[$time](fg:green) '
 [aws]
+disabled=true
 format = '[$symbol$region (\[$duration\] )]($style)'
 
 [buf]
