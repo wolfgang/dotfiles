@@ -86,8 +86,7 @@
                             ,skip-used-timeslots))
                 ,active-projects
                 ,next-actions
-                ,all-waiting-fors
-                ,all-todos))
+                ,all-waiting-fors))
 
   ("w" "Week" (,week-agenda))
 
