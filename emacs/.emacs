@@ -980,6 +980,7 @@
         ("C-c C-r" . racket-run))
   :config
   (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+  (setq racket-show-functions '())
   (add-hook 'racket-mode-hook 'racket-xp-mode))
 
 
