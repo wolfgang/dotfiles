@@ -105,6 +105,7 @@
  ("C-`" . other-frame)
  ("C-z n" . make-frame)
  ("C-z m" . mc/mark-all-dwim)
+ ("C-z t" . my-insert-now)
  ("C-z C-z" . my-babel-call))
 
 
@@ -1034,5 +1035,28 @@
                   :host github
                   :repo "fmguerreiro/unison-ts-mode"
                   :files ("*.el")))
+
+(use-package casual-info
+  :ensure t
+  :bind (:map Info-mode-map ("C-o" . 'casual-info-tmenu)))
+
+(use-package ibuffer
+  :hook (ibuffer-mode . ibuffer-auto-mode)
+  :defer t)
+(use-package casual-ibuffer
+  :ensure t
+  :bind (:map
+         ibuffer-mode-map
+         ("C-o" . casual-ibuffer-tmenu)
+         ("F" . casual-ibuffer-filter-tmenu)
+         ("s" . casual-ibuffer-sortby-tmenu)
+         ("<double-mouse-1>" . ibuffer-visit-buffer) ; optional
+         ("M-<double-mouse-1>" . ibuffer-visit-buffer-other-window) ; optional
+         ("{" . ibuffer-backwards-next-marked) ; optional
+         ("}" . ibuffer-forward-next-marked)   ; optional
+         ("[" . ibuffer-backward-filter-group) ; optional
+         ("]" . ibuffer-forward-filter-group)  ; optional
+         ("$" . ibuffer-toggle-filter-group))  ; optional
+  :after (ibuffer))
 
 (setq treesit-language-source-alist '((unison "https://github.com/fmguerreiro/tree-sitter-unison-kylegoetz" "build/include-parser-in-src-control")))
