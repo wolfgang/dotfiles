@@ -107,3 +107,5 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   "Insert string for the current time formatted like '2:34 PM'."
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M")))
+
+(provide 'my-functions)
