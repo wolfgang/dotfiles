@@ -620,7 +620,8 @@
                         ("*Flycheck errors*" :select t :align below)
                         (cider-repl-mode :select t :align below :size 0.4)
                         (racket-repl-mode :align below :size 0.3)
-                        (godot-mode :align below :size 0.3)))
+                        (godot-mode :align below :size 0.3)
+                        ("*Warnings*" :ignore t)))
   (shackle-mode 1))
 
 
@@ -1060,3 +1061,8 @@
   :after (ibuffer))
 
 (setq treesit-language-source-alist '((unison "https://github.com/fmguerreiro/tree-sitter-unison-kylegoetz" "build/include-parser-in-src-control")))
+
+(use-package mindstream
+  :ensure t
+  :config
+  (mindstream-mode))
