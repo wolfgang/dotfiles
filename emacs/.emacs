@@ -234,6 +234,7 @@
 
 (use-package ef-themes
   :ensure t
+  :disabled t
   :config
   (setq ef-themes-to-toggle '(ef-winter ef-summer))
   (mapc #'disable-theme custom-enabled-themes)
@@ -250,6 +251,11 @@
   :hook ((after-init . sml/setup))
   :config
   (setq sml/theme 'respecful))
+
+(use-package standard-themes
+  :straight t
+  :config
+  (standard-themes-load-dark))
 
 (use-package diminish
   :ensure t
