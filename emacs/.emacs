@@ -419,10 +419,11 @@
   :init
   (setq lispy-compat '(cider)
         lispy-key-theme '(special parinfer c-digits))
-
+  
   ;; https://github.com/abo-abo/lispy/pull/403
   ;; temporary to get accustom to lispy
   (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
+
 
 (use-package cider
   :ensure t
@@ -989,7 +990,9 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
   (setq racket-show-functions '())
-  (add-hook 'racket-mode-hook 'racket-xp-mode))
+  (add-hook 'racket-mode-hook 'racket-xp-mode)
+  ;; electric-pair-mode breaks barf-to-point and adds newline when cloning sexp
+  (add-hook 'racket-mode-hook (lambda () (electric-pair-mode 0))))
 
 
 
