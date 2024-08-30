@@ -196,6 +196,13 @@
                      #'consult-completion-in-region
                    #'completion--in-region)
                  args)))
+
+  (vertico-multiform-mode)
+  (setq vertico-multi)
+  ;; Reverse alpa short for denote to show newest entries first
+  (setq vertico-multiform-commands
+        '((denote-open-or-create (vertico-sort-function . (lambda (v) (reverse (vertico-sort-alpha v)))))))
+
   (vertico-mode))
 
 
@@ -314,7 +321,7 @@
   :init
   (setq consult-project-function (lambda (_) (projectile-project-root)))
   (setq consult-ripgrep-args
-   "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip --hidden")
+   "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
   :bind (("C-x b" . consult-buffer)
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-S" . my-consult-ripgrep)
