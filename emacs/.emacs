@@ -197,13 +197,11 @@
                    #'completion--in-region)
                  args)))
 
+  (vertico-mode)
   (vertico-multiform-mode)
-  (setq vertico-multi)
   ;; Reverse alpa short for denote to show newest entries first
   (setq vertico-multiform-commands
-        '((denote-open-or-create (vertico-sort-function . (lambda (v) (reverse (vertico-sort-alpha v)))))))
-
-  (vertico-mode))
+        '((denote-open-or-create (vertico-sort-function . (lambda (v) (reverse (vertico-sort-alpha v))))))))
 
 
 (use-package orderless
