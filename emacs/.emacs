@@ -1,4 +1,5 @@
 (setq gc-cons-threshold (* 100 1024 1024))
+
 (setq gc-cons-percentage 0.6)
 
 
@@ -759,6 +760,391 @@
 ;;   :disabled t
 ;;   :after tree-sitter)
 
+
+(use-package treesit
+  :mode (("\\.tsx\\'" . tsx-ts-mode))
+  :preface
+  (defun mp-setup-install-grammars ()
+    "Install Tree-sitter grammars if they are absent."
+    (interactive)
+    (dolist (grammar
+             '((css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
+               (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
+               (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1" "src"))
+               (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
+               (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
+               (toml "https://github.com/tree-sitter/tree-sitter-toml")
+               (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "tsx/src"))
+               (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src"))
+               (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))))
+      (add-to-list 'treesit-language-source-alist grammar)
+      ;; Only install `grammar' if we don't already have it
+      ;; installed. However, if you want to *update* a grammar then
+      ;; this obviously prevents that from happening.
+      (unless (treesit-language-available-p (car grammar))
+        (treesit-install-language-grammar (car grammar)))))
+
+  ;; Optional, but recommended. Tree-sitter enabled major modes are
+  ;; distinct from their ordinary counterparts.
+  ;;
+  ;; You can remap major modes with `major-mode-remap-alist'. Note
+  ;; that this does *not* extend to hooks! Make sure you migrate them
+  ;; also
+  (dolist (mapping
+           '((python-mode . python-ts-mode)
+             (css-mode . css-ts-mode)
+             (typescript-mode . typescript-ts-mode)
+             (js2-mode . js-ts-mode)
+             (bash-mode . bash-ts-mode)
+             (css-mode . css-ts-mode)
+             (json-mode . json-ts-mode)
+             (js-json-mode . json-ts-mode)))
+    (add-to-list 'major-mode-remap-alist mapping))
+  :config
+  (mp-setup-install-grammars)
+
+  :interpreter "node")
+
+(use-package rjsx-mode
+  :ensure t
+  :after xref-js2
+  :bind (:map rjsx-mode-map
+              ("C-d" . my-delete-region-or-line))
+  :config
+  (define-key js2-mode-map (kbd "M-.") nil)
+  (add-hook 'rjsx-mode-hook (lambda ()
+                              (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
+
+
+(use-package prettier-js
+  :ensure t
+  :init
+  (setq pretter-js-show-errors nil)
+  :hook ((rjsx-mode . prettier-js-mode)
+         (js2-mode . prettier-js-mode)
+         (json-mode . prettier-js-mode))
+  :bind (:map js2-mode-map (("C-<return>" . prettier-js)))
+  :config
+  (setq prettier-js-args '()
+        prettier-js-show-errors 'echo))
+
+
+(use-package super-save
+  :ensure t
+  :diminish super-save-mode
+  :config
+  (setq super-save-auto-save-when-idle t)
+  (setq auto-save-default nil)
+  (super-save-mode))
+
+(use-package git-timemachine
+  :ensure t
+  :defer t)
+
+(use-package mwim
+  :ensure t
+  :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
+         ([remap move-end-of-line] . mwim-end-of-code-or-line)))
+
+(use-package rustic
+  :ensure t
+  :defer t
+  :bind (:map rustic-mode-map
+              ("C-<return>" .  rustic-format-buffer)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c s" . lsp-rust-analyzer-status)
+              ("C-c C-c Q" . lsp-workspace-shutdown))
+  :config
+  (setq lsp-enable-symbol-highlighting nil)
+  (add-hook 'rustic-mode-hook 'my-rustic-mode-auto-save-hook)
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-signature-auto-activate nil)
+  (setq rustic-format-on-save nil))
+
+(use-package lsp-mode
+  :ensure t
+  :defer t
+  :init
+  (setq lsp-keymap-prefix "C-c C-l"
+        lsp-signature-doc-lines 3
+        lsp-idle-delay 0.3
+        lsp-modeline-code-actions-segments '(count name)
+        lsp-rust-analyzer-cargo-watch-command "check"
+        lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial"
+        lsp-rust-analyzer-display-chaining-hints t
+        lsp-rust-analyzer-display-closure-return-type-hints t
+        lsp-eldoc-render-all nil
+        lsp-rust-analyzer-server-display-inlay-hints nil
+        lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil
+        lsp-rust-analyzer-display-parameter-hints nil
+        lsp-rust-analyzer-display-reborrow-hints nil)
+  :commands
+  (lsp lsp-deferred)
+  :bind (:map lsp-mode-map
+              ("M-<f1>" . lsp-describe-thing-at-point))
+  :hook
+  ((lsp-mode . lsp-ui-mode)
+   (lsp-mode . lsp-enable-which-key-integration)
+   ;; (gdscript-mode . lsp)
+   ))
+
+(use-package lsp-ui
+  :ensure t
+  :defer t
+  :init
+  (setq lsp-ui-doc-enable t
+        lsp-ui-peek-always-show t
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-peek-show-directory nil
+        lsp-ui-sideline-show-hover nil
+        lsp-ui-doc-show-with-cursor nil
+        lsp-ui-sideline-show-diagnostics nil
+        lsp-ui-doc-enable nil)
+  :bind (:map lsp-ui-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-ui-peek-find-references))
+  :commands
+  lsp-ui-mode)
+
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
+
+
+(use-package keyfreq
+  :ensure t
+  :config
+  (keyfreq-mode)
+  (keyfreq-autosave-mode))
+
+(use-package helpful
+  :ensure t
+  :bind (("C-<f1>" . helpful-at-point)
+         ("C-h f" . helpful-function)))
+
+(use-package shackle
+  :ensure t
+  :config
+  (setq shackle-rules '((magit-status-mode :align below :inhibit-window-quit t :select t :size 0.45)
+                        (helpful-mode :select t :align below)
+                        ("*lsp-help*" :select t :align below)
+                        (embark-collect-mode :select t :align right)
+                        ("Embark Actions" :select t :align right)
+                        ("*Help*" :select t :align below)
+                        (racket-describe-mode :select t :align below)
+                        ("*cider-test-report*" :select t :align below)
+                        ("*cider-error*"  :align below)
+                        ("*cider-result*"  :align below :size 0.3)
+                        ("*cargo-run*"  :align below :size 0.3)
+                        ("*Flycheck errors*" :select t :align below)
+                        (cider-repl-mode :select t :align below :size 0.4)
+                        (racket-repl-mode :align below :size 0.3)
+                        (godot-mode :align below :size 0.3)
+                        ("*Warnings*" :ignore t)))
+  (shackle-mode 1))
+
+
+(use-package terraform-mode
+  :ensure t
+  :defer t)
+
+(use-package elfeed
+  :ensure t
+  :bind (("<C-f11>" . elfeed)))
+
+(use-package ledger-mode
+  :ensure t
+  :defer t)
+
+(use-package pocket-reader
+  :ensure t
+  :defer t
+  :bind (("<C-f12>" . pocket-reader)))
+
+(use-package s :ensure t)
+
+(use-package multiple-cursors
+  :ensure t
+  :init
+  (setq mc/always-run-for-all t)
+  :bind
+  (("C-c C-<" . mc/mark-all-like-this)
+   ("C->" . mc/mark-next-like-this-symbol)
+   ("C-<" . mc/mark-previous-like-this-symbo)))
+
+(use-package yasnippet :ensure t)
+
+(use-package js2-refactor
+  :ensure t
+  :defer t
+  :config
+  (js2r-add-keybindings-with-prefix "C-c C-m")
+  :hook ((js2-mode . js2-refactor-mode)))
+
+
+(use-package expand-region
+  :ensure t
+  :init
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+(use-package wgrep
+  :ensure t)
+
+(use-package paradox
+  :ensure t
+  :defer t
+  :init
+  (setq paradox-display-star-count nil))
+
+(use-package crux
+  :ensure t
+  :pin melpa
+  :bind (("C-c o" . crux-open-with)
+         ("C-S-<return>" . crux-smart-open-line-above)
+         ("S-<return>" . crux-smart-open-line)
+         ("C-c u" . crux-view-url)
+         ("C-c e" . crux-eval-and-replace)
+         ("C-c D" . crux-delete-file-and-buffer)
+         ("C-M-<down>" . crux-duplicate-current-line-or-region)
+         ("C-S-M-<down>" . crux-duplicate-and-comment-current-line-or-region)
+         ("C-S-r" . crux-rename-file-and-buffer)
+         ("C-c t" . crux-visit-term-buffer)
+         ("C-c j" . crux-top-join-line)
+         ("M-E" . crux-kill-line-backwards)
+         ("C-c i" . crux-ispell-word-then-abbrev)
+         ("C-t" . crux-transpose-windows)))
+
+(use-package discover-my-major
+  :ensure t
+  :bind (("C-h C-m" . discover-my-major)
+         ("C-h M-m" . discover-my-mode)))
+
+(use-package yaml-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+  (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+  :ensure t)
+
+(use-package yasnippet
+  :ensure t
+  :diminish yas-minor-mode
+  :init
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  :bind (("C-z y" . yas-insert-snippet))
+  :config
+  (yas-global-mode))
+
+(use-package iedit
+  :ensure t
+  :init
+  (global-set-key (kbd "C-.") 'iedit-mode))
+
+(use-package eglot
+  :ensure t
+  :defer t)
+
+(use-package org-drill
+  :ensure t
+  :init
+  (setq org-drill-save-buffers-after-drill-sessions-p nil))
+
+
+
+;; Problems with tsc-dynlib on different platforms, disabled for now
+;; (use-package tree-sitter
+;;   :ensure nil
+;;   :disabled t
+;;   :config
+;;   ;; activate tree-sitter on any buffer containing code for which it has a parser available
+;;   (global-tree-sitter-mode)
+;;   ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
+;;   ;; by switching on and off
+;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+;; (use-package tree-sitter-langs
+;;   :ensure nil
+;;   :disabled t
+;;   :after tree-sitter)
+
+
+(use-package treesit
+  :mode (("\\.tsx\\'" . tsx-ts-mode))
+  :preface
+  (defun mp-setup-install-grammars ()
+    "Install Tree-sitter grammars if they are absent."
+    (interactive)
+    (dolist (grammar
+             '((elisp "https://github.com/Wilfred/tree-sitter-elisp")
+               (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
+               (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
+               (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1" "src"))
+               (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
+               (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
+               (toml "https://github.com/tree-sitter/tree-sitter-toml")
+               (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "tsx/src"))
+               (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src"))
+               (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))))
+      (add-to-list 'treesit-language-source-alist grammar)
+      ;; Only install `grammar' if we don't already have it
+      ;; installed. However, if you want to *update* a grammar then
+      ;; this obviously prevents that from happening.
+      (unless (and t (treesit-language-available-p (car grammar)))
+        (treesit-install-language-grammar (car grammar)))))
+
+  ;; Optional, but recommended. Tree-sitter enabled major modes are
+  ;; distinct from their ordinary counterparts.
+  ;;
+  ;; You can remap major modes with `major-mode-remap-alist'. Note
+  ;; that this does *not* extend to hooks! Make sure you migrate them
+  ;; also
+  (dolist (mapping
+           '((python-mode . python-ts-mode)
+             (css-mode . css-ts-mode)
+             (typescript-mode . typescript-ts-mode)
+             (js2-mode . js-ts-mode)
+             (bash-mode . bash-ts-mode)
+             (css-mode . css-ts-mode)
+             (json-mode . json-ts-mode)
+             (js-json-mode . json-ts-mode)))
+    (add-to-list 'major-mode-remap-alist mapping))
+  :config
+  (mp-setup-install-grammars)
+  (define-key js-ts-mode-map (kbd "M-.") nil)
+  (add-hook 'js-ts-mode-hook (lambda ()
+                               (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
+  (add-hook 'typescript-ts-mode-hook #'setup-tide-mode)
+
+(use-package combobulate
+  :straight t
+  :preface
+  ;; You can customize Combobulate's key prefix here.
+  ;; Note that you may have to restart Emacs for this to take effect!
+  (setq combobulate-key-prefix "C-c o")
+
+  ;; Optional, but recommended.
+  ;;
+  ;; You can manually enable Combobulate with `M-x
+  ;; combobulate-mode'.
+  :hook
+  ((python-ts-mode . combobulate-mode)
+   (js-ts-mode . combobulate-mode)
+   (html-ts-mode . combobulate-mode)
+   (css-ts-mode . combobulate-mode)
+   (yaml-ts-mode . combobulate-mode)
+   (typescript-ts-mode . combobulate-mode)
+   (json-ts-mode . combobulate-mode)
+   (tsx-ts-mode . combobulate-mode))
+  ))
+
+
+
+
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -790,15 +1176,14 @@
   ;; For some reason this does not work in :config
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook 'typescript-ts-mode-hook #'setup-tide-mode)
 
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-angular-eslint-setup)
   
   :bind (:map tide-mode-map
               ("M-<return>" . tide-fix)
-              ("C-c d" . tide-documentation-at-point))
-
-  )
+              ("C-c d" . tide-documentation-at-point)))
 
 
 
@@ -1074,7 +1459,10 @@
          ("$" . ibuffer-toggle-filter-group))  ; optional
   :after (ibuffer))
 
-(setq treesit-language-source-alist '((unison "https://github.com/fmguerreiro/tree-sitter-unison-kylegoetz" "build/include-parser-in-src-control")))
+
+
+
+
 
 (use-package mindstream
   :ensure t
