@@ -99,7 +99,7 @@
  ("C-c <up>" . windmove-up)
  ("C-c <down>" . 'windmove-down)
  ("C-s" . swiper-isearch)
- ("s-s" . swiper-isearch-backward)
+ ("C-r" . swiper-isearch-backward)
  ("C-S-s" . swiper-isearch-thing-at-point)
  ("<end>" . mwim-end-of-code-or-line)
  ("<home>" . mwim-beginning-of-code-or-line)
@@ -109,6 +109,8 @@
  ("C-z t" . my-insert-now)
  ("C-z C-z" . my-babel-call))
 
+
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 (define-key global-map [C-f2] #'term-toggle-term)
 
@@ -175,6 +177,7 @@
 (require 'my-org)
 
 (global-linum-mode)
+(winner-mode)
 
 (setq custom-file "~/.emacs.local")
 (if (file-exists-p custom-file) (load custom-file))
@@ -624,6 +627,7 @@
                         ("*lsp-help*" :select t :align below)
                         (embark-collect-mode :select t :align right)
                         ("Embark Actions" :select t :align right)
+                        (occur-mode :select t :align right)
                         ("*Help*" :select t :align below)
                         (racket-describe-mode :select t :align below)
                         ("*cider-test-report*" :select t :align below)
@@ -1369,78 +1373,16 @@
   (setq avy-timeout-seconds 10.0)
   :bind (("M-j" . avy-goto-char-timer)))
 
-(use-package hammy
-  :ensure nil
-  :disabled t
-  :config
-  (global-set-key (kbd "<f9>") 'hammy-start-org-clock-in)
-  (global-set-key (kbd "M-<f9>") 'hammy-next)
-  (global-set-key (kbd "C-<f9>") 'hammy-stop)
-
-  (setq hammy-hammys '())
-  (add-to-list 'hammy-stopped (lambda (hammy) (cancel-timer hammy-pomodoro-timer)))
-  
-  (hammy-mode)
-  
-  (hammy-define (propertize "🍅" 'face '(:foreground "tomato"))
-    :documentation "The classic pomodoro timer."
-    :intervals
-    (list
-     (interval :name "Work"
-               :duration "25 minutes"
-               :before (do (setq hammy-pomodoro-timer (run-with-timer
-                                                       300 300
-                                                       (lambda ()
-                                                         (my-notify (hammy-format-current-times (car hammy-active)) "Pomodoro") )))
-                           (my-notify "Starting work" "Pomodoro")
-                         (announce "Starting work time."))
-               :after (do (cancel-timer hammy-pomodoro-timer)
-                          (my-notify "Break time" "Pomodoro")
-                        (announce "Break time!")))
-     (interval :name "Break"
-               :duration (do (if (and (not (zerop cycles))
-                                      (zerop (mod cycles 3)))
-                                 ;; If a multiple of three cycles have
-                                 ;; elapsed, the fourth work period was
-                                 ;; just completed, so take a longer break.
-                                 "30 minutes"
-                               "5 minutes"))
-               :before (do (announce "Starting break time."))
-               :advance (do (my-notify "Break time is over!" "Pomodoro")
-                            (announce "Break time is over!"))))))
 (straight-use-package
  '(unison-ts-mode :type git
                   :host github
                   :repo "fmguerreiro/unison-ts-mode"
                   :files ("*.el")))
 
-(use-package casual-info
-  :ensure t
-  :bind (:map Info-mode-map ("C-o" . 'casual-info-tmenu)))
 
 (use-package ibuffer
   :hook (ibuffer-mode . ibuffer-auto-mode)
   :defer t)
-(use-package casual-ibuffer
-  :ensure t
-  :bind (:map
-         ibuffer-mode-map
-         ("C-o" . casual-ibuffer-tmenu)
-         ("F" . casual-ibuffer-filter-tmenu)
-         ("s" . casual-ibuffer-sortby-tmenu)
-         ("<double-mouse-1>" . ibuffer-visit-buffer) ; optional
-         ("M-<double-mouse-1>" . ibuffer-visit-buffer-other-window) ; optional
-         ("{" . ibuffer-backwards-next-marked) ; optional
-         ("}" . ibuffer-forward-next-marked)   ; optional
-         ("[" . ibuffer-backward-filter-group) ; optional
-         ("]" . ibuffer-forward-filter-group)  ; optional
-         ("$" . ibuffer-toggle-filter-group))  ; optional
-  :after (ibuffer))
-
-
-
-
-
 
 (use-package mindstream
   :ensure t
