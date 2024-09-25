@@ -1388,3 +1388,8 @@
   :ensure t
   :config
   (mindstream-mode))
+
+
+(use-package auto-dim-other-buffers
+  :ensure t
+  :config (auto-dim-other-buffers-mode t))

@@ -104,9 +104,7 @@
 
 (defun wd/verify-refile-target ()
   (let ((todo (org-get-todo-state )))
-    (and
-     (eq nil (string-match-p (regexp-quote "notebook.org") (buffer-file-name)))
-     (or (eq nil todo) (equal "PROJ" todo)))))
+     (eq nil (string-match-p (regexp-quote "notebook.org") (buffer-file-name)))))
 
 (setq org-refile-target-verify-function 'wd/verify-refile-target)
 
