@@ -520,7 +520,6 @@
   (setq prettier-js-args '()
         prettier-js-show-errors 'echo))
 
-
 (use-package super-save
   :ensure t
   :diminish super-save-mode
@@ -820,17 +819,7 @@
                               (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
 
 
-(use-package prettier-js
-  :ensure t
-  :init
-  (setq pretter-js-show-errors nil)
-  :hook ((rjsx-mode . prettier-js-mode)
-         (js2-mode . prettier-js-mode)
-         (json-mode . prettier-js-mode))
-  :bind (:map js2-mode-map (("C-<return>" . prettier-js)))
-  :config
-  (setq prettier-js-args '()
-        prettier-js-show-errors 'echo))
+
 
 
 (use-package super-save
