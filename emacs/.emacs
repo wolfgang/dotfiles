@@ -1351,6 +1351,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
   (setq racket-show-functions '())
+  (setq racket-xp-eldoc-level 'minimal)
   (add-hook 'racket-mode-hook 'racket-xp-mode)
   ;; electric-pair-mode breaks barf-to-point and adds newline when cloning sexp
   (add-hook 'racket-mode-hook (lambda () (electric-pair-mode 0))))
