@@ -1,6 +1,6 @@
-(define-package "racket-mode" "20240920.1859" "Racket editing, REPL, and more"
+(define-package "racket-mode" "20240924.2041" "Racket editing, REPL, and more"
   '((emacs "25.1"))
-  :commit "c7f6aecc96d18d7a1f8f1601897d776cc1decbf1" :authors
+  :commit "35f3817170130641e0404d6950777125613842e0" :authors
   '(("Greg Hendershott" . "racket-mode-author@greghendershott.com"))
   :url "https://www.racket-mode.com/")
 ;; Local Variables:
