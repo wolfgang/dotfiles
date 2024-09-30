@@ -1388,3 +1388,17 @@
 (use-package casual-editkit
   :ensure t
   :bind (("C-o" . casual-editkit-main-tmenu)))
+
+(use-package citar
+  :ensure t
+  :no-require
+  :custom
+  (org-cite-global-bibliography '("~/bib/references.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography))
+
+
+
+
