@@ -108,4 +108,11 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M")))
 
+(defun my-denote-zk ()
+  "Insert a blank ZK Note."
+  (interactive)
+  (let ((title (denote-title-prompt)))
+    (denote title '("zk") nil )))
+
+
 (provide 'my-functions)
