@@ -1284,6 +1284,15 @@
   (setq denote-prompts '(title keywords))
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
+(use-package consult-denote
+  :ensure t
+  :after (consult denote)
+  :config
+  (define-key global-map (kbd "C-c n f") #'consult-denote-find)
+  (define-key global-map (kbd "C-c n g") #'consult-denote-grep)
+  (consult-denote-mode 1)
+)
+
 (use-package ob-async :ensure t)
 
 
