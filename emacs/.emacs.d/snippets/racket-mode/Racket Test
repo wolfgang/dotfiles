@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: Racket Test
+# key: rtest
+# --
+
+
+#lang racket
+
+(require racket/gui
+         rackunit
+         rackunit/text-ui)
+
+
+(run-tests
+ (test-suite
+  "$1"
+  (test-case "$2"
+    $0)
+
+))

@@ -428,10 +428,10 @@
   :init
   (setq lispy-compat '(cider)
         lispy-key-theme '(special parinfer c-digits))
+  (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice)
+  :config
   
-  ;; https://github.com/abo-abo/lispy/pull/403
-  ;; temporary to get accustom to lispy
-  (advice-add 'delete-selection-pre-hook :around 'lispy--delsel-advice))
+  (add-to-list 'lispy-colon-no-space-regex '(racket-mode . "")))
 
 
 (use-package cider
