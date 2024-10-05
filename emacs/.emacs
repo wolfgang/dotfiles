@@ -81,7 +81,14 @@
       ns-right-alternate-modifier 'none
       auto-revert-interval 3
       auto-revert-check-vc-info t
-      ispell-silently-savep t)
+      ispell-silently-savep t
+      switch-to-buffer-obey-display-actions t)
+
+(add-to-list 'display-buffer-alist
+             '("\\*Org Agenda\\*"
+               (display-buffer-reuse-window display-buffer-pop-up-window)
+               (dedicated . t)
+               ))
 
 (if (eq system-type 'darwin) (progn
                                (setq ns-function-modifier 'control)

@@ -115,4 +115,10 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
     (denote title '("zk") nil )))
 
 
+(defun my-toggle-window-dedication ()
+  "Toggles window dedication in the selected window."
+  (interactive)
+  (set-window-dedicated-p (selected-window)
+     (not (window-dedicated-p (selected-window)))))
+
 (provide 'my-functions)
