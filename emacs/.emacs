@@ -608,12 +608,6 @@
   :commands
   lsp-ui-mode)
 
-(use-package beacon
-  :ensure t
-  :config
-  (beacon-mode 1))
-
-
 (use-package keyfreq
   :ensure t
   :config
@@ -909,12 +903,6 @@
               ("M-?" . lsp-ui-peek-find-references))
   :commands
   lsp-ui-mode)
-
-(use-package beacon
-  :ensure t
-  :config
-  (beacon-mode 1))
-
 
 (use-package keyfreq
   :ensure t
@@ -1413,6 +1401,16 @@
   (org-cite-activate-processor 'citar)
   (citar-bibliography org-cite-global-bibliography))
 
-
+(use-package pulsic
+  :straight (pulsic
+             :type git
+             :repo "https://github.com/ichernyshovvv/pulsic.el")
+  :config
+  (pulsic-mode 1)
+  :custom
+  (pulsic-duration 0.35)
+  (pulsic-predicate
+   (lambda ()
+     (not (minibufferp)))))
 
 
