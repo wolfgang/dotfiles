@@ -119,7 +119,7 @@
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(define-key global-map [C-f2] #'term-toggle-term)
+(define-key global-map [C-f2] #'term-toggle-shell)
 
 (add-hook 'emacs-lisp-mode-hook
 	      '(lambda ()
