@@ -1377,11 +1377,6 @@
   :hook (ibuffer-mode . ibuffer-auto-mode)
   :defer t)
 
-(use-package mindstream
-  :ensure t
-  :config
-  (mindstream-mode))
-
 
 (use-package auto-dim-other-buffers
   :ensure t
