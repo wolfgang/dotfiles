@@ -87,8 +87,7 @@
 (add-to-list 'display-buffer-alist
              '("\\*Org Agenda\\*"
                (display-buffer-reuse-window display-buffer-pop-up-window)
-               (dedicated . t)
-               ))
+               (dedicated . t)))
 
 (if (eq system-type 'darwin) (progn
                                (setq ns-function-modifier 'control)
@@ -639,6 +638,7 @@
                         (cider-repl-mode :select t :align below :size 0.4)
                         (racket-repl-mode :align below :size 0.3)
                         (godot-mode :align below :size 0.3)
+                        ("*Org-Babel Error Output*" :align below :size 0.3)
                         ("*Warnings*" :ignore t)))
   (shackle-mode 1))
 
