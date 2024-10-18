@@ -633,6 +633,7 @@
                         ("*cider-test-report*" :select t :align below)
                         ("*cider-error*"  :align below)
                         ("*cider-result*"  :align below :size 0.3)
+                        ("*eshell*"  :align below :size 0.3)
                         ("*cargo-run*"  :align below :size 0.3)
                         ("*Flycheck errors*" :select t :align below)
                         (cider-repl-mode :select t :align below :size 0.4)
@@ -914,28 +915,6 @@
   :ensure t
   :bind (("C-<f1>" . helpful-at-point)
          ("C-h f" . helpful-function)))
-
-(use-package shackle
-  :ensure t
-  :config
-  (setq shackle-rules '((magit-status-mode :align below :inhibit-window-quit t :select t :size 0.45)
-                        (helpful-mode :select t :align below)
-                        ("*lsp-help*" :select t :align below)
-                        (embark-collect-mode :select t :align right)
-                        ("Embark Actions" :select t :align right)
-                        ("*Help*" :select t :align below)
-                        (racket-describe-mode :select t :align below)
-                        ("*cider-test-report*" :select t :align below)
-                        ("*cider-error*"  :align below)
-                        ("*cider-result*"  :align below :size 0.3)
-                        ("*cargo-run*"  :align below :size 0.3)
-                        ("*Flycheck errors*" :select t :align below)
-                        (cider-repl-mode :select t :align below :size 0.4)
-                        (racket-repl-mode :align below :size 0.3)
-                        (godot-mode :align below :size 0.3)
-                        ("*Warnings*" :ignore t)))
-  (shackle-mode 1))
-
 
 (use-package terraform-mode
   :ensure t
