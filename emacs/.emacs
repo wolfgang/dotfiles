@@ -298,7 +298,7 @@
         projectile-completion-system 'auto)
   :bind (("M-[" . projectile-find-file))
   :config
-  (--each '("target" "node_modules" ".gradle" ".clj-kondo")
+  (--each '("target" "node_modules" ".gradle" ".clj-kondo" "compiled")
     (add-to-list 'projectile-globally-ignored-directories it))
   (--each '("*-all.js")
     (add-to-list 'projectile-globally-ignored-files it))
