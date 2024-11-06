@@ -1,1 +1,1 @@
-Lotsa dot files!
+dot files
