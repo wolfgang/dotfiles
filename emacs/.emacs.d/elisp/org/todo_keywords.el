@@ -1,9 +1,9 @@
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-        (sequence "PROJ(p)" "|")
-        (sequence "MAYBE(m)" "|")
-        (sequence "SCHD" "|")
+        (sequence "PROJ(p)" "DONE(d)")
+        (sequence "MAYBE(m)" "TODO(t)")
+        (sequence "SCHD" "DONE(d)")
         (sequence "WAIT" "|")
         )
       )
