@@ -1241,7 +1241,9 @@
          ("C-c n b" . denote-backlinks)
          ("C-c n d" . my-denote-create-devlog)
          ("C-c n j" . denote-journal-extras-new-entry)
-         ("C-c n z" . my-denote-zk))
+         ("C-c n z" . my-denote-zk-pr)
+         ("C-c n r " . my-denote-zk-ref)
+         ("C-c n s" . denote-silo-extras-open-or-create))
   :init
   (setq denote-link-backlinks-display-buffer-action
         '((display-buffer-reuse-window
