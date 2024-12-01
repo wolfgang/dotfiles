@@ -7,8 +7,8 @@
 ;; Author: Greg Hendershott <racket-mode-author@greghendershott.com>
 ;; Maintainer: Greg Hendershott
 ;; URL: https://www.racket-mode.com/
-;; Package-Version: 20241121.2018
-;; Package-Revision: 09f5019321f3
+;; Package-Version: 20241129.1353
+;; Package-Revision: 986c9ad883a1
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
