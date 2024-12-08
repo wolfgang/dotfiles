@@ -108,41 +108,23 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M")))
 
+
 (defun my-denote-zk ()
+  "Insert a blank ZK PR Note."
+  (interactive)
+  (denote-silo-extras-select-silo-then-command
+   (concat denote-directory "-zk") 'denote--new-zk))
+
+
+(defun denote--new-zk ()
   "Insert a blank ZK Note."
   (interactive)
-  (let ((title (denote-title-prompt)))
-    (denote title '("zk") nil )))
-
-
-(defun my-denote-zk-ref ()
-  "Insert a blank ZK REF Note."
-  (interactive)
-  (denote-silo-extras-select-silo-then-command
-   (concat denote-directory "-zk/zk-ref") 'denote--new-zk-ref))
-
-(defun my-denote-zk-pr ()
-  "Insert a blank ZK PR Note."
-  (interactive)
-  (denote-silo-extras-select-silo-then-command
-   (concat denote-directory "-zk/zk-pr") 'denote--new-zk-pr))
-
-
-(defun denote--new-zk-ref ()
-  "Insert a blank ZK REF Note."
-  (interactive)
-  (denote--new-note '("zkref" "zk")))
-
-(defun denote--new-zk-pr ()
-  "Insert a blank ZK PR Note."
-  (interactive)
-  (denote--new-note '("zkpr" "zk")))
+  (denote--new-note '("zk")))
 
 (defun denote--new-note (tags)
   "Insert a blank note with given (TAGS)."
   (let ((title (denote-title-prompt)))
-    (denote title tags nil))
-  )
+    (denote title tags nil)))
 
 (defun my-toggle-window-dedication ()
   "Toggles window dedication in the selected window."
