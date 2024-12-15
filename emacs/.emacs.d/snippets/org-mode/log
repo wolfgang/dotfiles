@@ -2,6 +2,6 @@
 # name: org-log
 # key: log
 # --
-#+BEGIN: clocktable :scope subtree :maxlevel 5 :compact t :narrow 80 :block untilnow
+#+BEGIN: clocktable :scope subtree :maxlevel 5 :compact t :narrow 80 :block untilnow :formula "\$3=(\$2*60)/25;t"
 #+CAPTION: Clock summary at [2022-12-25 Sun 14:56], for now.
 #+END
