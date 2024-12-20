@@ -20,7 +20,7 @@
 	 ("Leo Liu" . "sdl.web@gmail.com"))
 	(:commit . "90c90a80322aa9f26ce88f2f24a224afc4c994b8"))])
  (activities .
-	     [(0 7 1)
+	     [(0 7 2)
 	      ((emacs
 		(29 1))
 	       (persist
@@ -31,7 +31,7 @@
 	       (:maintainer "Adam Porter" . "adam@alphapapa.net")
 	       (:authors
 		("Adam Porter" . "adam@alphapapa.net"))
-	       (:commit . "8bc2028e81a0a6a08e7a44144b340c58a5ffadab"))])
+	       (:commit . "a7e7842c615e149ad7d7e57f383936b49dcb129f"))])
  (ada-mode .
 	   [(8 1 0)
 	    ((uniquify-files
@@ -923,7 +923,7 @@
 		 (:url . "https://elpa.gnu.org/packages/cycle-quotes.html")
 		 (:commit . "836b19b39651419876e65cdb1a91e3eef83cc4e7"))])
  (dape .
-       [(0 17 0)
+       [(0 18 0)
 	((emacs
 	  (29 1))
 	 (jsonrpc
@@ -931,7 +931,7 @@
 	"Debug Adapter Protocol for Emacs" tar
 	((:url . "https://github.com/svaante/dape")
 	 (:maintainer "Daniel Pettersson" . "daniel@dpettersson.net")
-	 (:commit . "f4489aa9ff1fe0e33b7be76e77db61fc25ab902e"))])
+	 (:commit . "4523745b583fe5049c8831c61d748fb1abb949da"))])
  (darkroom .
 	   [(0 3)
 	    ((cl-lib
@@ -1980,7 +1980,7 @@
 	     ("Sean Allred" . "code@seanallred.com"))
 	    (:commit . "b57b5ca5d2d0837e1fb4a4f30c051d5f3e643f0f"))])
  (greader .
-	  [(0 11 18)
+	  [(0 12 3)
 	   ((emacs
 	     (26 1))
 	    (seq
@@ -1993,7 +1993,7 @@
 	    (:maintainer "Michelangelo Rodriguez" . "michelangelo.rodriguez@gmail.com")
 	    (:authors
 	     ("Michelangelo Rodriguez" . "michelangelo.rodriguez@gmail.com"))
-	    (:commit . "e163aec6109ba24ec543f087d9be7bf6b6efa389"))])
+	    (:commit . "0379b8a704692d6dbd728afdd982317803052e32"))])
  (greenbar .
 	   [(1 1)
 	    nil "Mark comint output with \"greenbar\" background" tar
@@ -2619,7 +2619,7 @@
       ((:url . "https://elpa.gnu.org/packages/lv.html")
        (:commit . "54e9db2b023e03b6f6b46aeec48ea74fd51d4e11"))])
  (m-buffer .
-	   [(0 16)
+	   [(0 16 1)
 	    ((seq
 	      (2 14)))
 	    "List-Oriented, Functional Buffer Manipulation" tar
@@ -2627,7 +2627,7 @@
 	     (:authors
 	      ("Phillip Lord" . "phillip.lord@russet.org.uk"))
 	     (:url . "https://elpa.gnu.org/packages/m-buffer.html")
-	     (:commit . "8a51de3366599e7fa52e37b596c9ce226b6f04c5"))])
+	     (:commit . "5e7714835b2289f61dad24c0b5cf98d28fc313b0"))])
  (map .
       [(3 3 1)
        ((emacs
@@ -4088,7 +4088,7 @@
 		      ("Protesilaos Stavrou" . "info@protesilaos.com"))
 		     (:commit . "e48f3335f50217e40081631abacc40964150f3ab"))])
  (speedrect .
-	    [(0 6)
+	    [(0 7)
 	     ((emacs
 	       (29 1))
 	      (compat
@@ -4099,7 +4099,7 @@
 	      (:maintainer "JD Smith" . "jdtsmith+elpa@gmail.com")
 	      (:authors
 	       ("JD Smith" . "jdtsmith+elpa@gmail.com"))
-	      (:commit . "4603a1ff092462e3d918493fe9ee935380ddd775"))])
+	      (:commit . "2232149c300343732f424c1b22db296455f4c0ac"))])
  (spinner .
 	  [(1 7 4)
 	   ((emacs
@@ -4818,7 +4818,7 @@
 	     ("Daniel Mendler" . "mail@daniel-mendler.de"))
 	    (:commit . "d70fdeb67be9ecc88c438039eefa9ef0e2104005"))])
  (vertico-posframe .
-		   [(0 7 7)
+		   [(0 7 8)
 		    ((emacs
 		      (26 0))
 		     (posframe
@@ -4831,7 +4831,7 @@
 		     (:maintainer "Feng Shu" . "tumashu@163.com")
 		     (:authors
 		      ("Feng Shu" . "tumashu@163.com"))
-		     (:commit . "2e0e09e5bbd6ec576ddbe566ab122575ef051fab"))])
+		     (:commit . "b1bcba60550ac2cf7676ad00c3f735dc43489869"))])
  (vigenere .
 	   [(1 0)
 	    ((emacs
