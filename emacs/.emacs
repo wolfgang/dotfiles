@@ -1358,10 +1358,6 @@
   :defer t)
 
 
-(use-package auto-dim-other-buffers
-  :ensure t
-  :config (auto-dim-other-buffers-mode t))
-
 (use-package casual-editkit
   :ensure t
   :bind (("C-o" . casual-editkit-main-tmenu)))
