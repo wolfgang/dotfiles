@@ -1372,16 +1372,9 @@
   (org-cite-activate-processor 'citar)
   (citar-bibliography org-cite-global-bibliography))
 
-(use-package pulsic
-  :straight (pulsic
-             :type git
-             :repo "https://github.com/ichernyshovvv/pulsic.el")
+(use-package pulsar
+  :ensure t
   :config
-  (pulsic-mode 1)
-  :custom
-  (pulsic-duration 0.35)
-  (pulsic-predicate
-   (lambda ()
-     (not (minibufferp)))))
+  (pulsar-global-mode 1))
 
 (use-package burly :ensure t :straight t)
