@@ -81,7 +81,6 @@
       ns-right-alternate-modifier 'none
       auto-revert-interval 3
       auto-revert-check-vc-info t
-      ispell-silently-savep t
       switch-to-buffer-obey-display-actions t)
 
 (add-to-list 'display-buffer-alist
@@ -135,46 +134,6 @@
 
 (add-hook 'after-make-frame-functions 'show-scratch-buffer)
 
-
-(defun flyspell-on-for-buffer-type ()
-  (interactive)
-  (if (and (not (symbol-value flyspell-mode)) (use-flyspell-here))
-      (progn
-	    (if (derived-mode-p 'prog-mode)
-	        (progn
-	          (message "Flyspell not used (code)"))
-	      (progn
-	        (message "Flyspell on (text)")
-            (setq ispell-program-name "hunspell")
-            (setq ispell-dictionary "en_US,de_AT_frami")
-            (ispell-set-spellchecker-params)
-            (ispell-hunspell-add-multi-dic "en_US,de_AT_frami")
-	        (flyspell-mode 1))))))
-
-(defun use-flyspell-here ()
-  (not (derived-mode-p 'magit-mode)))
-
-(defun flyspell-toggle ()
-  (interactive)
-  (if (symbol-value flyspell-mode)
-	  (progn
-	    (message "Flyspell off")
-	    (flyspell-mode -1))
-	(flyspell-on-for-buffer-type)))
-
-(add-hook 'find-file-hook 'flyspell-on-for-buffer-type)
-;; (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type)
-
-(use-package ispell
-  :init
-  (setq ispell-program-name "hunspell")
-  (setq ispell-dictionary "en_US,de_AT_frami")
-  :config
-  ;; ispell-set-spellchecker-params has to be called
-  ;; before ispell-hunspell-add-multi-dic will work
-  (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "en_US,de_AT_frami"))
-
 (require 'fill-column-indicator)
 (setq fci-rule-column 120)
 
@@ -209,7 +168,7 @@
 
   (vertico-mode)
   (vertico-multiform-mode)
-  ;; Reverse alpa short for denote to show newest entries first
+  ;; Reverse alpha short for denote to show newest entries first
   (setq vertico-multiform-commands
         '((denote-open-or-create (vertico-sort-function . (lambda (v) (reverse (vertico-sort-alpha v))))))))
 
@@ -270,7 +229,7 @@
 (use-package standard-themes
   :straight t
   :config
-  (standard-themes-load-dark))
+  (load-theme 'standard-dark 'no-confirm ))
 
 (use-package diminish
   :ensure t
@@ -710,7 +669,6 @@
          ("C-c t" . crux-visit-term-buffer)
          ("C-c j" . crux-top-join-line)
          ("M-E" . crux-kill-line-backwards)
-         ("C-c i" . crux-ispell-word-then-abbrev)
          ("C-t" . crux-transpose-windows)))
 
 (use-package discover-my-major
@@ -983,7 +941,6 @@
          ("C-c t" . crux-visit-term-buffer)
          ("C-c j" . crux-top-join-line)
          ("M-E" . crux-kill-line-backwards)
-         ("C-c i" . crux-ispell-word-then-abbrev)
          ("C-t" . crux-transpose-windows)))
 
 (use-package discover-my-major
@@ -1378,3 +1335,12 @@
   (pulsar-global-mode 1))
 
 (use-package burly :ensure t :straight t)
+
+(use-package jinx
+  :ensure t
+  :init
+  (setq jinx-languages "de_AT_frami,en_US")
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :config
+  (global-jinx-mode))
