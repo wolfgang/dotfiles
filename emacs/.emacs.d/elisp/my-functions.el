@@ -113,8 +113,13 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   "Insert a blank ZK PR Note."
   (interactive)
   (denote-silo-extras-select-silo-then-command
-   (concat denote-directory "-zk") 'denote--new-zk))
+   (make-denote-zk-dir) 'denote--new-zk))
 
+
+(defun make-denote-zk-dir ()
+  (if (s-ends-with? "-zk" denote-directory)
+      (expand-file-name denote-directory)
+    (concat (expand-file-name denote-directory) "-zk")))
 
 (defun denote--new-zk ()
   "Insert a blank ZK Note."
