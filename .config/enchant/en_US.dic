@@ -49,3 +49,9 @@ texi
 terminfo
 dir
 sexp
+calc
+renderable
+accessors
+cooldowns
+fn
+pred
