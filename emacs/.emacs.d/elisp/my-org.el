@@ -23,7 +23,8 @@
         org-special-ctrl-a/e t
         org-pretty-entities t
         org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
-        org-pretty-entities-include-sub-superscripts nil)
+        org-pretty-entities-include-sub-superscripts nil
+        org-agenda-include-diary t)
   :bind (:map org-mode-map (( "C-M-<return>" . org-insert-heading-respect-content)
                             ("C-c r" . avy-org-refile-as-child)))
   :config
