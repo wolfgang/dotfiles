@@ -1344,3 +1344,15 @@
          ("C-M-$" . jinx-languages))
   :config
   (global-jinx-mode))
+
+;; required dependencies
+(straight-use-package 'f)
+(straight-use-package 's)
+(straight-use-package 'all-the-icons)
+
+(straight-use-package
+ '(project-headerline
+  :type git
+  :host github
+  :repo "gavv/project-headerline"
+  :branch "main"))
