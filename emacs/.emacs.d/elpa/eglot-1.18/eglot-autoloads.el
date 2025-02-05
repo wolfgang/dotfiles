@@ -74,6 +74,7 @@ Update Eglot to latest version.
 (put 'eglot--debbugs-or-github-bug-uri 'bug-reference-url-format t)
 (defun eglot--debbugs-or-github-bug-uri nil (format (if (string= (match-string 2) "github") "https://github.com/joaotavora/eglot/issues/%s" "https://debbugs.gnu.org/%s") (match-string 3)))
 (register-definition-prefixes "eglot" '("eglot-"))
+
 
 ;;; End of scraped data
 
