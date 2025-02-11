@@ -112,7 +112,8 @@
  ("C-z n" . make-frame)
  ("C-z m" . mc/mark-all-dwim)
  ("C-z t" . my-insert-now)
- ("C-z C-z" . my-babel-call))
+ ("C-z C-z" . my-babel-call)
+ ("C-z o" . other-window-prefix))
 
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
