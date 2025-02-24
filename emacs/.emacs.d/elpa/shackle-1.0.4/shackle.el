@@ -5,8 +5,7 @@
 ;; Author: Vasilij Schneidermann <mail@vasilij.de>
 ;; URL: https://depp.brause.cc/shackle
 ;; Package-Version: 1.0.4
-;; Package-Commit: 171c3f437d853f34782b201d86ef765665b755e2
-;; Version: 1.0.3
+;; Package-Revision: 171c3f437d85
 ;; Keywords: convenience
 ;; Package-Requires: ((cl-lib "0.5"))
 

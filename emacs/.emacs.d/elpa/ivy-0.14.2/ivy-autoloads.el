@@ -138,7 +138,6 @@ Switch to another buffer in another window." t)
 ;;; Generated autoloads from ivy-overlay.el
 
 (register-definition-prefixes "ivy-overlay" '("ivy-"))
-
 
 ;;; End of scraped data
 

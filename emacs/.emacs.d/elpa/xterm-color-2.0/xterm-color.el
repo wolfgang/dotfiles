@@ -3,9 +3,8 @@
 ;; Copyright (C) 2010-2020 xristos@sdf.org
 ;; All rights reserved
 
-;; Version: 2.0 - 2020-05-10
 ;; Package-Version: 2.0
-;; Package-Commit: 137dfecedfdf6aff69b0f9b1c299aa0ae868fca0
+;; Package-Revision: 137dfecedfdf
 ;; Author: xristos <xristos@sdf.org>
 ;; URL: https://github.com/atomontage/xterm-color
 ;; Package-Requires: ((emacs "24.4"))

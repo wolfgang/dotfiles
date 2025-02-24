@@ -5,7 +5,8 @@
 ;; Time-stamp: <2022-01-14 12:33:25 Victor Ren>
 ;; Author: Victor Ren <victorhge@gmail.com>
 ;; Keywords: occurrence region simultaneous refactoring
-;; Version: 0.9.9.9.9
+;; Package-Version: 0.9.9.9.9
+;; Package-Revision: 699e179dac18
 ;; X-URL: https://github.com/victorhge/iedit
 ;;        https://www.emacswiki.org/emacs/Iedit
 ;; Compatibility: GNU Emacs: 22.x, 23.x, 24.x, 25.x

@@ -3,9 +3,9 @@
 ;; Copyright (C) 2014, Steckerhalter
 
 ;; Author: steckerhalter
-;; Package-Requires: ((makey "0.2"))
 ;; Package-Version: 1.0
-;; Package-Commit: 57d76fd21ec54706289cf9396fc871250569951e
+;; Package-Revision: 57d76fd21ec5
+;; Package-Requires: ((makey "0.2"))
 ;; URL: https://github.com/steckerhalter/discover-my-major
 ;; Keywords: discover help major-mode keys
 

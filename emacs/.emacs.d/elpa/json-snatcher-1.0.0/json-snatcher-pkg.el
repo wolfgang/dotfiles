@@ -1,2 +1,9 @@
-;;; Generated package description from json-snatcher.el  -*- no-byte-compile: t -*-
-(define-package "json-snatcher" "1.0.0" "Grabs the path to JSON values in a JSON file" '((emacs "24")) :commit "c4cecc0a5051bd364373aa499c47a1bb7a5ac51c" :authors '(("Sterling Graham" . "sterlingrgraham@gmail.com")) :maintainer '("Sterling Graham" . "sterlingrgraham@gmail.com") :url "http://github.com/sterlingg/json-snatcher")
+;; -*- no-byte-compile: t; lexical-binding: nil -*-
+(define-package "json-snatcher" "1.0.0"
+  "Grabs the path to JSON values in a JSON file."
+  '((emacs "24"))
+  :url "http://github.com/sterlingg/json-snatcher"
+  :commit "c4cecc0a5051bd364373aa499c47a1bb7a5ac51c"
+  :revdesc "c4cecc0a5051"
+  :authors '(("Sterling Graham" . "sterlingrgraham@gmail.com"))
+  :maintainers '(("Sterling Graham" . "sterlingrgraham@gmail.com")))

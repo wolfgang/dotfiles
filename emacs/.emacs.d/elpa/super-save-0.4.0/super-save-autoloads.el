@@ -23,20 +23,18 @@ or call the function `super-save-mode'.")
 A minor mode that saves your Emacs buffers when they lose focus.
 
 This is a global minor mode.  If called interactively, toggle the
-`super-save mode' mode.  If the prefix argument is positive,
-enable the mode, and if it is zero or negative, disable the mode.
+`super-save mode' mode.  If the prefix argument is positive, enable the
+mode, and if it is zero or negative, disable the mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
 evaluate `(default-value \\='super-save-mode)'.
 
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
-
-\\{super-save-mode-map}
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "super-save" '("super-save-"))

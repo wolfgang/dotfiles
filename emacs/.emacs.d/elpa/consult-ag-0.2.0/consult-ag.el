@@ -5,10 +5,9 @@
 ;; Author: Kanon Kakuno <yadex205@outlook.jp>
 ;; Homepage: https://github.com/yadex205/consult-ag
 ;; Package-Requires: ((emacs "27.1") (consult "0.32"))
-;; Package-Version: 0.2.0
-;; Package-Commit: 25d7a2a8fafbaa956610023e4ca17389294773fd
 ;; SPDX-License-Identifier: MIT
-;; Version: 0.2.0
+;; Package-Version: 0.2.0
+;; Package-Revision: 25d7a2a8fafb
 
 ;; This file is not part of GNU Emacs.
 

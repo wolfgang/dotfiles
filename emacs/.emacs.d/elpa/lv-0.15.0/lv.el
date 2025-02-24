@@ -1,6 +1,4 @@
 ;;; lv.el --- Other echo area
-;; Package-Version: 0.15.0
-;; Package-Commit: f27fce1b2f0a9162e159557bdeb2c0c94defb4d2
 
 ;; Copyright (C) 2015  Free Software Foundation, Inc.
 
@@ -20,6 +18,9 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+
+;; Package-Version: 0.15.0
+;; Package-Revision: f27fce1b2f0a
 
 ;;; Commentary:
 ;;

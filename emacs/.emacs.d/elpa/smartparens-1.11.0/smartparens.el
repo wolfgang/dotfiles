@@ -6,6 +6,8 @@
 ;; Maintainer: Matus Goljer <matus.goljer@gmail.com>
 ;; Created: 17 Nov 2012
 ;; Keywords: abbrev convenience editing
+;; Package-Version: 1.11.0
+;; Package-Revision: 4873352b5d0a
 ;; URL: https://github.com/Fuco1/smartparens
 
 ;; This file is not part of GNU Emacs.

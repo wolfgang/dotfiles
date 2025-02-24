@@ -5,7 +5,8 @@
 ;; Author: Magnar Sveen <magnars@gmail.com>
 ;; Keywords: marking region
 ;; URL: https://github.com/magnars/expand-region.el
-;; Version: 1.0.0
+;; Package-Version: 1.0.0
+;; Package-Revision: 1.0.0-0-g9e3f86c02c5e
 ;; Package-Requires: ((emacs "24.4"))
 
 ;; This program is free software; you can redistribute it and/or modify

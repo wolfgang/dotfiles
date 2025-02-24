@@ -4,7 +4,8 @@
 
 ;; Author: Andrew Stahlman <andrewstahlman@gmail.com>
 ;; Created: 10 Feb 2017
-;; Version: 0.1
+;; Package-Version: 1.0.0
+;; Package-Revision: 5984d6172c17
 
 ;; Keywords: tools
 ;; Homepage: https://github.com/astahlman/ob-async

@@ -4,11 +4,10 @@
 ;; Description: Move current line or region with M-up or M-down.
 ;; Author: Jason Milkins <jasonm23@gmail.com>
 ;; Keywords: edit
-;; Package-Version: 2.0.10
-;; Package-Commit: c47727ada2c17d2832d62079ca981852ae0b0623
 ;; Url: https://github.com/emacsfodder/move-text
 ;; Compatibility: GNU Emacs 25.1
-;; Version: 2.0.10
+;; Package-Version: 2.0.10
+;; Package-Revision: c47727ada2c1
 ;;
 ;;; This file is NOT part of GNU Emacs
 

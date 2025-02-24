@@ -3,6 +3,8 @@
 ;; This is free and unencumbered software released into the public domain.
 
 ;; Author: Christopher Wellons <wellons@nullprogram.com>
+;; Package-Version: 3.4.2
+;; Package-Revision: 3.4.2-0-g904b6d4feca7
 ;; URL: https://github.com/skeeto/elfeed
 
 ;;; Commentary:

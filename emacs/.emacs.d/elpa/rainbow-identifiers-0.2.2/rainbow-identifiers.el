@@ -3,8 +3,7 @@
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/rainbow-identifiers
 ;; Package-Version: 0.2.2
-;; Package-Commit: 19fbfded1baa98d12335f26f6d7b20e5ae44ce2e
-;; Version: 0.2.2
+;; Package-Revision: 19fbfded1baa
 ;; Package-Requires: ((emacs "24"))
 
 ;; This file is NOT part of GNU Emacs.

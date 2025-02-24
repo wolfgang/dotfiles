@@ -3,9 +3,8 @@
 ;; Copyright (C) 2016-2020  Wilfred Hughes <me@wilfred.me.uk>
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 1.5
 ;; Package-Version: 1.5
-;; Package-Commit: afc82c235feb228dbc860587e607599f5e67aa20
+;; Package-Revision: afc82c235feb
 ;; Keywords: lisp
 ;; Package-Requires: ((dash "2.12.0") (s "1.11.0"))
 

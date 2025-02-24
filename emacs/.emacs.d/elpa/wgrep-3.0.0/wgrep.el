@@ -8,7 +8,8 @@
 ;; URL: http://github.com/mhayashi1120/Emacs-wgrep/raw/master/wgrep.el
 ;; Emacs: GNU Emacs 25 or later
 ;; Package-Requires: ((emacs "25.1"))
-;; Version: 3.0.0
+;; Package-Version: 3.0.0
+;; Package-Revision: b4d69280d8a6
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as

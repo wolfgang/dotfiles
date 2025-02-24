@@ -6,7 +6,8 @@
 ;; Author: Sylvain Benner <sylvain.benner@gmail.com>
 ;; Keywords: languages, clojure, cider
 ;; Created: 20 Mar 2015
-;; Version: 1.2
+;; Package-Version: 1.2
+;; Package-Revision: 7fd229f14413
 ;; Package-Requires: ((emacs "24") (eval-sexp-fu "0.5.0"))
 
 ;; This file is not part of GNU Emacs.

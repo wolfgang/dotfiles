@@ -8,7 +8,8 @@
 ;; URL: https://github.com/yoshiki/yaml-mode
 ;; Package-Requires: ((emacs "24.1"))
 ;; Keywords: data yaml
-;; Version: 0.0.16
+;; Package-Version: 0.0.16
+;; Package-Revision: 6bb9e7f6e1c9
 
 ;; This file is not part of Emacs
 

@@ -5,8 +5,7 @@
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-terraform-mode
 ;; Package-Version: 1.0.1
-;; Package-Commit: 56f19abae95afb7e13e48ec3e6aeba3820d31307
-;; Version: 0.06
+;; Package-Revision: 56f19abae95a
 ;; Package-Requires: ((emacs "24.3") (hcl-mode "0.03") (dash "2.17.0"))
 
 ;; This program is free software; you can redistribute it and/or modify

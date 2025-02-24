@@ -12,30 +12,17 @@
 ;;; Generated autoloads from citar.el
 
 (defvar cl-struct-citar-indicator-tags)
-(cl-defsubst citar-indicator-p (cl-x) (declare (side-effect-free error-free) (pure t)) (and (memq (type-of cl-x) cl-struct-citar-indicator-tags) t))
-(eval-and-compile (define-symbol-prop 'citar-indicator 'cl-deftype-satisfies 'citar-indicator-p))
-(cl-defsubst citar-indicator-tag (cl-x) "\
-Access slot \"tag\" of `citar-indicator' struct CL-X.
+(with-suppressed-warnings ((lexical compiledfunction function emptysymbol padding symbol tag cl-tag-slot)) (eval-and-compile (cl-defsubst citar-indicator-p (cl-x) (declare (side-effect-free error-free) (pure t)) (and (memq (type-of cl-x) cl-struct-citar-indicator-tags) t)) (define-symbol-prop 'citar-indicator 'cl-deftype-satisfies 'citar-indicator-p)) (cl-defsubst citar-indicator-tag (cl-x) "Access slot \"tag\" of `citar-indicator' struct CL-X.
 The string to include as hidden candidate text, and to then determine whether a
-candidate predicate function will return non-nil." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 1)))
-(cl-defsubst citar-indicator-symbol (cl-x) "\
-Access slot \"symbol\" of `citar-indicator' struct CL-X.
-The symbol string to use in the UI when predicate function returns non-nil." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 2)))
-(cl-defsubst citar-indicator-padding (cl-x) "\
-Access slot \"padding\" of `citar-indicator' struct CL-X.
-String to add to the right side of the indicator, for proper padding and such." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 3)))
-(cl-defsubst citar-indicator-emptysymbol (cl-x) "\
-Access slot \"emptysymbol\" of `citar-indicator' struct CL-X.
+candidate predicate function will return non-nil." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 1))) (cl-defsubst citar-indicator-symbol (cl-x) "Access slot \"symbol\" of `citar-indicator' struct CL-X.
+The symbol string to use in the UI when predicate function returns non-nil." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 2))) (cl-defsubst citar-indicator-padding (cl-x) "Access slot \"padding\" of `citar-indicator' struct CL-X.
+String to add to the right side of the indicator, for proper padding and such." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 3))) (cl-defsubst citar-indicator-emptysymbol (cl-x) "Access slot \"emptysymbol\" of `citar-indicator' struct CL-X.
 The symbol to use in the UI when predicate function returns nil. Can be useful
-in some cases when using icons." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 4)))
-(cl-defsubst citar-indicator-function (cl-x) "\
-Access slot \"function\" of `citar-indicator' struct CL-X.
-A predicate function that takes a single CITEKEY argument." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 5)))
-(cl-defsubst citar-indicator-compiledfunction (cl-x) "\
-Access slot \"compiledfunction\" of `citar-indicator' struct CL-X.
-A compiled version of `function' used during processing." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 6)))
-(cl-defsubst citar-indicator-create (&cl-defs (nil (cl-tag-slot) (tag nil :documentation "The string to include as hidden candidate text, and to then determine whether a\ncandidate predicate function will return non-nil.") (symbol nil :type string :documentation "The symbol string to use in the UI when predicate function returns non-nil.") (padding " " :type string :documentation "String to add to the right side of the indicator, for proper padding and such.") (emptysymbol " " :documentation "The symbol to use in the UI when predicate function returns nil. Can be useful\nin some cases when using icons.") (function nil :type function :documentation "A predicate function that takes a single CITEKEY argument.") (compiledfunction nil :type compiled-function :documentation "A compiled version of `function' used during processing.")) &key tag symbol padding emptysymbol function compiledfunction) "\
-Constructor for objects of type `citar-indicator'." (declare (side-effect-free t)) (record 'citar-indicator tag symbol padding emptysymbol function compiledfunction))
+in some cases when using icons." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 4))) (cl-defsubst citar-indicator-function (cl-x) "Access slot \"function\" of `citar-indicator' struct CL-X.
+A predicate function that takes a single CITEKEY argument." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 5))) (cl-defsubst citar-indicator-compiledfunction (cl-x) "Access slot \"compiledfunction\" of `citar-indicator' struct CL-X.
+A compiled version of `function' used during processing." (declare (side-effect-free t)) (progn (or (citar-indicator-p cl-x) (signal 'wrong-type-argument (list 'citar-indicator cl-x))) (aref cl-x 6))) (cl-defsubst citar-indicator-create (&cl-defs (nil (cl-tag-slot) (tag nil :documentation "The string to include as hidden candidate text, and to then determine whether a
+candidate predicate function will return non-nil.") (symbol nil :type string :documentation "The symbol string to use in the UI when predicate function returns non-nil.") (padding " " :type string :documentation "String to add to the right side of the indicator, for proper padding and such.") (emptysymbol " " :documentation "The symbol to use in the UI when predicate function returns nil. Can be useful
+in some cases when using icons.") (function nil :type function :documentation "A predicate function that takes a single CITEKEY argument.") (compiledfunction nil :type compiled-function :documentation "A compiled version of `function' used during processing.")) &key tag symbol padding emptysymbol function compiledfunction) "Constructor for objects of type `citar-indicator'." (declare (side-effect-free t)) (record 'citar-indicator tag symbol padding emptysymbol function compiledfunction)))
 (autoload 'citar-insert-preset "citar" "\
 Prompt for and insert a predefined search." t)
 (autoload 'citar-open "citar" "\

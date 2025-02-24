@@ -5,7 +5,6 @@
 ;; Author: Jen-Chieh Shen <jcs090218@gmail.com>
 ;; URL: https://github.com/emacs-lsp/lsp-ui
 ;; Keywords: languages, tools
-;; Version: 6.2
 
 ;;; License
 ;;

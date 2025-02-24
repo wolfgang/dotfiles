@@ -4,7 +4,8 @@
 
 ;; Author: Artur Malabarba <emacs@endlessparentheses.com>
 ;; URL: https://github.com/Malabarba/paradox
-;; Version: 2.5.4
+;; Package-Version: 2.5.4
+;; Package-Revision: d24fe4a329a9
 ;; Keywords: package packages
 ;; Package-Requires: ((emacs "24.4") (seq "1.7") (let-alist "1.0.3") (spinner "1.7.3") (hydra "0.13.2"))
 ;; Prefix: paradox

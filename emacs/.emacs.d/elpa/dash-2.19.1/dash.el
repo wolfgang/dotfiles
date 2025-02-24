@@ -3,7 +3,8 @@
 ;; Copyright (C) 2012-2021 Free Software Foundation, Inc.
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 2.19.1
+;; Package-Version: 2.19.1
+;; Package-Revision: 2.19.1-0-g39d067b9fbb2
 ;; Package-Requires: ((emacs "24"))
 ;; Keywords: extensions, lisp
 ;; Homepage: https://github.com/magnars/dash.el

@@ -70,18 +70,18 @@ explicitly specified `_%3'.
 Toggle fontification of the `##' macro and its positional arguments.
 
 This is a minor mode.  If called interactively, toggle the
-`Llama-Fontify mode' mode.  If the prefix argument is positive,
-enable the mode, and if it is zero or negative, disable the mode.
+`Llama-Fontify mode' mode.  If the prefix argument is positive, enable
+the mode, and if it is zero or negative, disable the mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate `llama-fontify-mode'.
+evaluate the variable `llama-fontify-mode'.
 
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
 
 (fn &optional ARG)" t)
 (put 'global-llama-fontify-mode 'globalized-minor-mode t)
@@ -108,7 +108,7 @@ would do it.
 See `llama-fontify-mode' for more information on Llama-Fontify mode.
 
 (fn &optional ARG)" t)
-(register-definition-prefixes "llama" '("\\#\\#" "completing-read" "elisp-" "intern" "lisp--el-match-keyword" "llama-"))
+(register-definition-prefixes "llama" '("##" "completing-read" "elisp-" "intern" "lisp--el-match-keyword" "llama-"))
 
 ;;; End of scraped data
 

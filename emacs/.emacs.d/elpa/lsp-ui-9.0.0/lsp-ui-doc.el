@@ -5,7 +5,6 @@
 ;; Author: Sebastien Chapuis <sebastien@chapu.is>
 ;; URL: https://github.com/emacs-lsp/lsp-ui
 ;; Keywords: languagues, tools
-;; Version: 6.2
 
 ;;; License
 ;;

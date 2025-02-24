@@ -423,20 +423,18 @@ the module langugage is something like \"racket\".
 
 This is a minor mode.  If called interactively, toggle the
 `Racket-Smart-Open-Bracket mode' mode.  If the prefix argument is
-positive, enable the mode, and if it is zero or negative, disable
-the mode.
+positive, enable the mode, and if it is zero or negative, disable the
+mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate `racket-smart-open-bracket-mode'.
+evaluate the variable `racket-smart-open-bracket-mode'.
 
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
-
-\\{racket-smart-open-bracket-mode-map}
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "racket-smart-open" '("racket-"))
@@ -608,19 +606,19 @@ commands directly to whatever keys you prefer.
 
 \\{racket-xp-mode-map}
 
-This is a minor mode.  If called interactively, toggle the
-`Racket-Xp mode' mode.  If the prefix argument is positive,
-enable the mode, and if it is zero or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the `Racket-Xp
+mode' mode.  If the prefix argument is positive, enable the mode, and if
+it is zero or negative, disable the mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate `racket-xp-mode'.
+evaluate the variable `racket-xp-mode'.
 
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "racket-xp" '("racket-"))

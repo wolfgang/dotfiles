@@ -6,7 +6,8 @@
 ;; Maintainer: Bruce D'Arcus <https://github.com/bdarcus>
 ;; Created: February 27, 2021
 ;; SPDX-License-Identifier: GPL-3.0-or-later
-;; Version: 1.4.0
+;; Package-Version: 1.4.0
+;; Package-Revision: v1.4.0-0-ge21bf22b29d8
 ;; Homepage: https://github.com/emacs-citar/citar
 ;; Package-Requires: ((emacs "27.1") (parsebib "4.2") (org "9.5") (citeproc "0.9"))
 

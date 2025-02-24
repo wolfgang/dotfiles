@@ -3,7 +3,8 @@
 ;; Copyright (C) 2005--2022 Taylor R. Campbell
 
 ;; Author: Taylor R. Campbell <campbell@paredit.org>
-;; Version: 26
+;; Package-Version: 26
+;; Package-Revision: v26-0-g72cc1f605532
 ;; Created: 2005-07-31
 ;; Keywords: lisp
 

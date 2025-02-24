@@ -32,7 +32,6 @@
 ;;; Generated autoloads from parseclj-parser.el
 
 (register-definition-prefixes "parseclj-parser" '("parseclj-"))
-
 
 ;;; End of scraped data
 
