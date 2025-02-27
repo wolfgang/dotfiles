@@ -137,4 +137,22 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   (set-window-dedicated-p (selected-window)
                           (not (window-dedicated-p (selected-window)))))
 
+
+(defun my-get-git-log (repo since)
+  (let ((log (shell-command-to-string (format "cd ~/workspace/%s && git log --since=-\"%s\" %s" repo since "--format=format:\"%H;;;%s\""))))
+      (map 'list (lambda (line)
+                   (let* ((parts (split-string line ";;;"))
+                          (hash (car parts))
+                          (title (car (cdr parts))))
+                     (format "[[https://gitlab.com/wolfgangd/%s/-/commit/%s][%s]]" repo hash title)))                
+           (split-string log "\n"))))
+
+(defun my-insert-git-log ()
+  (interactive)
+  (progn
+    (insert "- Today's commits\n")
+    (insert (mapconcat (lambda (e) (format "  - %s" e))
+                       (my-get-git-log "steel-rain" "3 weeks" ) "\n"))
+    (insert "\n"))  )
+
 (provide 'my-functions)
