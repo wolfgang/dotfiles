@@ -146,9 +146,6 @@
 
 (add-hook 'after-make-frame-functions 'show-scratch-buffer)
 
-(require 'fill-column-indicator)
-(setq fci-rule-column 120)
-
 (require 'linum-off)
 (require 'my-functions)
 (require 'my-org)
