@@ -1,5 +1,5 @@
-(assq-delete-all 'org package--builtins)
-(assq-delete-all 'org package--builtin-versions)
+;(assq-delete-all 'org package--builtins)
+;(assq-delete-all 'org package--builtin-versions)
 
 
 (use-package org-journal
