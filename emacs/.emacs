@@ -197,30 +197,6 @@
   :config
   (recentf-mode 1))
 
-(use-package modus-themes
-  :ensure t
-  :disabled t
-  :init
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil
-        modus-themes-region '(bg-only no-extend))
-  :config
-  (load-theme 'modus-vivendi :no-confirm))
-
-(use-package ef-themes
-  :ensure t
-  :disabled t
-  :config
-  (setq ef-themes-to-toggle '(ef-winter ef-summer))
-  (mapc #'disable-theme custom-enabled-themes)
-  (ef-themes-select 'ef-maris-dark))
-
-(use-package nord-theme
-  :ensure t
-  :disabled t
-  :config
-  (load-theme 'nord :no-confirm))
-
 (use-package smart-mode-line
   :ensure t
   :hook ((after-init . sml/setup))
@@ -567,12 +543,6 @@
   :commands
   lsp-ui-mode)
 
-(use-package keyfreq
-  :ensure t
-  :config
-  (keyfreq-mode)
-  (keyfreq-autosave-mode))
-
 (use-package helpful
   :ensure t
   :bind (("C-<f1>" . helpful-at-point)
@@ -603,10 +573,6 @@
   (shackle-mode 1))
 
 
-(use-package terraform-mode
-  :ensure t
-  :defer t)
-
 (use-package elfeed
   :ensure t
   :bind (("<C-f11>" . elfeed)))
@@ -614,11 +580,6 @@
 (use-package ledger-mode
   :ensure t
   :defer t)
-
-(use-package pocket-reader
-  :ensure t
-  :defer t
-  :bind (("<C-f12>" . pocket-reader)))
 
 (use-package s :ensure t)
 
@@ -630,8 +591,6 @@
   (("C-c C-<" . mc/mark-all-like-this)
    ("C->" . mc/mark-next-like-this-symbol)
    ("C-<" . mc/mark-previous-like-this-symbo)))
-
-(use-package yasnippet :ensure t)
 
 (use-package js2-refactor
   :ensure t
@@ -683,23 +642,10 @@
   (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
   :ensure t)
 
-(use-package yasnippet
-  :ensure t
-  :diminish yas-minor-mode
-  :init
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-  :bind (("C-z y" . yas-insert-snippet))
-  :config
-  (yas-global-mode))
-
 (use-package iedit
   :ensure t
   :init
   (global-set-key (kbd "C-.") 'iedit-mode))
-
-(use-package eglot
-  :ensure t
-  :defer t)
 
 (use-package org-drill
   :ensure t
@@ -864,20 +810,10 @@
   :commands
   lsp-ui-mode)
 
-(use-package keyfreq
-  :ensure t
-  :config
-  (keyfreq-mode)
-  (keyfreq-autosave-mode))
-
 (use-package helpful
   :ensure t
   :bind (("C-<f1>" . helpful-at-point)
          ("C-h f" . helpful-function)))
-
-(use-package terraform-mode
-  :ensure t
-  :defer t)
 
 (use-package elfeed
   :ensure t
@@ -886,11 +822,6 @@
 (use-package ledger-mode
   :ensure t
   :defer t)
-
-(use-package pocket-reader
-  :ensure t
-  :defer t
-  :bind (("<C-f12>" . pocket-reader)))
 
 (use-package s :ensure t)
 
@@ -902,8 +833,6 @@
   (("C-c C-<" . mc/mark-all-like-this)
    ("C->" . mc/mark-next-like-this-symbol)
    ("C-<" . mc/mark-previous-like-this-symbo)))
-
-(use-package yasnippet :ensure t)
 
 (use-package js2-refactor
   :ensure t
@@ -1241,16 +1170,7 @@
   (setq zoom-window-mode-line-color "black")
   :bind (("C-z z" . zoom-window-zoom)))
 
-(straight-use-package
- '(eat :type git
-       :host codeberg
-       :repo "akib/emacs-eat"
-       :files ("*.el" ("term" "term/*.el") "*.texi"
-               "*.ti" ("terminfo/e" "terminfo/e/*")
-               ("terminfo/65" "terminfo/65/*")
-               ("integration" "integration/*")
-               (:exclude ".dir-locals.el" "*-tests.el"))))
-    
+
 (use-package moody
   :ensure t
   :config
@@ -1297,28 +1217,14 @@
   ;; electric-pair-mode breaks barf-to-point and adds newline when cloning sexp
   (add-hook 'racket-mode-hook (lambda () (electric-pair-mode 0))))
 
-
-
 (use-package avy :ensure t
   :init
   (setq avy-timeout-seconds 10.0)
   :bind (("M-j" . avy-goto-char-timer)))
 
-(straight-use-package
- '(unison-ts-mode :type git
-                  :host github
-                  :repo "fmguerreiro/unison-ts-mode"
-                  :files ("*.el")))
-
-
 (use-package ibuffer
   :hook (ibuffer-mode . ibuffer-auto-mode)
   :defer t)
-
-
-(use-package casual-editkit
-  :ensure t
-  :bind (("C-o" . casual-editkit-main-tmenu)))
 
 (use-package citar
   :ensure t
@@ -1334,8 +1240,6 @@
   :ensure t
   :config
   (pulsar-global-mode 1))
-
-(use-package burly :ensure t :straight t)
 
 (use-package jinx
   :ensure t
