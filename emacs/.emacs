@@ -204,7 +204,7 @@
   (setq sml/theme 'respecful))
 
 (use-package standard-themes
-  :straight t
+  :ensure t
   :config
   (load-theme 'standard-dark 'no-confirm ))
 
@@ -276,7 +276,7 @@
   (use-package consult-ag :ensure t))
 
 (use-package embark
-  :straight t
+  :ensure t
   :bind
   (("C-\\" . embark-act)
    ("C-;" . embark-dwim)
@@ -293,7 +293,7 @@
                  (window-parameters (mode-line-format . none)))))
 
 (use-package embark-consult
-  :straight t
+  :ensure t
   :after (embark consult)
   :demand t        ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
@@ -1094,7 +1094,7 @@
 
 
 (use-package gdscript-mode
-  :straight (gdscript-mode
+  :ensure (gdscript-mode
              :type git
              :host github
              :repo "godotengine/emacs-gdscript-mode")
@@ -1120,7 +1120,7 @@
               (define-key gdscript-mode-map (kbd "C-c C-b w") 'my-gdscript-docs-browse-symbol-at-point))))
 
 (use-package denote
-  :straight t
+  :ensure t
   :bind (("C-c n n" . denote)
          ("C-c n o" . denote-open-or-create)
          ("C-c n l" . denote-link-or-create)
@@ -1147,7 +1147,7 @@
   (add-hook 'dired-mode-hook #'denote-dired-mode))
 
 (use-package consult-denote
-  :straight t
+  :ensure t
   :config
   (define-key global-map (kbd "C-c n f") #'consult-denote-find)
   (define-key global-map (kbd "C-c n g") #'consult-denote-grep)
@@ -1250,14 +1250,3 @@
   :config
   (global-jinx-mode))
 
-;; required dependencies
-(straight-use-package 'f)
-(straight-use-package 's)
-(straight-use-package 'all-the-icons)
-
-(straight-use-package
- '(project-headerline
-  :type git
-  :host github
-  :repo "gavv/project-headerline"
-  :branch "main"))
