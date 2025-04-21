@@ -391,8 +391,8 @@ using this command."
   :diminish company-mode
   :bind (:map company-active-map
               ("<escape>" . company-abort))
-  :hook ((after-init . global-company-mode))
   :config
+  (global-company-mode)
   ;; respect case when inserting into buffer, ignore when searching for candidates
   (setq company-dabbrev-downcase nil
         company-dabbrev-ignore-case 'yes
