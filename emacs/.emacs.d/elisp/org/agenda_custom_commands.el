@@ -69,7 +69,7 @@
 
 (setq active-projects `(tags-todo "+TODO=\"PROJ\"-INACTIVE" (
   (org-agenda-overriding-header  "Active Projects")
-  (org-agenda-prefix-format " %i %-16:c%l"))))
+  (org-agenda-prefix-format " %i %-16:c%b"))))
 
 (setq inactive-projects `(tags-todo "+TODO=\"PROJ\"+INACTIVE" (
   (org-agenda-overriding-header  "Inactive Projects"))))
