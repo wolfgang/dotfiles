@@ -192,6 +192,7 @@ using this command."
 (add-hook 'after-make-frame-functions 'show-scratch-buffer)
 
 (require 'linum-off)
+(require 'term-toggle)
 (require 'my-functions)
 (require 'my-org)
 
