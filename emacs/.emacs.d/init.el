@@ -1233,3 +1233,7 @@ using this command."
   :config
   (global-jinx-mode))
 
+(use-package ready-player
+  :ensure t
+  :config
+  (ready-player-mode +1))
