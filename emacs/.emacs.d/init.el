@@ -940,10 +940,14 @@ using this command."
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
+  :after lispy
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   :bind (("C-z y" . yas-insert-snippet))
   :config
+  ;; Lispy uses the tab key 
+  (define-key yas-minor-mode-map (kbd "TAB") yas-maybe-expand)
+  (define-key yas-minor-mode-map (kbd "<tab>") yas-maybe-expand)
   (yas-global-mode))
 
 (use-package iedit
