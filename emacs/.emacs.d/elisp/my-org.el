@@ -26,8 +26,10 @@
         org-pretty-entities-include-sub-superscripts nil
         org-agenda-include-diary t
         org-src-window-setup 'split-window-below)
-  :bind (:map org-mode-map (( "C-M-<return>" . org-insert-heading-respect-content)
-                            ("C-c r" . avy-org-refile-as-child)))
+  :bind (:map org-mode-map
+              (( "C-M-<return>" . org-insert-heading-respect-content)
+               ("C-c r" . avy-org-refile-as-child)
+               ("C-z b" . my-org-insert-bullet-item)))
   :config
   ;; This enables windmove keys to work in org mode
   ;; See https://orgmode.org/manual/Conflicts.html
@@ -45,5 +47,27 @@
                     (insert "(<REASON>) ")))))
   
   (load "org/config.el"))
+
+(defun my-org-insert-bullet-item ()
+  (interactive)
+  (progn
+    (org-back-to-heading)
+    (forward-line 1)
+    (setq left-to-move 0)
+    (while (and (= 0 left-to-move)
+                (not (looking-at org-complex-heading-regexp)))
+      (setq left-to-move (forward-line 1)))
+    (beginning-of-line)
+    (while
+        (and
+         (> (line-number-at-pos) 1)
+         (or
+          (looking-at org-complex-heading-regexp)
+          (not (looking-at org-list-full-item-re))))
+      (forward-line -1))
+    (end-of-line)
+    (insert "\n")
+    (insert "- [ ] ")))
+
 
 (provide 'my-org)
