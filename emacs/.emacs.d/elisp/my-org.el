@@ -52,6 +52,7 @@
   (interactive)
   (progn
     (org-back-to-heading)
+    (setq header-line-num (line-number-at-pos))
     (forward-line 1)
     (setq left-to-move 0)
     (while (and (= 0 left-to-move)
@@ -60,14 +61,16 @@
     (beginning-of-line)
     (while
         (and
-         (> (line-number-at-pos) 1)
-         (or
-          (looking-at org-complex-heading-regexp)
-          (not (looking-at org-list-full-item-re))))
+         (> (line-number-at-pos) header-line-num)
+         (looking-at org-complex-heading-regexp))
       (forward-line -1))
     (end-of-line)
     (insert "\n")
-    (insert "- [ ] ")))
+    (insert "- [ ] ")
+    (save-excursion
+      (progn
+       (org-back-to-heading)
+       (outline-show-subtree)))))
 
 
 (provide 'my-org)
