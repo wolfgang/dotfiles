@@ -62,7 +62,8 @@
     (while
         (and
          (> (line-number-at-pos) header-line-num)
-         (looking-at org-complex-heading-regexp))
+         (or (is-current-line-empty-p)
+             (looking-at org-complex-heading-regexp)))
       (forward-line -1))
     (end-of-line)
     (insert "\n")
@@ -72,5 +73,12 @@
        (org-back-to-heading)
        (outline-show-subtree)))))
 
+(defun is-current-line-empty-p ()
+    (let ((str (buffer-substring-no-properties
+                (line-beginning-position)
+                (line-end-position))))
+      (seq-empty-p (s-trim str))))
+    
 
 (provide 'my-org)
+
