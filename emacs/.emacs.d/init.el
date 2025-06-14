@@ -259,10 +259,10 @@ using this command."
   :config
   (setq sml/theme 'respecful))
 
-(use-package standard-themes
+(use-package modus-themes
   :ensure t
   :config
-  (load-theme 'standard-dark 'no-confirm ))
+  (load-theme 'modus-operandi-tinted 'no-confirm ))
 
 (use-package diminish
   :ensure t
