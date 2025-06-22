@@ -1237,3 +1237,70 @@ using this command."
   :ensure t
   :config
   (ready-player-mode +1))
+
+(use-package gptel
+  :ensure t
+  :config
+  
+  (gptel-make-ollama "Ollama"  
+    :host "localhost:11434"    
+    :stream t                  
+    :models '(deepseek-r1:latest))
+  (gptel-make-anthropic "Claude"
+    :stream t
+    :key claude-api-key)
+
+  (gptel-make-tool
+   :name "read_buffer"                  ; javascript-style snake_case name
+   :function (lambda (buffer)           ; the function that will run
+               (unless (buffer-live-p (get-buffer buffer))
+                 (error "error: buffer %s is not live." buffer))
+               (with-current-buffer  buffer
+                 (buffer-substring-no-properties (point-min) (point-max))))
+   :description "return the contents of an emacs buffer"
+   :args (list '(:name "buffer"
+                       :type string     ; :type value must be a symbol
+                       :description "the name of the buffer whose contents are to be retrieved"))
+   :category "emacs")
+
+  (gptel-make-tool
+   :name "create_file"                    ; javascript-style  snake_case name
+   :function (lambda (path filename content)   ; the function that runs
+               (let ((full-path (expand-file-name filename path)))
+                 (with-temp-buffer
+                   (insert content)
+                   (write-file full-path))
+                 (format "Created file %s in %s" filename path)))
+   :description "Create a new file with the specified content"
+   :args (list '(:name "path"             ; a list of argument specifications
+	                   :type string
+	                   :description "The directory where to create the file")
+               '(:name "filename"
+	                   :type string
+	                   :description "The name of the file to create")
+               '(:name "content"
+	                   :type string
+	                   :description "The content to write to the file"))
+   :category "filesystem")                ; An arbitrary label for grouping
+  
+  (gptel-make-tool
+   :name "overwrite_buffer"
+   :description "Overwrite the contents of an Emacs buffer. Name of the buffer is given by the buffer parameter. The new content is given by the content parameter "
+   :category "emacs"
+   :args (list '(:name "buffer"
+                       :type string
+                       :description "The name of the buffer whose contents are to be overwritten")
+               '(:name "content"
+                       :type string
+                       :description "The new buffer content"))
+   :function (lambda (buffer content)
+               (condition-case err
+                   (with-current-buffer buffer
+                     (progn
+                       (erase-buffer)
+                       (insert content)
+                       (format "Successfully modified buffer %s with %d characters" 
+                               buffer (length content))))
+                 (error (format "Error modifying buffer %s: %s" buffer (error-message-string err))))))
+
+  )
