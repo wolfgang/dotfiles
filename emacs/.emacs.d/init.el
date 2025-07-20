@@ -422,17 +422,6 @@
                              (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
   :interpreter "node")
 
-(use-package rjsx-mode
-  :ensure t
-  :after xref-js2
-  :bind (:map rjsx-mode-map
-              ("C-d" . my-delete-region-or-line))
-  :config
-  (define-key js2-mode-map (kbd "M-.") nil)
-  (add-hook 'rjsx-mode-hook (lambda ()
-                              (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
-
-
 (use-package prettier-js
   :ensure t
   :init
@@ -444,92 +433,6 @@
   :config
   (setq prettier-js-args '()
         prettier-js-show-errors 'echo))
-
-(use-package super-save
-  :ensure t
-  :diminish super-save-mode
-  :config
-  (setq super-save-auto-save-when-idle t)
-  (setq auto-save-default nil)
-  (super-save-mode))
-
-(use-package git-timemachine
-  :ensure t
-  :defer t)
-
-(use-package mwim
-  :ensure t
-  :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
-         ([remap move-end-of-line] . mwim-end-of-code-or-line)))
-
-(use-package rustic
-  :ensure t
-  :defer t
-  :bind (:map rustic-mode-map
-              ("C-<return>" .  rustic-format-buffer)
-              ("C-c C-c l" . flycheck-list-errors)
-              ("C-c C-c a" . lsp-execute-code-action)
-              ("C-c C-c r" . lsp-rename)
-              ("C-c C-c q" . lsp-workspace-restart)
-              ("C-c C-c s" . lsp-rust-analyzer-status)
-              ("C-c C-c Q" . lsp-workspace-shutdown))
-  :config
-  (setq lsp-enable-symbol-highlighting nil)
-  (add-hook 'rustic-mode-hook 'my-rustic-mode-auto-save-hook)
-  ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-signature-auto-activate nil)
-  (setq rustic-format-on-save nil))
-
-(use-package lsp-mode
-  :ensure t
-  :defer t
-  :init
-  (setq lsp-keymap-prefix "C-c C-l"
-        lsp-signature-doc-lines 3
-        lsp-idle-delay 0.3
-        lsp-modeline-code-actions-segments '(count name)
-        lsp-rust-analyzer-cargo-watch-command "check"
-        lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial"
-        lsp-rust-analyzer-display-chaining-hints t
-        lsp-rust-analyzer-display-closure-return-type-hints t
-        lsp-eldoc-render-all nil
-        lsp-rust-analyzer-server-display-inlay-hints nil
-        lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil
-        lsp-rust-analyzer-display-parameter-hints nil
-        lsp-rust-analyzer-display-reborrow-hints nil)
-  :commands
-  (lsp lsp-deferred)
-  :bind (:map lsp-mode-map
-              ("M-<f1>" . lsp-describe-thing-at-point))
-  :hook
-  ((lsp-mode . lsp-ui-mode)
-   (lsp-mode . lsp-enable-which-key-integration)
-   ;; (gdscript-mode . lsp)
-   ))
-
-(use-package lsp-ui
-  :ensure t
-  :defer t
-  :init
-  (setq lsp-ui-doc-enable t
-        lsp-ui-peek-always-show t
-        lsp-ui-sideline-show-code-actions nil
-        lsp-ui-peek-show-directory nil
-        lsp-ui-sideline-show-hover nil
-        lsp-ui-doc-show-with-cursor nil
-        lsp-ui-sideline-show-diagnostics nil
-        lsp-ui-doc-enable nil)
-  :bind (:map lsp-ui-mode-map
-              ("M-j" . lsp-ui-imenu)
-              ("M-?" . lsp-ui-peek-find-references))
-  :commands
-  lsp-ui-mode)
-
-(use-package helpful
-  :ensure t
-  :bind (("C-<f1>" . helpful-at-point)
-         ("C-h f" . helpful-function)))
 
 (use-package shackle
   :ensure t
@@ -554,86 +457,6 @@
                         ("*Org-Babel Error Output*" :align below :size 0.3)
                         ("*Warnings*" :align below :size 0.3)))
   (shackle-mode 1))
-
-
-(use-package elfeed
-  :ensure t
-  :bind (("<C-f11>" . elfeed)))
-
-(use-package ledger-mode
-  :ensure t
-  :defer t)
-
-(use-package s :ensure t)
-
-(use-package multiple-cursors
-  :ensure t
-  :init
-  (setq mc/always-run-for-all t)
-  :bind
-  (("C-c C-<" . mc/mark-all-like-this)
-   ("C->" . mc/mark-next-like-this-symbol)
-   ("C-<" . mc/mark-previous-like-this-symbo)))
-
-(use-package js2-refactor
-  :ensure t
-  :defer t
-  :config
-  (js2r-add-keybindings-with-prefix "C-c C-m")
-  :hook ((js2-mode . js2-refactor-mode)))
-
-
-(use-package expand-region
-  :ensure t
-  :init
-  (global-set-key (kbd "C-=") 'er/expand-region))
-
-(use-package wgrep
-  :ensure t)
-
-(use-package paradox
-  :ensure t
-  :defer t
-  :init
-  (setq paradox-display-star-count nil))
-
-(use-package crux
-  :ensure t
-  :bind (("C-c o" . crux-open-with)
-         ("C-S-<return>" . crux-smart-open-line-above)
-         ("S-<return>" . crux-smart-open-line)
-         ("C-c u" . crux-view-url)
-         ("C-c e" . crux-eval-and-replace)
-         ("C-c D" . crux-delete-file-and-buffer)
-         ("C-M-<down>" . crux-duplicate-current-line-or-region)
-         ("C-S-M-<down>" . crux-duplicate-and-comment-current-line-or-region)
-         ("C-S-r" . crux-rename-file-and-buffer)
-         ("C-c t" . crux-visit-term-buffer)
-         ("C-c j" . crux-top-join-line)
-         ("M-E" . crux-kill-line-backwards)
-         ("C-t" . crux-transpose-windows)))
-
-(use-package discover-my-major
-  :ensure t
-  :bind (("C-h C-m" . discover-my-major)
-         ("C-h M-m" . discover-my-mode)))
-
-(use-package yaml-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-  (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
-  :ensure t)
-
-(use-package iedit
-  :ensure t
-  :init
-  (global-set-key (kbd "C-.") 'iedit-mode))
-
-(use-package org-drill
-  :ensure t
-  :init
-  (setq org-drill-save-buffers-after-drill-sessions-p nil))
-
 
 
 ;; Problems with tsc-dynlib on different platforms, disabled for now
