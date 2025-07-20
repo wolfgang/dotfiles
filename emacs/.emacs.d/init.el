@@ -593,9 +593,7 @@
               ("M-<f1>" . lsp-describe-thing-at-point))
   :hook
   ((lsp-mode . lsp-ui-mode)
-   (lsp-mode . lsp-enable-which-key-integration)
-   ;; (gdscript-mode . lsp)
-   ))
+   (lsp-mode . lsp-enable-which-key-integration)))
 
 (use-package lsp-ui
   :ensure t
@@ -654,12 +652,6 @@
 
 (use-package wgrep
   :ensure t)
-
-(use-package paradox
-  :ensure t
-  :defer t
-  :init
-  (setq paradox-display-star-count nil))
 
 (use-package crux
   :ensure t
@@ -807,50 +799,6 @@
   (add-to-list 'linum-disabled-modes-list 'dired-sidebar-mode)
   :bind (("C-z s" . dired-sidebar-toggle-sidebar)))
 
-
-
-;; (add-to-list 'load-path "~/.emacs.d/elisp/emacs-gdscript-mode")
-;; (require 'gdscript-mode)
-
-
-(defun maybe-save () (when buffer-file-name (save-buffer)))
-
-(defun lsp--gdscript-ignore-errors (original-function &rest args)
-  "Ignore the error message resulting from Godot not replying to the `JSONRPC' request."
-  (if (string-equal major-mode "gdscript-mode")
-      (let ((json-data (nth 0 args)))
-        (if (and (string= (gethash "jsonrpc" json-data "") "2.0")
-                 (not (gethash "id" json-data nil))
-                 (not (gethash "method" json-data nil)))
-            nil ; (message "Method not found")
-          (apply original-function args)))
-    (apply original-function args)))
-
-
-(use-package gdscript-mode
-  :vc (gdscript-mode
-       :url "https://github.com/godotengine/emacs-gdscript-mode")
-  :hook (gdscript-mode . eglot-ensure)
-  :custom (gdscript-eglot-version 3)
-
-  :init
-  (setq gdscript-use-tab-indents t
-        gdscript-gdformat-save-and-format nil
-        gdscript-docs-use-eww nil)
-
-  :config
-  (advice-add 'gdscript-godot-run-project :before 'maybe-save)
-  (advice-add 'gdscript-godot-run-current-scene :before 'maybe-save)
-  (advice-add #'lsp--get-message-type :around #'lsp--gdscript-ignore-errors)
-
-  (add-hook 'gdscript-mode-hook
-            (lambda()
-              (local-unset-key (kbd "<f6>"))
-              (define-key gdscript-mode-map (kbd "C-<return>") 'gdscript-format-buffer)
-              (define-key gdscript-mode-map (kbd "C-r") 'gdscript-godot-run-current-scene)
-              (define-key gdscript-mode-map (kbd "C-b") 'gdscript-godot-run-project)
-              (define-key gdscript-mode-map (kbd "C-c C-b w") 'my-gdscript-docs-browse-symbol-at-point))))
-
 (use-package denote
   :ensure t
   :bind (("C-c n n" . denote)
@@ -865,12 +813,12 @@
   :init
   (setq denote-link-backlinks-display-buffer-action
         '((display-buffer-reuse-window
-         display-buffer-in-side-window)
-        (side . bottom)
-        (slot . 99)
-        (window-height . 0.4)
-        (dedicated . t)
-        (preserve-size . (t . t))))
+           display-buffer-in-side-window)
+          (side . bottom)
+          (slot . 99)
+          (window-height . 0.4)
+          (dedicated . t)
+          (preserve-size . (t . t))))
 
   (setq denote-templates
         '((devlog . "[[denote:20240617T161853][Devlog Index]]\n\n" )))
