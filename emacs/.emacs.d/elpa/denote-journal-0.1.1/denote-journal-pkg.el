@@ -1,0 +1,2 @@
+;; Generated package description from denote-journal.el  -*- mode: lisp-data; no-byte-compile: t -*-
+(define-package "denote-journal" "0.1.1" "Convenience functions for daily journaling with Denote" '((emacs "28.1") (denote "4.0.0")) :commit "a8684e388ba363ffdad6b0930065036417c8337f" :authors '(("Protesilaos Stavrou" . "info@protesilaos.com")) :maintainer '("Protesilaos Stavrou" . "info@protesilaos.com") :url "https://github.com/protesilaos/denote-journal")

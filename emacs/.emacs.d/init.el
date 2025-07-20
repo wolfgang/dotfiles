@@ -804,12 +804,12 @@
   :bind (("C-c n n" . denote)
          ("C-c n o" . denote-open-or-create)
          ("C-c n l" . denote-link-or-create)
-         ("C-c n h" . denote-org-extras-link-to-heading)
+         ("C-c n h" . denote-org-link-to-heading)
          ("C-c n b" . denote-backlinks)
          ("C-c n d" . my-denote-create-devlog)
-         ("C-c n j" . denote-journal-extras-new-entry)
+         ("C-c n j" . denote-journal-new-entry)
          ("C-c n z" . my-denote-zk)
-         ("C-c n s" . denote-silo-extras-open-or-create))
+         ("C-c n s" . denote-silo-open-or-create))
   :init
   (setq denote-link-backlinks-display-buffer-action
         '((display-buffer-reuse-window
@@ -824,7 +824,10 @@
         '((devlog . "[[denote:20240617T161853][Devlog Index]]\n\n" )))
   (setq aw-scope 'frame)
   (setq denote-prompts '(title keywords))
-  (add-hook 'dired-mode-hook #'denote-dired-mode))
+  (add-hook 'dired-mode-hook #'denote-dired-mode)
+  (use-package denote-journal :ensure t)
+  (use-package denote-silo :ensure t)
+  (use-package denote-org :ensure t))
 
 (use-package consult-denote
   :ensure t
