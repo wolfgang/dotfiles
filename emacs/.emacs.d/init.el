@@ -65,7 +65,8 @@
       ns-right-alternate-modifier 'none
       auto-revert-interval 3
       auto-revert-check-vc-info t
-      switch-to-buffer-obey-display-actions t)
+      switch-to-buffer-obey-display-actions t
+      aw-scope 'frame)
 
 (add-to-list 'display-buffer-alist
              '("\\*Org Agenda\\*"
@@ -820,24 +821,21 @@
           (dedicated . t)
           (preserve-size . (t . t))))
 
-  (setq denote-templates
-        '((devlog . "[[denote:20240617T161853][Devlog Index]]\n\n" )))
-  (setq aw-scope 'frame)
+  (setq denote-templates nil)
   (setq denote-prompts '(title keywords))
   (add-hook 'dired-mode-hook #'denote-dired-mode)
   (use-package denote-journal :ensure t)
   (use-package denote-silo :ensure t)
-  (use-package denote-org :ensure t))
-
-(use-package consult-denote
+  (use-package denote-org :ensure t)
+  (use-package consult-denote
   :ensure t
   :config
   (define-key global-map (kbd "C-c n f") #'consult-denote-find)
   (define-key global-map (kbd "C-c n g") #'consult-denote-grep)
-  (consult-denote-mode 1))
+  (consult-denote-mode 1)))
+
 
 (use-package ob-async :ensure t)
-
 
 (use-package ace-window
   :ensure t
