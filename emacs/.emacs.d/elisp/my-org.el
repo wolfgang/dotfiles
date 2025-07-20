@@ -29,7 +29,8 @@
   :bind (:map org-mode-map
               (( "C-M-<return>" . org-insert-heading-respect-content)
                ("C-c r" . avy-org-refile-as-child)
-               ("C-z b" . my-org-insert-bullet-item)))
+               ("C-z b" . my-org-insert-bullet-item)
+               ("C-c l" . org-store-link)))
   :config
   ;; This enables windmove keys to work in org mode
   ;; See https://orgmode.org/manual/Conflicts.html

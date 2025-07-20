@@ -808,7 +808,7 @@
          ("C-c n h" . denote-org-link-to-heading)
          ("C-c n b" . denote-backlinks)
          ("C-c n d" . my-denote-create-devlog)
-         ("C-c n j" . denote-journal-new-entry)
+         ("C-c n j" . denote-journal-new-or-existing-entry)
          ("C-c n z" . my-denote-zk)
          ("C-c n s" . denote-silo-open-or-create))
   :init
