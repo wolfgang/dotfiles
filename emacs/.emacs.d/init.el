@@ -123,6 +123,7 @@
 (require 'linum-off)
 (require 'term-toggle)
 (require 'my-functions)
+(require 'new-day)
 (require 'my-org)
 
 (global-linum-mode)
