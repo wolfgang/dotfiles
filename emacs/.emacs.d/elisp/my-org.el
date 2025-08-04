@@ -25,7 +25,9 @@
         org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
         org-pretty-entities-include-sub-superscripts nil
         org-agenda-include-diary t
-        org-src-window-setup 'split-window-below)
+        org-src-window-setup 'split-window-below
+        org-return-follows-link t
+        org-M-RET-may-split-line '((item . nil)))
   :bind (:map org-mode-map
               (( "C-M-<return>" . org-insert-heading-respect-content)
                ("C-c r" . avy-org-refile-as-child)
@@ -46,6 +48,12 @@
                   (progn
 	                (message (concat "TODO state changed: " org-state))
                     (insert "(<REASON>) ")))))
+  (use-package org-appear
+    :ensure t
+    :init
+    (setq org-appear-delay 0.2)
+    :hook
+    org-mode)
   
   (load "org/config.el"))
 
