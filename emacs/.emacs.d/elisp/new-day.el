@@ -9,15 +9,16 @@
     (org-insert-heading)
     (insert date)
     (setq marker (point-marker))
+    (setq level (org-current-level))
     (forward-line)
-    (while (not (eq nil (refile-not-done-first-level-children marker date))))))
+    (while (refile-not-done-first-level-children marker level date))))
 
-(defun refile-not-done-first-level-children (marker refile-target)
+(defun refile-not-done-first-level-children (marker parent-level refile-target)
   (seq-filter
    (lambda (x) (not (eq nil x)))
    (org-map-entries
     (lambda ()
-      (if (and (= 2 (org-current-level))
+      (if (and (= (+ 1 parent-level) (org-current-level))
                (has-any-child-with-todo-state))
           (progn
             (org-refile nil nil (list refile-target (buffer-file-name) nil marker))
@@ -36,3 +37,5 @@
     (not (seq-empty-p result))))
 
 (provide 'new-day)
+
+
