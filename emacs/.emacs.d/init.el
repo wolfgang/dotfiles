@@ -100,7 +100,6 @@
  ("C-z C-z" . my-babel-call)
  ("C-z o" . other-window-prefix))
 
-
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 (define-key global-map [C-f2] #'term-toggle-eshell)
@@ -161,9 +160,15 @@
 
 
 (use-package orderless
+  :ensure t)
+
+(use-package hotfuzz
   :ensure t
+  :after orderless
   :custom
-  (completion-styles '(orderless substring basic)))
+  (completion-styles '(hotfuzz orderless substring basic)))
+
+
 
 (use-package marginalia
   :ensure t
