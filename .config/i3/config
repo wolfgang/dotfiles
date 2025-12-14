@@ -37,7 +37,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
-exec --no-startup-id kmix --keepvisibility
+exec --no-startup-id pasystray
 
 
 # Use pactl to adjust volume in PulseAudio.
