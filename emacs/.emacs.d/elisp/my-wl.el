@@ -42,7 +42,11 @@
         (now (decode-time (current-time)))) 
     (= (nth 3 time1) (nth 3 now))))
 
-(defun get-level-2-headings ()
+
+(progn
+  (require 'test-simple)
+
+  (defun get-level-2-headings ()
   (let ((result
           (org-map-entries
            (lambda ()
@@ -51,29 +55,27 @@
            'tree)))
     result))
 
-(defun assert-new-today-entry (file header-text sub-header-text)
-  (save-current-buffer
-    (set-buffer (find-file-noselect file))
-    (goto-today-heading)
-    (save-excursion
-      (assert-equal sub-header-text (first (get-level-2-headings))))
-    (let ((text (org-entry-get (point) "ITEM")))
-      (assert-equal header-text text))))
+  (defun assert-new-today-entry (file header-text sub-header-text)
+    (save-current-buffer
+      (set-buffer (find-file-noselect file))
+      (goto-today-heading)
+      (save-excursion
+        (assert-equal sub-header-text (first (get-level-2-headings))))
+      (let ((text (org-entry-get (point) "ITEM")))
+        (assert-equal header-text text))))
 
-(defun insert-file-header ()
-  (insert "#+title:      Work Log\n")
-  (insert "#+date:       [2025-12-07 Sun 17:44]\n")
-  (insert "#+filetags:   :devlog\n")
-  (insert "#+identifier: 20251207T174435\n"))
+  (defun insert-file-header ()
+    (insert "#+title:      Work Log\n")
+    (insert "#+date:       [2025-12-07 Sun 17:44]\n")
+    (insert "#+filetags:   :devlog\n")
+    (insert "#+identifier: 20251207T174435\n"))
 
-(defun insert-sub-headers ()
-  (insert "** Sub 1\n")
-  (insert "*** Sub 1.2\n")
-  (insert "** Sub 2\n"))
+  (defun insert-sub-headers ()
+    (insert "** Sub 1\n")
+    (insert "*** Sub 1.2\n")
+    (insert "** Sub 2\n"))
 
-(progn
-  (require 'test-simple)
-
+  
   (test-simple-start)
   (assert-t (is-inside-today (format-time-string "%Y-%m-%d %H:%M" (current-time))))
   (assert-nil (is-inside-today "2025-12-11 0:01"))
