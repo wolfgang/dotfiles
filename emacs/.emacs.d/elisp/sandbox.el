@@ -1,5 +1,12 @@
-(with-temp-file "/tmp/foo.org"
-  (insert "#+title:      Work Log\n")
-  (insert "#+date:       [2025-12-07 Sun 17:44]\n")
-  (insert "#+filetags:   :devlog\n")
-  (insert "#+identifier: 20251207T174435\n"))
+(setq lnk '("id:425002e7-6306-465e-b28c-c882d11766d5" #("Research emacs fu" 1 2 3 )))
+
+(setq foo #("Research emacs fu" 1 2 3))
+
+(aref foo 1)
+
+(setq id-part (car lnk))
+(setq title-part (car (cdr lnk)))
+
+(insert (format "[[%s][%s]]" id-part title-part))
+
+(aref #("foo" 1 2) 0)

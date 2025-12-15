@@ -1,3 +1,12 @@
+(defun get-level-2-headings ()
+  (let ((result
+         (org-map-entries
+          (lambda ()
+            (org-element-property :title (org-element-at-point)))
+          "LEVEL=2"
+          'tree)))
+    result))
+
 (defun add-new-entry ( file text)
   (save-current-buffer
     (let* ((buff (find-file-noselect file))
@@ -5,8 +14,10 @@
            (result (goto-today-heading)))
       (if result
           (progn
-            (org-insert-subheading "")
-            (insert text))
+            (let ((headings (get-level-2-headings)))
+              (when (not (equal text (car (member text headings))))
+                (org-insert-subheading "")
+                (insert text))))
         (progn
           (goto-char (point-min))
           (org-goto-first-child)
@@ -19,6 +30,16 @@
             (org-insert-subheading "")
             (insert text)))))
     (save-buffer buff)))
+
+(setq wl-file "~/sandbox/wl-test.org")
+
+(defun wl-add-entry ()
+  (interactive)
+  (let* ((lnk (org-store-link nil t))
+         (id-part (car lnk))
+         (title-part (cadr lnk))
+         (text (format "[[%s][%s]]" id-part title-part)))
+    (add-new-entry wl-file text)))
 
 (defun goto-today-heading ()
   (progn
@@ -46,24 +67,22 @@
 (progn
   (require 'test-simple)
 
-  (defun get-level-2-headings ()
-  (let ((result
-          (org-map-entries
-           (lambda ()
-             (org-element-property :title (org-element-at-point)))
-           "LEVEL=2"
-           'tree)))
-    result))
-
   (defun assert-new-today-entry (file header-text sub-header-text)
     (save-current-buffer
       (set-buffer (find-file-noselect file))
       (goto-today-heading)
       (save-excursion
-        (assert-equal sub-header-text (first (get-level-2-headings))))
+        (let ((headings (get-level-2-headings)))
+          ;; headings contain given text
+          (assert-equal sub-header-text (car (member sub-header-text headings)))
+          ;; headings are still unique
+          (assert-equal headings (seq-uniq headings))))
+      
       (let ((text (org-entry-get (point) "ITEM")))
         (assert-equal header-text text))))
 
+  (seq-uniq '( "foo" "bar" "baz" "bar"))
+  
   (defun insert-file-header ()
     (insert "#+title:      Work Log\n")
     (insert "#+date:       [2025-12-07 Sun 17:44]\n")
@@ -85,6 +104,7 @@
   (let ((now (current-time)))
     (setq wl-without-today "/tmp/wl-without-today.org")
     (setq wl-with-today "/tmp/wl-with-today.org")
+    (setq wl-with-today-and-existing-heading "/tmp/wl-with-today-and-existing-heading.org")
     (setq today (format-time-string "%Y-%m-%d" now))
     (setq current-time (format-time-string "%Y-%m-%d %H:%M" now))
     (setq current-time-prev (format "%s 15:32" today)))
@@ -103,9 +123,16 @@
     (insert "* 2025-12-10 15:32\n")
     (insert-sub-headers))
 
+  (with-temp-file wl-with-today-and-existing-heading
+    (insert-file-header)
+    (insert (format "* %s\n" current-time-prev))
+    (insert "** Entry 1"))
+
   (add-new-entry wl-without-today "text under today")
   (add-new-entry wl-with-today "text under today")
+  (add-new-entry wl-with-today-and-existing-heading "Entry 1")
 
   (assert-new-today-entry wl-without-today current-time "text under today")
   (assert-new-today-entry wl-with-today current-time-prev "text under today")
+  (assert-new-today-entry wl-with-today-and-existing-heading current-time-prev "Entry 1")
   (end-tests))
