@@ -1,11 +1,11 @@
-(defun get-level-2-headings ()
-  (let ((result
-         (org-map-entries
-          (lambda ()
-            (org-element-property :title (org-element-at-point)))
-          "LEVEL=2"
-          'tree)))
-    result))
+(setq wl-file "~/sandbox/wl-test.org")
+(defun wl-add-entry ()
+  (interactive)
+  (let* ((lnk (org-store-link nil t))
+         (id-part (car lnk))
+         (title-part (cadr lnk))
+         (text (format "[[%s][%s]]" id-part title-part)))
+    (add-new-entry wl-file text)))
 
 (defun add-new-entry ( file text)
   (save-current-buffer
@@ -13,11 +13,12 @@
            (_ (set-buffer buff))
            (result (goto-today-heading)))
       (if result
-          (progn
-            (let ((headings (get-level-2-headings)))
-              (when (not (equal text (car (member text headings))))
+          (let ((headings (get-level-2-headings)))
+            (when (not (equal text (car (member text headings))))
+              (progn
                 (org-insert-subheading "")
-                (insert text))))
+                (insert text)))
+            (goto-new-entry buff text))
         (progn
           (goto-char (point-min))
           (org-goto-first-child)
@@ -28,18 +29,23 @@
           (insert (format-time-string "%Y-%m-%d %H:%M"))
           (progn
             (org-insert-subheading "")
-            (insert text)))))
+            (insert text)
+            (goto-new-entry buff text)))))
     (save-buffer buff)))
 
-(setq wl-file "~/sandbox/wl-test.org")
+(defun goto-new-entry (buff text)
+  (let ((w (get-buffer-window buff t)))
+    (when w (select-window w)))
+  (goto-today-entry-with-text text))
 
-(defun wl-add-entry ()
-  (interactive)
-  (let* ((lnk (org-store-link nil t))
-         (id-part (car lnk))
-         (title-part (cadr lnk))
-         (text (format "[[%s][%s]]" id-part title-part)))
-    (add-new-entry wl-file text)))
+(defun goto-today-entry-with-text (text)
+  (goto-today-heading)
+  (setq done nil)
+  (org-goto-first-child)
+  (while (not done)
+    (let ((text2 (org-entry-get (point) "ITEM")))
+      (when (equal text text2)
+        (setq done t)))))
 
 (defun goto-today-heading ()
   (progn
@@ -62,6 +68,15 @@
   (let ((time1 (parse-time-string timestamp))
         (now (decode-time (current-time)))) 
     (= (nth 3 time1) (nth 3 now))))
+
+(defun get-level-2-headings ()
+  (let ((result
+         (org-map-entries
+          (lambda ()
+            (org-element-property :title (org-element-at-point)))
+          "LEVEL=2"
+          'tree)))
+    result))
 
 
 (progn
