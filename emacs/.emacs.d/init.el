@@ -66,7 +66,101 @@
       auto-revert-interval 3
       auto-revert-check-vc-info t
       switch-to-buffer-obey-display-actions t
-      aw-scope 'frame)
+      aw-scope 'frame
+      which-func-update-delay 1.0
+      show-paren-delay 0.1
+      show-paren-highlight-openparen t
+      show-paren-when-point-inside-paren t
+      show-paren-when-point-in-periphery t
+      kill-do-not-save-duplicates t
+      split-height-threshold nil
+      uniquify-buffer-name-style 'forward
+      confirm-kill-emacs 'y-or-n-p)
+
+;; https://github.com/jamescherti/minimal-emacs.d/blob/main/init.el
+(progn
+  (setq revert-without-query (list ".") ; Do not prompt
+        auto-revert-stop-on-user-input nil
+        auto-revert-verbose t)
+
+  ;; Revert other buffers (e.g, Dired)
+  (setq global-auto-revert-non-file-buffers t)
+  (setq global-auto-revert-ignore-modes '(Buffer-menu-mode)) ; Resolve issue #29
+
+
+  (setq minibuffer-prompt-properties
+        '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+
+;;; saveplace
+  ;; Enables Emacs to remember the last location within a file upon reopening.
+  (setq save-place-file (expand-file-name "saveplace" user-emacs-directory))
+  (setq save-place-limit 600)
+
+;;; savehist
+
+  ;; `savehist-mode' is an Emacs feature that preserves the minibuffer history
+  ;; between sessions.
+  (setq history-length 300)
+  (setq savehist-save-minibuffer-history t) ;; Default
+  (setq savehist-additional-variables
+        '(kill-ring                        ; clipboard
+          register-alist                   ; macros
+          mark-ring global-mark-ring       ; marks
+          search-ring regexp-search-ring)) ; searches
+
+;;; Frames and windows
+
+  ;; However, do not resize windows pixelwise, as this can cause crashes in some
+  ;; cases when resizing too many windows at once or rapidly.
+  (setq window-resize-pixelwise nil)
+
+  (setq resize-mini-windows 'grow-only)
+
+  ;; The native border "uses" a pixel of the fringe on the rightmost
+  ;; splits, whereas `window-divider-mode' does not.
+  (setq window-divider-default-bottom-width 1
+        window-divider-default-places t
+        window-divider-default-right-width 1)
+
+;;; Fontification
+
+  ;; Disable fontification during user input to reduce lag in large buffers.
+  ;; Also helps marginally with scrolling performance.
+  (setq redisplay-skip-fontification-on-input t)
+
+;;; Scrolling
+
+  ;; Enables faster scrolling. This may result in brief periods of inaccurate
+  ;; syntax highlighting, which should quickly self-correct.
+  (setq fast-but-imprecise-scrolling t)
+
+  ;; Move point to top/bottom of buffer before signaling a scrolling error.
+  (setq scroll-error-top-bottom t)
+
+  ;; Keep screen position if scroll command moved it vertically out of the window.
+  (setq scroll-preserve-screen-position t)
+
+  ;; Emacs recenters the window when the cursor moves past `scroll-conservatively'
+  ;; lines beyond the window edge. A value over 101 disables recentering; the
+  ;; default (0) is too eager. Here it is set to 20 for a balanced behavior.
+  (setq scroll-conservatively 20)
+
+  ;; 1. Preventing automatic adjustments to `window-vscroll' for long lines.
+  ;; 2. Resolving the issue of random half-screen jumps during scrolling.
+  (setq auto-window-vscroll nil)
+
+  ;; Number of lines of margin at the top and bottom of a window.
+  (setq scroll-margin 0)
+
+  ;; Number of lines of continuity when scrolling by screenfuls.
+  (setq next-screen-context-lines 0)
+
+  ;; Horizontal scrolling
+  (setq hscroll-margin 2
+        hscroll-step 1))
+
 
 (add-to-list 'display-buffer-alist
              '("\\*Org Agenda\\*"
