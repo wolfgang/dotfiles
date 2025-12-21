@@ -81,6 +81,7 @@
 (global-unset-key "\C-z")
 
 
+
 (bind-keys
  ("C-|" . split-window-horizontally)
  ("C-_" . split-window-vertically)
@@ -97,6 +98,7 @@
  ("C-z n" . make-frame)
  ("C-z m" . mc/mark-all-dwim)
  ("C-z t" . my-insert-now)
+ ("C-z l" . wl-add-entry)
  ("C-z C-z" . my-babel-call)
  ("C-z o" . other-window-prefix))
 
@@ -122,6 +124,7 @@
 (require 'linum-off)
 (require 'term-toggle)
 (require 'my-functions)
+(require 'org-wl)
 (require 'new-day)
 (require 'my-org)
 
