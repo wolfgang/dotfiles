@@ -56,20 +56,9 @@
     (when (not has-log)
       (progn
         (org-back-to-heading)
-        (setq header-line-num (line-number-at-pos))
-        (forward-line 1)
-        (setq left-to-move 0)
-        (while (and (= 0 left-to-move)
-                    (not (looking-at org-complex-heading-regexp)))
-          (setq left-to-move (forward-line 1)))
-        (beginning-of-line)
-        (while
-            (and
-             (> (line-number-at-pos) header-line-num)
-             (or (is-current-line-empty-p)
-                 (looking-at org-complex-heading-regexp)))
-          (forward-line -1))
-        (end-of-line)
+        (org-end-of-meta-data t)
+        (newline)
+        (previous-line)
         (org-insert-subheading "")
         (insert "Work Log"))))
   (org-goto-first-child)
