@@ -1,12 +1,13 @@
 (require 'ert)
+
 (eval-buffer (find-file-noselect "./org-wl.el"))
 
 
 (defmacro with-temp-org-buffer ( file &rest body)
   `(with-temp-buffer
-    (insert-file ,file)
-    (org-mode)
-    (progn ,@body )))
+     (insert-file ,file)
+     (org-mode)
+     (progn ,@body )))
 
 (defun insert-file-header ()
   (insert "#+title:      Work Log\n")
@@ -20,25 +21,31 @@
   (insert "** Sub 2\n"))
 
 (defun add-entry-from (task-file &optional target-file)
-  (with-temp-org-buffer task-file
-    (write-file task-file)
-    (make-local-variable 'wl-file)
-    (setq wl-file (or target-file (make-temp-org-file "wl-test-file")))
-    (goto-char (point-min))
-    (wl-add-entry)
-    (save-buffer)
-    wl-file))
+  (with-temp-org-buffer
+   task-file
+   (write-file task-file)
+   (make-local-variable 'wl-file)
+   (make-local-variable 'wl-worklog-subheading)
+   (setq wl-worklog-subheading t)
+   (setq wl-file (or target-file (make-temp-org-file "wl-test-file")))
+   (goto-char (point-min))
+   (wl-add-entry)
+   (save-buffer)
+   wl-file))
 
 (defun add-two-entries-from (task-file)
-  (with-temp-org-buffer task-file
-    (write-file task-file)
-    (make-local-variable 'wl-file)
-    (setq wl-file (make-temp-org-file "wl-test-file"))
-    (goto-char (point-min))
-    (wl-add-entry)
-    (wl-add-entry)
-    (save-buffer)
-    wl-file))
+  (with-temp-org-buffer
+   task-file
+   (write-file task-file)
+   (make-local-variable 'wl-file)
+   (make-local-variable 'wl-worklog-subheading)
+   (setq wl-worklog-subheading t)
+   (setq wl-file (make-temp-org-file "wl-test-file"))
+   (goto-char (point-min))
+   (wl-add-entry)
+   (wl-add-entry)
+   (save-buffer)
+   wl-file))
 
 (defun make-temp-org-file-with-single-heading ()
   (let ((file (make-temp-org-file "wl-test-task-file")))
@@ -80,6 +87,15 @@
         (should (equal worklog-size (length children)))
         (should (one-contains-str time-string children))))))
 
+(defun assert-worklog-in-task-drawer (file task-string time-string)
+  (with-temp-org-buffer file
+                        (let ((id (goto-first-heading-with-text file task-string)))
+                          (should id)
+                          (should (assoc (format "id:%s" id) org-stored-links))
+                          (should (wl--goto-worklog-drawer))
+                          (forward-line)
+                          (should (string-search time-string (thing-at-point 'line))))))
+
 (defun get-sub-headings-at-level (level)
   (let ((result
          (org-map-entries
@@ -95,6 +111,34 @@
 
 (defun get-heading-text ()
     (org-entry-get (point) "ITEM"))
+
+(defun t-add-worklog-drawer (task-file)
+  (with-temp-org-buffer task-file
+                        (write-file task-file)
+                        (goto-char (point-min))
+                        (wl--add-worklog-drawer)
+                        (save-buffer)))
+
+(defun t-add-worklog-item (task-file item)
+  (with-temp-org-buffer task-file
+                        (write-file task-file)
+                        (goto-char (point-min))
+                        (wl--add-worklog-item item)
+                        (save-buffer)))
+
+(defun t-make-file (file lines)
+  (with-temp-file file
+    (seq-each (lambda (l) (insert (format "%s\n" l))) lines)))
+
+(defun t-read-file (file)
+  (with-current-buffer (find-file-noselect task-file) (buffer-string)))
+
+(defun t-assert-file-contents (file expected-contents)
+  (let* ((file-contents (string-trim (t-read-file file))))
+    (should
+             (string-match
+              (substring-no-properties file-contents)
+              (string-join expected-contents "\n")))))
 
 (progn
   (ert-delete-all-tests)
@@ -205,6 +249,68 @@
             (wl-file (add-entry-from task-file))
             )
        (assert-worklog-under-task task-file "Some Task" current-time 2)))
-  
+  (ert-deftest wl--add-worklog-item-no-worklog-yet ()
+    (let* ((task-file "/tmp/wl-test-task-file.org")
+           (_ (t-make-file task-file '("* TODO Some Task"))))
+      (t-add-worklog-item task-file "worklog-item-1")
+      (t-add-worklog-item task-file "worklog-item-2")
+      (t-assert-file-contents task-file (list "* TODO Some Task"
+                                              ":WORKLOG:"
+                                              "worklog-item-2"
+                                              "worklog-item-1"
+                                              ":END:"))))
+
+  (ert-deftest wl--add-worklog-item-adds-after-properties ()
+    (let* ((task-file "/tmp/wl-test-task-file.org")
+           (_ (t-make-file task-file '("* TODO Some Task"
+                                       ":PROPERTIES:"
+                                       ":END:"))))
+      (t-add-worklog-item task-file "worklog-item-1")
+      (t-add-worklog-item task-file "worklog-item-2")
+      (t-assert-file-contents task-file (list "* TODO Some Task"
+                                              ":PROPERTIES:"
+                                              ":END:"
+                                              ":WORKLOG:"
+                                              "worklog-item-2"
+                                              "worklog-item-1"
+                                              ":END:"))))
+
+  (ert-deftest wl--add-worklog-item-worklog-exists ()
+    (let* ((task-file "/tmp/wl-test-task-file.org")
+           (_ (t-make-file task-file '("* TODO Some Task" ":WORKLOG:" ":END:"))))
+      (t-add-worklog-item task-file "worklog-item-1")
+      (t-add-worklog-item task-file "worklog-item-2")
+      (t-assert-file-contents task-file '("* TODO Some Task"
+                                          ":WORKLOG:"
+                                          "worklog-item-2"
+                                          "worklog-item-1"
+                                          ":END:"))))
+
+  (ert-deftest wl--add-worklog-item-other-drawers-exist ()
+    (let* ((task-file "/tmp/wl-test-task-file.org")
+           (_ (t-make-file task-file '("* TODO Some Task"
+                                       ":FOO:"
+                                       ":END:"
+                                       ":WORKLOG:"
+                                       "worklog-item-1"
+                                       ":END:"
+                                       ":LOGBOOK:"
+                                       ":END:"))))
+      (t-add-worklog-item task-file "worklog-item-2")
+      (t-assert-file-contents task-file '("* TODO Some Task"
+                                          ":FOO:"
+                                          ":END:"
+                                          ":WORKLOG:"
+                                          "worklog-item-2"
+                                          "worklog-item-1"
+                                          ":END:"
+                                          ":LOGBOOK:"
+                                          ":END:"))))
+
+  (ert-deftest wl-add-entry-adds-link-to-worklog-drawer ()
+    (let* ((task-file (make-temp-org-file-with-single-heading))
+           (wl-file (add-entry-from task-file)))
+      (assert-wl-file-entry wl-file task-file current-time "Some Task")
+      (assert-worklog-in-task-drawer task-file "Some Task" current-time)))
   (ert t)
   (kill-test-buffers))

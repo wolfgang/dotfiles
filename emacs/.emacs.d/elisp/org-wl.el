@@ -1,6 +1,9 @@
 (defvar wl-file
   "Location of the work log file. Daily headings are added on top level")
 
+(defvar wl-worklog-subheading 
+  "Whether to only use a subheading for entry links under the task")
+
 (defun wl-add-entry ()
   (interactive)
   (let* ((lnk (org-store-link nil t))
@@ -12,7 +15,9 @@
            (lnk (car (cdr result)))
            (is-new (car (last result))))
       (when is-new
-        (add-worklog-link text lnk)))))
+        (progn
+          (when wl-worklog-subheading (save-excursion (add-worklog-link text lnk)))
+          (wl--add-worklog-item (format "[[%s][%s]]" lnk text ) ))))))
 
 (defun add-new-entry (file text)
   (save-current-buffer
@@ -115,5 +120,31 @@
           "LEVEL=2"
           'tree)))
     result))
+
+(defun wl--add-worklog-item (item)
+  (wl--add-worklog-drawer)
+  (wl--goto-worklog-drawer)
+  (newline)
+  (insert item))
+
+(defun wl--add-worklog-drawer ()
+  (when (not (wl--goto-worklog-drawer))
+    (wl--skip-properties)
+    (end-of-line)
+    (newline)
+    (insert ":WORKLOG:\n")
+    (insert ":END:\n")))
+
+(defun wl--goto-worklog-drawer ()
+  (org-back-to-heading)
+  (let ((end (save-excursion (outline-next-heading) (point))))
+    (re-search-forward "^[ \t]*:WORKLOG:[ \t]*$" end t)))
+
+(defun wl--skip-properties ()
+  (org-back-to-heading)
+  (let* ((end (save-excursion (outline-next-heading) (point)))
+         (props (re-search-forward "^[ \t]*:PROPERTIES:[ \t]*$" end t)))
+    (when props
+      (re-search-forward "^[ \t]*:END:[ \t]*$" end t))))
 
 (provide 'org-wl)
