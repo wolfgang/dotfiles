@@ -130,12 +130,16 @@
     (seq-each
      (lambda (b) (with-current-buffer b (save-buffer) (kill-buffer)))
      (seq-filter (lambda (b) (s-starts-with-p "wl-test-" (buffer-name b))) (buffer-list))))
-
-  (ert-deftest is-inside-today ()
-    (should (is-inside-today (format-time-string "%Y-%m-%d %H:%M" (current-time))))
-    (should-not (is-inside-today "2025-12-11 0:01"))
-    (should-not (is-inside-today "2140-12-11 0:01"))
-    (should-not (is-inside-today "2025-12-12 10:45")))
+  
+  (ert-deftest is-inside-today-works ()
+    (let* ((time (decode-time (current-time)))
+           (day (nth 3 time))
+           (month (nth 4 time)))
+      (should (is-inside-today (format-time-string "%Y-%m-%d %H:%M" (current-time))))
+      (should-not (is-inside-today (format "2025-%.2d-%.2d 0:01" month day)))
+      (should-not (is-inside-today "2025-12-11 0:01"))
+      (should-not (is-inside-today "2140-12-11 0:01"))
+      (should-not (is-inside-today "2025-12-12 10:45"))))
 
   (ert-deftest wl-add-entry-creates-new-today-entry ()
     (let ((task-file (make-temp-org-file-with-single-heading)))
@@ -194,13 +198,13 @@
       (assert-wl-file-entry wl-file task-file current-time "Some Task")))
 
   '(ert-deftest wl-add-entry-adds-worklog-before-other-subheadings ()
-    (let* ((task-file "/tmp/wl-test-task-file.org")
-           ( _ (with-temp-file task-file
-                 (insert "* Some Task\n")
-                 (insert "** Some subheading\n")))
-           (wl-file (add-entry-from task-file))
-           )
-      (assert-worklog-under-task task-file "Some Task" current-time 2)))
+     (let* ((task-file "/tmp/wl-test-task-file.org")
+            ( _ (with-temp-file task-file
+                  (insert "* Some Task\n")
+                  (insert "** Some subheading\n")))
+            (wl-file (add-entry-from task-file))
+            )
+       (assert-worklog-under-task task-file "Some Task" current-time 2)))
   
   (ert t)
   (kill-test-buffers))

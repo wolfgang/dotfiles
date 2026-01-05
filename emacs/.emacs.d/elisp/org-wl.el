@@ -99,10 +99,13 @@
 
     result))
 
+
 (defun is-inside-today (timestamp)
-  (let ((time1 (parse-time-string timestamp))
-        (now (decode-time (current-time)))) 
-    (= (nth 3 time1) (nth 3 now))))
+  (let* ((time1 (parse-time-string timestamp))
+         (now (decode-time (current-time)))) 
+    (and (= (nth 3 time1) (nth 3 now))
+         (= (nth 4 time1) (nth 4 now))
+         (= (nth 5 time1) (nth 5 now)))))
 
 (defun get-level-2-headings ()
   (let ((result
