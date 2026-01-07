@@ -75,7 +75,8 @@
       kill-do-not-save-duplicates t
       split-height-threshold nil
       uniquify-buffer-name-style 'forward
-      confirm-kill-emacs 'y-or-n-p)
+      confirm-kill-emacs 'y-or-n-p
+      auto-revert-avoid-polling t)
 
 ;; https://github.com/jamescherti/minimal-emacs.d/blob/main/init.el
 (progn
