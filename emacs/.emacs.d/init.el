@@ -141,7 +141,7 @@
   (setq scroll-error-top-bottom t)
 
   ;; Keep screen position if scroll command moved it vertically out of the window.
-  (setq scroll-preserve-screen-position t)
+  (setq scroll-preserve-screen-position 'always)
 
   ;; Emacs recenters the window when the cursor moves past `scroll-conservatively'
   ;; lines beyond the window edge. A value over 101 disables recentering; the
