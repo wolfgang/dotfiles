@@ -42,12 +42,6 @@
   (add-hook 'org-shiftright-final-hook 'windmove-right)
   (global-set-key (kbd "<f9>") 'org-pomodoro)
   (add-to-list 'safe-local-variable-values '(org-confirm-babel-evaluate))
-  (add-hook 'org-after-todo-state-change-hook
-	        (lambda ()
-              (if (string= "WAIT" org-state)
-                  (progn
-	                (message (concat "TODO state changed: " org-state))
-                    (insert "(<REASON>) ")))))
   (use-package org-appear
     :ensure t
     :init
