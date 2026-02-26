@@ -95,6 +95,8 @@
     (setq result nil)
     (while (not done)
       (let ((text (org-entry-get (point) "ITEM")))
+        (when (and text (not (is-full-date-string text)))
+          (setq done t))
         (when (and text (is-inside-today text))
           (progn (setq done t)
                  (setq result text) ))
@@ -105,12 +107,20 @@
     result))
 
 
+(defun is-full-date-string ( str)
+  (let ((time (parse-time-string str)))
+    (and (nth 3 time)
+         (nth 4 time)
+         (nth 5 time))))
+
 (defun is-inside-today (timestamp)
   (let* ((time1 (parse-time-string timestamp))
          (now (decode-time (current-time)))) 
-    (and (= (nth 3 time1) (nth 3 now))
-         (= (nth 4 time1) (nth 4 now))
-         (= (nth 5 time1) (nth 5 now)))))
+    (and
+     (nth 3 time1)
+     (= (nth 3 time1) (nth 3 now))
+     (= (nth 4 time1) (nth 4 now))
+     (= (nth 5 time1) (nth 5 now)))))
 
 (defun get-level-2-headings ()
   (let ((result
