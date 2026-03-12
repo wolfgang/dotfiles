@@ -163,10 +163,10 @@
         hscroll-step 1))
 
 
-(add-to-list 'display-buffer-alist
-             '("\\*Org Agenda\\*"
-               (display-buffer-reuse-window display-buffer-pop-up-window)
-               (dedicated . t)))
+;; (add-to-list 'display-buffer-alist
+;;              '("\\*Org Agenda\\*"
+;;                (display-buffer-reuse-window display-buffer-pop-up-window)
+;;                (dedicated . t)))
 
 (if (eq system-type 'darwin) (progn
                                (setq ns-function-modifier 'control)
@@ -356,8 +356,9 @@
   :after (projectile)
   :init
   (setq consult-project-function (lambda (_) (projectile-project-root)))
-  (setq consult-ripgrep-args
-   "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
+  (unless ( boundp 'consult-ripgrep-args )
+    (setq consult-ripgrep-args
+          "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip --hidden"))
   :bind (("C-x b" . consult-buffer)
          ("C-x 4 b" . consult-buffer-other-window)
          ("M-S" . my-consult-ripgrep)
