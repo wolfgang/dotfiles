@@ -647,8 +647,9 @@
   :ensure t
   :diminish super-save-mode
   :config
-  (setq super-save-auto-save-when-idle t)
-  (setq auto-save-default nil)
+  (setq super-save-auto-save-when-idle t
+        super-save-all-buffers t
+        auto-save-default nil)
   (super-save-mode))
 
 (use-package git-timemachine
