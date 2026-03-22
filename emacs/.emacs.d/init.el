@@ -307,6 +307,8 @@
 (use-package flycheck
   :ensure t
   :diminish flycheck-mode
+  :custom
+   (flycheck-disabled-checkers '(org-lint emacs-lisp))
   :hook ((after-init . global-flycheck-mode)))
 
 
