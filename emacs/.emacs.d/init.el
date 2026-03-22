@@ -1044,3 +1044,8 @@
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.u\\'" . unisonlang-mode)))
+
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
