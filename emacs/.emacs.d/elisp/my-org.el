@@ -86,26 +86,28 @@
 
 (defun my-org-emphasize (ch)
   (interactive)
-  (setq orig-point (point))
-  (save-excursion
-    (progn
-      (while
-          (and (not (eobp))
-               (not (looking-at "\\s-" )))
-        (forward-char))
-      (setq xend (point))
-      (backward-char)
-      (while
-          (and (not (bobp))
-               (not (looking-at "\\s-" )))
-        (backward-char))
-      (when (not (bobp)) (forward-char))
-      (setq xbeg (point))
-      (goto-char xbeg)
-      (when (not (= xbeg xend))
-        (set-mark xend)
-        (org-emphasize ch))))
-  (goto-char orig-point))
+  (if (region-active-p)
+      (org-emphasize ch)
+    (setq orig-point (point))
+    (save-excursion
+      (progn
+        (while
+            (and (not (eobp))
+                 (not (looking-at "\\s-" )))
+          (forward-char))
+        (setq xend (point))
+        (backward-char)
+        (while
+            (and (not (bobp))
+                 (not (looking-at "\\s-" )))
+          (backward-char))
+        (when (not (bobp)) (forward-char))
+        (setq xbeg (point))
+        (goto-char xbeg)
+        (when (not (= xbeg xend))
+          (set-mark xend)
+          (org-emphasize ch))))
+    (goto-char orig-point)))
 
 (provide 'my-org)
 
