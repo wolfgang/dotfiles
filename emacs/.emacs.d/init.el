@@ -1051,3 +1051,12 @@
   :ensure t
   :config
   (direnv-mode))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns x))
+  :config
+  (exec-path-from-shell-initialize))
+
+(use-package ghostel
+  :ensure t)
