@@ -131,6 +131,10 @@ Support toggle for shell, term, ansi-term, eshell and ielm."
   "Toggle `eshell'."
   (interactive) (term-toggle 'eshell))
 
+(defun term-toggle-ghostel ()
+  "Toggle `eshell'."
+  (interactive) (term-toggle 'ghostel))
+
 ;;;###autoload
 (defun term-toggle-ielm ()
   "Toggle `ielm'."

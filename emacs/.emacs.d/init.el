@@ -202,7 +202,7 @@
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(define-key global-map [C-f2] #'term-toggle-eshell)
+(define-key global-map [C-f2] #'term-toggle-ghostel)
 
 (add-hook 'emacs-lisp-mode-hook
 	      '(lambda ()
@@ -1059,4 +1059,6 @@
   (exec-path-from-shell-initialize))
 
 (use-package ghostel
-  :ensure t)
+  :ensure t
+  :config
+  (define-key ghostel-mode-map (kbd "C-<f2>") nil))
