@@ -169,6 +169,7 @@
 ;;                (dedicated . t)))
 
 (if (eq system-type 'darwin) (progn
+                               (setq alert-notifier-command "/opt/homebrew/bin/terminal-notifier")
                                (setq ns-function-modifier 'control)
                                (setq mac-command-modifier 'super)
                                (setq mac-right-command-modifier 'control)))
