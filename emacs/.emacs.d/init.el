@@ -1061,5 +1061,13 @@
 
 (use-package ghostel
   :ensure t
+  :vc (:url "https://github.com/dakra/ghostel"
+            :lisp-dir "lisp"
+            :rev :newest)
+  :config
+  (define-key ghostel-mode-map (kbd "C-<f2>") nil))
+
+(use-package ghostel
+  :ensure t
   :config
   (define-key ghostel-mode-map (kbd "C-<f2>") nil))
