@@ -1066,8 +1066,3 @@
             :rev :newest)
   :config
   (define-key ghostel-mode-map (kbd "C-<f2>") nil))
-
-(use-package ghostel
-  :ensure t
-  :config
-  (define-key ghostel-mode-map (kbd "C-<f2>") nil))
