@@ -155,9 +155,42 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
                        (my-get-git-log "steel-rain" "3 weeks" ) "\n"))
     (insert "\n"))  )
 
+(setq my-clockin-timer nil)
+(setq my-clockin-start nil)
+
+(setq my-clockin-notified-30 nil)
+(setq my-clockin-notified-40 nil)
+(setq my-clockin-notified-50 nil)
+
+(add-hook 'org-clock-out-hook (lambda ()
+                                (message "clock out hook")
+                                (when my-clockin-timer (cancel-timer my-clockin-timer))))
+
 (defun my-clock-in ()
   (interactive)
   (let ((current-prefix-arg '(4)))
-    (call-interactively 'org-clock-in)))
+    (call-interactively 'org-clock-in)
+    (setq my-clockin-notified-30 nil)
+    (setq my-clockin-notified-40 nil)
+    (setq my-clockin-notified-50 nil)
+    (when my-clockin-timer (cancel-timer my-clockin-timer))
+    (setq my-clockin-timer (run-with-timer t 10 'my-clockin-tick))
+    (setq my-clockin-start (time-to-seconds))
+    (my-notify "Clock" "Clock started")))
+
+(defun my-clockin-tick ()
+  (when (and (not my-clockin-notified-30)
+             (> (- (time-to-seconds) my-clockin-start) 1800))
+    (setq my-clockin-notified-30 t)
+    (my-notify "Clock" "30 Minutes mark"))
+  (when (and (not my-clockin-notified-40)
+             (> (- (time-to-seconds) my-clockin-start) 2400))
+    (setq my-clockin-notified-40 t)
+    (my-notify "Clock" "40 Minutes mark"))
+  (when (and (not my-clockin-notified-50)
+             (> (- (time-to-seconds) my-clockin-start) 3000))
+    (setq my-clockin-notified-50 t)
+    (my-notify "Clock" "50 Minutes mark")))
+
 
 (provide 'my-functions)
