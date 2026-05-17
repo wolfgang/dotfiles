@@ -199,7 +199,8 @@
  ("C-z o" . other-window-prefix)
  ("C-z e s" . (lambda () (interactive) (my-org-emphasize ?~)))
  ("C-z e b" . (lambda () (interactive) (my-org-emphasize ?*)))
- ("C-z e i" . (lambda () (interactive) (my-org-emphasize ?/))))
+ ("C-z e i" . (lambda () (interactive) (my-org-emphasize ?/)))
+ ("S-<f8>" . my-clock-in))
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
@@ -1066,3 +1067,11 @@
             :rev :newest)
   :config
   (define-key ghostel-mode-map (kbd "C-<f2>") nil))
+
+
+(use-package uniline
+  :ensure t
+  :config
+  (use-package uniline-transient)
+  :custom
+  (uniline-key-insert '("C-z u")))

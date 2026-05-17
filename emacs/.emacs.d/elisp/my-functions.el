@@ -155,4 +155,9 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
                        (my-get-git-log "steel-rain" "3 weeks" ) "\n"))
     (insert "\n"))  )
 
+(defun my-clock-in ()
+  (interactive)
+  (let ((current-prefix-arg '(4)))
+    (call-interactively 'org-clock-in)))
+
 (provide 'my-functions)
