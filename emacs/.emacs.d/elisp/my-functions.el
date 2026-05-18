@@ -168,15 +168,19 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
 
 (defun my-clock-in ()
   (interactive)
-  (let ((current-prefix-arg '(4)))
-    (call-interactively 'org-clock-in)
-    (setq my-clockin-notified-30 nil)
-    (setq my-clockin-notified-40 nil)
-    (setq my-clockin-notified-50 nil)
-    (when my-clockin-timer (cancel-timer my-clockin-timer))
-    (setq my-clockin-timer (run-with-timer t 10 'my-clockin-tick))
-    (setq my-clockin-start (time-to-seconds))
-    (my-notify "Clock" "Clock started")))
+  (cond
+   ((eq major-mode 'org-mode)
+    (call-interactively 'org-clock-in))
+   (t
+    (let ((current-prefix-arg '(4)))
+      (call-interactively 'org-clock-in))))
+  (setq my-clockin-notified-30 nil)
+  (setq my-clockin-notified-40 nil)
+  (setq my-clockin-notified-50 nil)
+  (when my-clockin-timer (cancel-timer my-clockin-timer))
+  (setq my-clockin-timer (run-with-timer t 10 'my-clockin-tick))
+  (setq my-clockin-start (time-to-seconds))
+  (my-notify "Clock" "Clock started"))
 
 (defun my-clockin-tick ()
   (when (and (not my-clockin-notified-30)
