@@ -23,6 +23,7 @@
 (require 'cl)
 (require 'notifications) ;; for (notifications-notify)
 
+
 (global-auto-revert-mode 1)
 (global-font-lock-mode 1)
 (transient-mark-mode 1)
@@ -433,7 +434,7 @@
   :diminish company-mode
   :bind (:map company-active-map
               ("<escape>" . company-abort))
-  :config
+  :init
   (global-company-mode)
   ;; respect case when inserting into buffer, ignore when searching for candidates
   (setq company-dabbrev-downcase nil
@@ -859,7 +860,7 @@
   :after (flycheck)
   :config
   ;; enable typescript - tslint checker
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  ;; (flycheck-add-mode 'typescript-tslint 'web-mode)
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
