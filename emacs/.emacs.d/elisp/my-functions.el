@@ -179,7 +179,7 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   (setq my-clockin-notified-30 nil)
   (setq my-clockin-notified-40 nil)
   (setq my-clockin-notified-50 nil)
-  (setq my-clock-last-overtime-notification nil)
+  (setq my-clockin-last-overtime-notification nil)
   (when my-clockin-timer (cancel-timer my-clockin-timer))
   (setq my-clockin-timer (run-with-timer t 10 'my-clockin-tick))
   (setq my-clockin-start (time-to-seconds))
