@@ -165,7 +165,8 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
 
 (add-hook 'org-clock-out-hook (lambda ()
                                 (message "clock out hook")
-                                (my-notify "Clock" "Clock Stopped")
+                                (let ((elapsed (- (time-to-seconds) my-clockin-start )))
+                                  (my-notify "Clock" (format "Clock stopped at %d minutes" (floor (/ elapsed 60)))))
                                 (when my-clockin-timer (cancel-timer my-clockin-timer))))
 
 (defun my-clock-in ()
