@@ -198,6 +198,7 @@
  ("C-z l" . wl-add-entry)
  ("C-z C-z" . my-babel-call)
  ("C-z o" . other-window-prefix)
+ ("C-z i" . my-org-end-of-meta-data)
  ("C-z e s" . (lambda () (interactive) (my-org-emphasize ?~)))
  ("C-z e b" . (lambda () (interactive) (my-org-emphasize ?*)))
  ("C-z e i" . (lambda () (interactive) (my-org-emphasize ?/)))

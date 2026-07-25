@@ -204,5 +204,9 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
       (setq my-clockin-last-overtime-notification (time-to-seconds))
       (my-notify "Clock" (format "Overtime: %d minutes elapsed" (floor (/ elapsed 60)))))))
 
+(defun my-org-end-of-meta-data ()
+  (interactive)
+  (org-end-of-meta-data))
+
 (provide 'my-functions)
 
