@@ -213,7 +213,7 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
   (let* ((project  (completing-read "Choose project: " glab-projects nil t))
          (iid (read-string "Issue id: "))
          (result (shell-command-to-string
-                  (format "glab api projects/%s/issues/%s --hostname %s | jq '{title, web_url}'"
+                  (format "glab api projects/%s/issues/%s --hostname %s"
                           (url-hexify-string project) iid glab-hostname)))
          (json (json-parse-string result))
          (title (gethash "title" json))
@@ -222,3 +222,4 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
     (org-insert-link nil url title)))
 
 (provide 'my-functions)
+
