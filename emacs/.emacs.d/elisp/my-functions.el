@@ -214,12 +214,25 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
          (iid (read-string "Issue id: "))
          (result (shell-command-to-string
                   (format "glab api projects/%s/issues/%s --hostname %s"
-                          (url-hexify-string project) iid glab-hostname)))
-         (json (json-parse-string result))
-         (title (gethash "title" json))
-         (url (gethash "web_url" json)))
-    (org-insert-todo-heading-respect-content)
-    (org-insert-link nil url title)))
+                          (url-hexify-string project) iid glab-hostname))))
+    (when (s-contains? "glab:" result t )
+      (error (format "glab returned an error: %s" result)))
+    (let* ((json (json-parse-string result))
+           (title (gethash "title" json))
+           (url (gethash "web_url" json)))
+      (org-insert-todo-heading-respect-content)
+      (org-insert-link nil url title))))
 
 (provide 'my-functions)
 
+(shell-command-to-string (format "glab api projects/code/hub/issues/17 --hostname %s" glab-hostname))
+(process-lines "glab" (format "api projects/code/hub/issues/17 --hostname %s" glab-hostname))
+
+
+(let ( (iid 12112121)
+       (project "code/hub"))
+  (shell-command-to-string
+   (format "glab api projects/%s/issues/%s --hostname %s"
+           (url-hexify-string project) iid glab-hostname)))
+
+(s-contains? "wol" "wolfg")
