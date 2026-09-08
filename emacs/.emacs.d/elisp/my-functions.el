@@ -221,18 +221,8 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
            (title (gethash "title" json))
            (url (gethash "web_url" json)))
       (org-insert-todo-heading-respect-content)
-      (org-insert-link nil url title))))
+      (org-insert-link nil url (format "[%s %s] " project iid))
+      (insert title))))
 
 (provide 'my-functions)
 
-(shell-command-to-string (format "glab api projects/code/hub/issues/17 --hostname %s" glab-hostname))
-(process-lines "glab" (format "api projects/code/hub/issues/17 --hostname %s" glab-hostname))
-
-
-(let ( (iid 12112121)
-       (project "code/hub"))
-  (shell-command-to-string
-   (format "glab api projects/%s/issues/%s --hostname %s"
-           (url-hexify-string project) iid glab-hostname)))
-
-(s-contains? "wol" "wolfg")
