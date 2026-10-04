@@ -945,7 +945,7 @@
   (consult-denote-mode 1)))
 
 
-(use-package ob-async :ensure t)
+;; (use-package ob-async :ensure t)
 
 (use-package ace-window
   :ensure t
