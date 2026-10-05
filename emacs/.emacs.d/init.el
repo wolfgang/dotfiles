@@ -1076,32 +1076,3 @@
   (use-package uniline-transient)
   :custom
   (uniline-key-insert '("C-z u")))
-
-(use-package org-mem
-  :ensure t
-  :config
-  (org-mem-updater-mode))
-
-;; https://github.com/helheim-emacs/helheim/commit/920df696dcdda3e063470c0e7523a0ccce93a066
-(defun my-org-node-inhibit-auto-fill-a (orig-fun &rest args)
-  "Fix for https://github.com/meedstrom/org-node/issues/180"
-  (let ((auto-fill-function nil))
-    (apply orig-fun args)))
-
-(use-package org-node
-  :ensure t
-  :init
-  ;; Optional key bindings
-  ;; Tip: Try changing these to just "M-o"!
-  (keymap-global-set "M-o" org-node-global-prefix-map)
-  (with-eval-after-load 'org
-    (keymap-set org-mode-map "M-o" org-node-org-prefix-map))
-  (define-error 'skip-file "Skip file" 'error)
-  :config
-  (advice-add 'org-node-backlink--fix-nearby-drawer :around
-              'my-org-node-inhibit-auto-fill-a)
-  (advice-add 'org-node-backlink--add-to-drawer :around
-              'my-org-node-inhibit-auto-fill-a)
-  (setq org-node-backlink-do-drawers t)
-  (org-node-backlink-mode)
-  (org-node-cache-mode))
