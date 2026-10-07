@@ -219,7 +219,9 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
                           (url-hexify-string project) iid glab-hostname))))
     (when (s-contains? "glab:" result t )
       (error (format "glab returned an error: %s" result)))
-    (let* ((json (json-parse-string result))
+    ;; sometimes there is additional lines (new version available, etc)
+    (let* ((json-str (first (string-split result "\n")))
+           (json (json-parse-string json-str))
            (title (gethash "title" json))
            (url (gethash "web_url" json)))
       (org-insert-todo-heading-respect-content)
@@ -227,4 +229,4 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
       (insert title))))
 
 (provide 'my-functions)
-
+;;; my-functions.el ends here
