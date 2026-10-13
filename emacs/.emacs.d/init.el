@@ -39,7 +39,7 @@
 (electric-pair-mode)
 
 (setq-default tab-width      4
-              fill-column    80
+              fill-column    120
               indent-tabs-mode      nil
               indicate-empty-lines  t
               require-final-newline t
