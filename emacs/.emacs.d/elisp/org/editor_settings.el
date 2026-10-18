@@ -15,7 +15,7 @@
 (add-hook 'org-mode-hook 
 	  '(lambda () 
 	     (auto-fill-mode 1) 
-	     (setq fill-column 80))
+	     (setq fill-column 120))
 	  'append)
 
 (setq org-link-search-must-match-exact-headline nil)
