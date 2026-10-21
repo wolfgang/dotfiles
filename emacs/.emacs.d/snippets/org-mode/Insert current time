@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Insert current time
+# key: <now
+# --
+`(insert (format-time-string "%Y-%m-%d %H:%M"))`
