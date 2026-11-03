@@ -1057,7 +1057,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :if (memq window-system '(mac ns x))
+  :if (memq window-system '(mac ns x pgtk))
   :config
   (exec-path-from-shell-initialize))
 
@@ -1076,3 +1076,10 @@
   (use-package uniline-transient)
   :custom
   (uniline-key-insert '("C-z u")))
+
+(use-package zig-mode
+  :ensure t
+  :config
+  (add-hook 'zig-mode-hook 'eglot-ensure))
+
+
