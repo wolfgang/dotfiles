@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t; -*-
+
 (defvar wl-file
   "Location of the work log file. Daily headings are added on top level")
 
@@ -20,8 +21,6 @@
           (when wl-worklog-subheading (save-excursion (add-worklog-link text lnk)))
           (wl--add-worklog-item (format "[[%s][%s]]" lnk text ) ))))))
 
-(setq wl-file-temp "~/sandbox/scratch.org")
-
 (defun add-new-entry (file text)
   (let* ((time (decode-time (current-time)))
          (date (list (decoded-time-month time )
@@ -32,20 +31,18 @@
     (save-current-buffer
       (let* ((buff (find-file-noselect file))
              (_ (set-buffer buff))
-             (lines (car (buffer-line-statistics buff))))
-
-        (let* ((_ (org-datetree-find-create-entry '(year month day) date))
-               (level (org-element-property :level (org-element-at-point)))
-               (children (get-level-n-headings (+ 1 level)))
-               (day-headline (format-time-string "%Y-%m-%d" (current-time)))
-               (is-new (not (equal text (car (member text children))))))
-          (if is-new
-              (progn
-                (end-of-line)
-                (org-insert-subheading "")
-                (insert text))
-            (goto-today-child-text text))
-          (list day-headline (org-id-store-link-maybe t) is-new))))))
+             (_ (org-datetree-find-create-entry '(year month day) date))
+             (level (org-element-property :level (org-element-at-point)))
+             (children (get-level-n-headings (+ 1 level)))
+             (is-new (not (equal text (car (member text children)))))
+             (day-headline (format-time-string "%Y-%m-%d" (current-time))))
+        (if is-new
+            (progn
+              (end-of-line)
+              (org-insert-subheading "")
+              (insert text))
+          (goto-today-child-text text))
+        (list day-headline (org-id-store-link-maybe t) is-new)))))
 
 (defun get-level-n-headings (n)
   (let ((result
