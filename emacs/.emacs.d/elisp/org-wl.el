@@ -12,7 +12,7 @@
          (id-part (car lnk))
          (title-part (cadr lnk))
          (text (format "[[%s][%s]]" id-part title-part)))
-    (let* ((result (add-new-entry-new wl-file text))
+    (let* ((result (add-new-entry wl-file text))
            (text (car result))
            (lnk (car (cdr result)))
            (is-new (car (last result))))
