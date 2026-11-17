@@ -1077,9 +1077,10 @@
   :custom
   (uniline-key-insert '("C-z u")))
 
-(use-package zig-mode
-  :ensure t
-  :config
-  (add-hook 'zig-mode-hook 'eglot-ensure))
+(when (not (eq system-type 'darwin))
+  (use-package zig-mode
+    :ensure t
+    :config
+    (add-hook 'zig-mode-hook 'eglot-ensure)))
 
 
