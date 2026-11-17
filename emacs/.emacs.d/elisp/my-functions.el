@@ -228,5 +228,44 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
       (org-insert-link nil url (format "[%s %s] " project iid))
       (insert title))))
 
+(defun my-insert-glab-todo-2 ()
+  (interactive)
+  (let* ((project  (completing-read "Choose project: " glab-projects nil t))
+         (json (glab-select-issue project))
+         (title (gethash "title" json))
+         (url (gethash "web_url" json))
+         (iid (gethash "iid" json)))
+    (org-insert-todo-heading-respect-content)
+    (org-insert-link nil url (format "[%s %s] " project iid))
+    (insert title)))
+
+
+(defun glab-select-issue (project)
+  (let* ((ht (glab-create-issues-hash project))
+         (result (completing-read "Ticket: " (hash-table-keys ht) nil t))
+         (json (gethash result ht )))
+    json))
+
+(defun glab-create-issues-hash ( project)
+  (let* ((ht (make-hash-table :test 'equal))
+         (json (glab-fetch-open-issues project))
+         (lst (mapcar (lambda (issue) (list (format "%s: %s" (gethash "iid" issue) (gethash "title" issue)) issue  )) json))
+         (_ (dolist (entry lst) (puthash (first entry) (second entry) ht ))))
+    ht))
+
+
+(defun glab-fetch-open-issues (project)
+  (let* ((result (shell-command-to-string (format "glab api projects/%s/issues/?state=opened --hostname %s"
+                                                  (url-hexify-string project) glab-hostname)))
+         ;; sometimes there is additional lines (new version available, etc)
+         (json-str (first (string-split result "\n")))
+         (json (json-parse-string json-str)))
+    json))
+
+(glab-create-issues-hash "code/hub")
+(gethash "title" (glab-select-issue "code/hub"))
+(gethash "iid" (glab-select-issue "code/hub"))
+
+
 (provide 'my-functions)
 ;;; my-functions.el ends here
