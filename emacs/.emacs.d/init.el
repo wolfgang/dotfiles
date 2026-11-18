@@ -436,6 +436,18 @@
   :bind (:map company-active-map
               ("<escape>" . company-abort))
   :init
+  (setq company-backends '(company-tide
+                           company-bbdb
+                           company-semantic
+                           company-cmake
+                           company-capf
+                           company-clang
+                           company-files
+                           (company-dabbrev-code
+                            company-gtags
+                            company-etags
+                            company-keywords)
+                           company-oddmuse))
   (global-company-mode)
   ;; respect case when inserting into buffer, ignore when searching for candidates
   (setq company-dabbrev-downcase nil
