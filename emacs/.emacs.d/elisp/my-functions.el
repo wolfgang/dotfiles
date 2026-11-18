@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defun my-babel-call ()
   (interactive)
   (progn
@@ -262,10 +264,10 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
          (json (json-parse-string json-str)))
     json))
 
-(glab-create-issues-hash "code/hub")
-(gethash "title" (glab-select-issue "code/hub"))
-(gethash "iid" (glab-select-issue "code/hub"))
-
+;; (glab-create-issues-hash "code/hub")
+;; (gethash "title" (glab-select-issue "code/hub"))
+;; (gethash "iid" (glab-select-issue "code/hub"))
+;; 
 
 (provide 'my-functions)
 ;;; my-functions.el ends here
